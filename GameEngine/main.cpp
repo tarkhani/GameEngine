@@ -132,20 +132,18 @@ vector<glm::vec2> uv= {
 	ARuv.numberOfElements = uv.size();
 	ARuv.size = uv.size()*sizeof(glm::vec2);
 
-
 	RawModel model = loader.loadToVAO(ARvertices, ARuv, ARindex);
-	RawModel model2 = objLoader::LoadObj("stall1.obj", loader);
-
+	RawModel model2 = objLoader::LoadObj("suzanne.obj", loader);
 
 	ModelTexture  Modeltexture(loader.loadTexture("stallTexture.png"));
 	textureModel TexureModel(model2, Modeltexture);
-	entity entity1= entity(TexureModel, glm::fvec3(0.0f, 0.0f, 0.0f), 0, 0, 0, 6);
+	entity entity1= entity(TexureModel, glm::fvec3(0.0f, 0.0f, -10.0f), 0, 0, 0, 1);
 
 	
 
 	do {
 
-		entity1.increaseRotation(1, 0, 0.0);
+		//entity1.increaseRotation(1, 0, 0.0);
 		rendrer.prepare();
 		
 		staticsahder.start();

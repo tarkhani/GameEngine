@@ -11,6 +11,7 @@
 {
 public:
 
+
 	GLuint VaoIDes[10];
 	GLuint VboIDes[10];
 	GLuint VIboIDes[10];

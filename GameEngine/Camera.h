@@ -5,7 +5,7 @@ class Camera
 public:
 
 	glm::vec3 CameraLocation = glm::vec3(0, 0, 0);
-	float Speed=0.01;
+	float Speed=0.1;
 	float pitch=0;
 	float yaw=0;
 	float roll=0;

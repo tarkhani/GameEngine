@@ -5,12 +5,13 @@
 #include <cstring>
 #include"RawModel.h"
 #include"Loader.h"
+#include"StaticShader.h"
 
 class objLoader
 {
 public:
 	
-	static RawModel LoadObj(char* file, Loader loader);
+	static RawModel LoadObj(char* file, Loader& loader);
 	objLoader();
 	~objLoader();
 };

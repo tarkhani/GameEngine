@@ -3,10 +3,9 @@
 
 
 
-RawModel objLoader::LoadObj(char * path, Loader loader)
+RawModel objLoader::LoadObj(char * path, Loader& loader)
 {
 	
-
 	printf("Loading OBJ file %s...\n", path);
 
 	std::vector<int> vertexIndices, uvIndices, normalIndices;
@@ -98,29 +97,26 @@ RawModel objLoader::LoadObj(char * path, Loader loader)
 		out_normals.push_back(normal);
 
 	}
+	for (int i = 0; i < vertexIndices.size(); i++)
+	{
+		vertexIndices[i] = vertexIndices[i] - 1;
+	}
 
 
 	ARRAY<glm::vec3> ARvertices;
-	ARvertices.arrayPointer = &out_vertices[0];
-	ARvertices.numberOfElements = out_vertices.size();
-	ARvertices.size = out_vertices.size()*sizeof(glm::vec3);
-	std::cout << ARvertices.numberOfElements << std::endl;
-	std::cout << ARvertices.size << std::endl;
-	
+	ARvertices.arrayPointer = &temp_vertices[0];
+	ARvertices.numberOfElements = temp_vertices.size();
+	ARvertices.size = temp_vertices.size()*sizeof(glm::vec3);
 
 	ARRAY<glm::vec2> ARuv;
 	ARuv.arrayPointer = &out_uvs[0];
 	ARuv.numberOfElements = out_uvs.size();
 	ARuv.size = out_uvs.size()*sizeof(glm::vec2);
-	std::cout << ARuv.numberOfElements << std::endl;
-	std::cout << ARuv.size << std::endl;
 
 	ARRAY<int> ARindex;
 	ARindex.arrayPointer = &vertexIndices[0];
 	ARindex.numberOfElements = vertexIndices.size();
 	ARindex.size = vertexIndices.size()*sizeof(int);
-	std::cout << ARindex.numberOfElements << std::endl;
-	std::cout << ARindex.size << std::endl;
 
 	RawModel Model = loader.loadToVAO(ARvertices, ARuv, ARindex);
 
