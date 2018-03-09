@@ -27,7 +27,7 @@ void Rendrer::render(entity entityToRender, StaticShader shader)
 	shader.loadTransformation(transformationMatrix);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texturemodel.getTextureid());
-    glDrawElements(GL_TRIANGLES, rawmodel.getIndexcount(), GL_UNSIGNED_INT, 0);
+    glDrawElements(GL_TRIANGLES, rawmodel.getIndexcount(), GL_UNSIGNED_SHORT, 0);
 	CheckGLError();
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);

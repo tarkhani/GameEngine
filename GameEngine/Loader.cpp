@@ -3,7 +3,7 @@
 
 
 
-RawModel Loader::loadToVAO(ARRAY<glm::vec3> positions, ARRAY<glm::vec2> uv, ARRAY<int> index)
+RawModel Loader::loadToVAO(ARRAY<glm::vec3> positions, ARRAY<glm::vec2> uv, ARRAY<unsigned short> index)
 {
 
 	GLuint vaoId =createVAO();
@@ -33,7 +33,7 @@ GLuint Loader::createVBO()
 	return VboIDes[numberofvbo];
 }
 
-GLuint Loader::LoadIndexBuffer(ARRAY<int> index){
+GLuint Loader::LoadIndexBuffer(ARRAY<unsigned short> index){
 
 	numberofindexBuffer++;
 	glGenBuffers(1, &VIboIDes[numberofindexBuffer]);

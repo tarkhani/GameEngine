@@ -94,8 +94,8 @@ int main(void)
 	ARvertices.size = vertices.size()*sizeof(glm::vec3);
 	
 	
-	vector <int> index{ 2,1,0, 0,3,2, 6,5,4, 4,7,6,  9,8,10, 10,11,9,  13,12,14, 14,15,13,  19,17,16, 16,18,19,  23,21,20,  20,22,23, 1,324,20 };
-	ARRAY<int> ARindex;
+	vector < unsigned short> index{ 2,1,0, 0,3,2, 6,5,4, 4,7,6,  9,8,10, 10,11,9,  13,12,14, 14,15,13,  19,17,16, 16,18,19,  23,21,20,  20,22,23, 1,324,20 };
+	ARRAY<unsigned short> ARindex;
 	ARindex.arrayPointer = &index[0];
 	ARindex.numberOfElements = index.size();
 	ARindex.size = index.size()*sizeof(int);
@@ -133,11 +133,11 @@ vector<glm::vec2> uv= {
 	ARuv.size = uv.size()*sizeof(glm::vec2);
 
 	RawModel model = loader.loadToVAO(ARvertices, ARuv, ARindex);
-	RawModel model2 = objLoader::LoadObj("suzanne.obj", loader);
+	RawModel model2 = objLoader::LoadObj("stall1.obj", loader);
 
 	ModelTexture  Modeltexture(loader.loadTexture("stallTexture.png"));
 	textureModel TexureModel(model2, Modeltexture);
-	entity entity1= entity(TexureModel, glm::fvec3(0.0f, 0.0f, -10.0f), 0, 0, 0, 1);
+	entity entity1= entity(TexureModel, glm::fvec3(0.0f, 0.0f, -10.0f), 0, 180, 0, 1);
 
 	
 

@@ -6,12 +6,44 @@
 #include"RawModel.h"
 #include"Loader.h"
 #include"StaticShader.h"
+#include<map>
+
+//i took some code for load obj file from here http://www.opengl-tutorial.org !! (great tutorial btw helped me alot )
+
 
 class objLoader
 {
+private:
+
+	struct PackedVertex {
+		glm::vec3 position;
+		glm::vec2 uv;
+		glm::vec3 normal;
+		bool operator<(const PackedVertex that) const {
+			return memcmp((void*)this, (void*)&that, sizeof(PackedVertex))>0;
+		};
+	};
+
+	bool static getSimilarVertexIndex(PackedVertex & packed,
+		std::map<PackedVertex, unsigned short> & VertexToOutIndex,
+		unsigned short & result);
+
+	void static indexVBO(
+		std::vector<glm::vec3> & in_vertices,
+		std::vector<glm::vec2> & in_uvs,
+		std::vector<glm::vec3> & in_normals,
+
+		std::vector<unsigned short> & out_indices,
+		std::vector<glm::vec3> & out_vertices,
+		std::vector<glm::vec2> & out_uvs,
+		std::vector<glm::vec3> & out_normals
+	);
+
+
 public:
 	
 	static RawModel LoadObj(char* file, Loader& loader);
+
 	objLoader();
 	~objLoader();
 };

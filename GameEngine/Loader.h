@@ -22,10 +22,10 @@ public:
 	int numberofindexBuffer = -1;
 	int numberofTexture = -1;
 	
-	RawModel loadToVAO(ARRAY<glm::vec3> positions, ARRAY<glm::vec2> uv, ARRAY<int> index);
+	RawModel loadToVAO(ARRAY<glm::vec3> positions, ARRAY<glm::vec2> uv, ARRAY<unsigned short> index);
 	GLuint createVAO();
 	GLuint createVBO();
-	GLuint LoadIndexBuffer(ARRAY<int> index);
+	GLuint LoadIndexBuffer(ARRAY<unsigned short> index);
 	GLuint loadTexture(char* filepath);
 	
 	 Loader();

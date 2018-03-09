@@ -3,9 +3,45 @@
 
 
 
+bool objLoader::getSimilarVertexIndex(PackedVertex & packed, std::map<PackedVertex, unsigned short>& VertexToOutIndex, unsigned short & result)
+{
+	std::map<PackedVertex, unsigned short>::iterator it = VertexToOutIndex.find(packed);
+	if (it == VertexToOutIndex.end()) {
+		return false;
+	}
+	else {
+		result = it->second;
+		return true;
+	}
+}
+
+void objLoader::indexVBO(std::vector<glm::vec3>& in_vertices, std::vector<glm::vec2>& in_uvs, std::vector<glm::vec3>& in_normals, std::vector<unsigned short>& out_indices, std::vector<glm::vec3>& out_vertices, std::vector<glm::vec2>& out_uvs, std::vector<glm::vec3>& out_normals)
+{
+	std::map<PackedVertex, unsigned short> VertexToOutIndex;
+
+	for (unsigned int i = 0; i<in_vertices.size(); i++) {
+
+		PackedVertex packed = { in_vertices[i], in_uvs[i], in_normals[i] };
+
+		unsigned short index;
+		bool found = getSimilarVertexIndex(packed, VertexToOutIndex, index);
+
+		if (found) { out_indices.push_back(index);}
+		else { 
+
+			out_vertices.push_back(in_vertices[i]);
+			out_uvs.push_back(in_uvs[i]);
+			out_normals.push_back(in_normals[i]);
+			unsigned short newindex = (unsigned short)out_vertices.size() - 1;
+			out_indices.push_back(newindex);
+			VertexToOutIndex[packed] = newindex;
+		}
+	}
+
+}
+
 RawModel objLoader::LoadObj(char * path, Loader& loader)
 {
-	
 	printf("Loading OBJ file %s...\n", path);
 
 	std::vector<int> vertexIndices, uvIndices, normalIndices;
@@ -28,12 +64,12 @@ RawModel objLoader::LoadObj(char * path, Loader& loader)
 	while (1) {
 
 		char lineHeader[128];
-		// read the first word of the line
+
 		int res = fscanf(file, "%s", lineHeader);
 		if (res == EOF)
-			break; // EOF = End Of File. Quit the loop.
+			break; 
 
-				   // else : parse lineHeader
+				 
 
 		if (strcmp(lineHeader, "v") == 0) {
 			glm::vec3 vertex;
@@ -71,52 +107,54 @@ RawModel objLoader::LoadObj(char * path, Loader& loader)
 			normalIndices.push_back(normalIndex[2]);
 		}
 		else {
-			// Probably a comment, eat up the rest of the line
+			
 			char stupidBuffer[1000];
 			fgets(stupidBuffer, 1000, file);
 		}
 
 	}
 
-	// For each vertex of each triangle
+	
 	for (unsigned int i = 0; i<vertexIndices.size(); i++) {
 
-		// Get the indices of its attributes
+		
 		unsigned int vertexIndex = vertexIndices[i];
 		unsigned int uvIndex = uvIndices[i];
 		unsigned int normalIndex = normalIndices[i];
 
-		// Get the attributes thanks to the index
+		
 		glm::vec3 vertex = temp_vertices[vertexIndex - 1];
 		glm::vec2 uv = temp_uvs[uvIndex - 1];
 		glm::vec3 normal = temp_normals[normalIndex - 1];
 
-		// Put the attributes in buffers
+	
 		out_vertices.push_back(vertex);
 		out_uvs.push_back(uv);
 		out_normals.push_back(normal);
 
 	}
-	for (int i = 0; i < vertexIndices.size(); i++)
-	{
-		vertexIndices[i] = vertexIndices[i] - 1;
-	}
+
+	std::vector<glm::vec3>  Final_vertices;
+	std::vector<glm::vec2>  Final_uvs;
+	std::vector<glm::vec3>  Final_normals;
+	std::vector<unsigned short> Final_indices;
+	indexVBO(out_vertices, out_uvs, out_normals, Final_indices, Final_vertices, Final_uvs, Final_normals);
 
 
 	ARRAY<glm::vec3> ARvertices;
-	ARvertices.arrayPointer = &temp_vertices[0];
-	ARvertices.numberOfElements = temp_vertices.size();
-	ARvertices.size = temp_vertices.size()*sizeof(glm::vec3);
+	ARvertices.arrayPointer = &Final_vertices[0];
+	ARvertices.numberOfElements = Final_vertices.size();
+	ARvertices.size = Final_vertices.size()*sizeof(glm::vec3);
 
 	ARRAY<glm::vec2> ARuv;
-	ARuv.arrayPointer = &out_uvs[0];
-	ARuv.numberOfElements = out_uvs.size();
-	ARuv.size = out_uvs.size()*sizeof(glm::vec2);
+	ARuv.arrayPointer = &Final_uvs[0];
+	ARuv.numberOfElements = Final_uvs.size();
+	ARuv.size = Final_uvs.size()*sizeof(glm::vec2);
 
-	ARRAY<int> ARindex;
-	ARindex.arrayPointer = &vertexIndices[0];
-	ARindex.numberOfElements = vertexIndices.size();
-	ARindex.size = vertexIndices.size()*sizeof(int);
+	ARRAY<unsigned short> ARindex;
+	ARindex.arrayPointer = &Final_indices[0];
+	ARindex.numberOfElements = Final_indices.size();
+	ARindex.size = Final_indices.size()*sizeof(unsigned short);
 
 	RawModel Model = loader.loadToVAO(ARvertices, ARuv, ARindex);
 
@@ -126,8 +164,6 @@ RawModel objLoader::LoadObj(char * path, Loader& loader)
 	
 	
 }
-
-
 
 
 
