@@ -3,11 +3,14 @@ class ModelTexture
 {
 public:
 
+	float ShineDamper;
+	float ReflectionScale;
+	ModelTexture();
 	ModelTexture(int textureid)
 	{
 		this->textureid = textureid;
 	}
-	ModelTexture( ModelTexture&ModelTexture):textureid(ModelTexture.textureid)
+	const ModelTexture( const ModelTexture&ModelTexture):textureid(ModelTexture.textureid)
 	{
 	}
 	int getTextureid() { return textureid; };

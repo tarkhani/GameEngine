@@ -21,32 +21,46 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="entity.cpp" />
+    <ClCompile Include="Light.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mats.cpp" />
+    <ClCompile Include="ModelTexture.cpp" />
     <ClCompile Include="objLoader.cpp" />
     <ClCompile Include="RawModel.cpp" />
+    <ClCompile Include="RenderMaster.cpp" />
     <ClCompile Include="Rendrer.cpp" />
     <ClCompile Include="Shader.cpp" />
     <ClCompile Include="StaticShader.cpp" />
+    <ClCompile Include="terrain.cpp" />
+    <ClCompile Include="TerrainRenderer.cpp" />
+    <ClCompile Include="TerrainShader.cpp" />
     <ClCompile Include="textureModel.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ARRAY.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="Light.h" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="Mats.h" />
     <ClInclude Include="ModelTexture.h" />
     <ClInclude Include="objLoader.h" />
     <ClInclude Include="RawModel.h" />
+    <ClInclude Include="RenderMaster.h" />
     <ClInclude Include="Rendrer.h" />
+    <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
     <ClInclude Include="StaticShader.h" />
+    <ClInclude Include="terrain.h" />
+    <ClInclude Include="TerrainRenderer.h" />
+    <ClInclude Include="TerrainShader.h" />
     <ClInclude Include="textureModel.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentshader.glsl" />
+    <None Include="Terrain_fragmentshader.glsl" />
+    <None Include="Terrain_vertaxshadercode.glsl" />
     <None Include="vertaxshadercode.glsl" />
   </ItemGroup>
   <PropertyGroup Label="Globals">

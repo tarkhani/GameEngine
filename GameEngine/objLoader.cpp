@@ -156,7 +156,12 @@ RawModel objLoader::LoadObj(char * path, Loader& loader)
 	ARindex.numberOfElements = Final_indices.size();
 	ARindex.size = Final_indices.size()*sizeof(unsigned short);
 
-	RawModel Model = loader.loadToVAO(ARvertices, ARuv, ARindex);
+	ARRAY<glm::vec3> ARnormal;
+	ARnormal.arrayPointer = &Final_normals[0];
+	ARnormal.numberOfElements = Final_normals.size();
+	ARnormal.size = Final_normals.size() * sizeof(glm::vec3);
+
+	RawModel Model = loader.loadToVAO(ARvertices, ARuv, ARnormal,ARindex);
 
 
 	fclose(file);

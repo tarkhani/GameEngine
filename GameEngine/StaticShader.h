@@ -2,6 +2,7 @@
 #include "Shader.h"
 #include"Camera.h"
 #include"Mats.h"
+#include"Light.h"
 class StaticShader :
 	public Shader
 {
@@ -13,6 +14,11 @@ public:
 	int locationTransformation;
 	int locationProjection;
 	int locationView;
+	int locationlightPosition;
+	int locationlightColour;
+	int locationShinedamper;
+	int locationReflectionScale;
+
 	virtual void getAllUniformLocations() override;
 	void loadTransformation(glm::fmat4 matrix) {
 		Shader::loadMatrixUni(matrix, locationTransformation);
@@ -22,9 +28,18 @@ public:
 		Shader::loadMatrixUni(matrix, locationProjection);
 	}
 
-	void loadView(Camera camera) {
+	void loadLight(Light& light) {
+		Shader::loadvectorUni(light.position, locationlightPosition);
+		Shader::loadvectorUni(light.colour, locationlightColour);
+	}
+
+	void loadView(Camera& camera) {
 		glm::fmat4 ViewMatrix =Mats::createView(camera);
 		Shader::loadMatrixUni(ViewMatrix, locationView);
+	}
+	void loadReflactionAttrib(float  ShineDamper, float ReflectionScale) {
+		Shader::loadFloatUni(ShineDamper, locationShinedamper);
+		Shader::loadFloatUni(ReflectionScale, locationReflectionScale);
 	}
 	StaticShader();
 	~StaticShader();

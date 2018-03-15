@@ -13,7 +13,7 @@ public:
 
 
 	GLuint VaoIDes[10];
-	GLuint VboIDes[10];
+	GLuint VboIDes[20];
 	GLuint VIboIDes[10];
 	GLuint GLTextureIDes[20];
 	unsigned char*textures[10];
@@ -22,7 +22,7 @@ public:
 	int numberofindexBuffer = -1;
 	int numberofTexture = -1;
 	
-	RawModel loadToVAO(ARRAY<glm::vec3> positions, ARRAY<glm::vec2> uv, ARRAY<unsigned short> index);
+	RawModel loadToVAO(ARRAY<glm::vec3> positions, ARRAY<glm::vec2> uv, ARRAY<glm::vec3> Normal, ARRAY<unsigned short> index);
 	GLuint createVAO();
 	GLuint createVBO();
 	GLuint LoadIndexBuffer(ARRAY<unsigned short> index);

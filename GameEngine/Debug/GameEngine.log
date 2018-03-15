@@ -1,4 +1,2 @@
-﻿  main.cpp
-d:\gameengine cpp\gameengine\gameengine\camera.h(8): warning C4305: 'initializing': truncation from 'double' to 'float'
-  GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Debug\GameEngine.exe
+﻿  GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Debug\GameEngine.exe
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Debug\GameEngine.pdb (Full PDB)

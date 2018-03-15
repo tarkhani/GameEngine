@@ -11,6 +11,10 @@
 #include"Camera.h"
 #include<vector>
 #include"objLoader.h"
+#include"Light.h"
+#include"RenderMaster.h"
+#include"terrain.h"
+glm::mat4 const RenderMaster::proj = glm::perspective(70.0f, ((float)1920 / 1080), 0.1f, 100.0f);
 
 using namespace std;
 void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
@@ -52,106 +56,41 @@ int main(void)
 	}
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
 
 	
-	
+	list<terrain> allTerrain;
 	Loader loader;
-	StaticShader staticsahder;
-	Rendrer rendrer(staticsahder);
-	
+	RenderMaster renderMaster;
+	Light light(glm::vec3(0.0f,10.0f, -10.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+	ModelTexture  grass(loader.loadTexture("grass.jpg"));
+	terrain Terrain(0, 0, loader, grass);
+	allTerrain.push_back(Terrain);
 
-	vector <glm::vec3> vertices = {
-		
-	glm::vec3(-0.5f,-0.5f,-0.5f),
-	glm::vec3(-0.5f,0.5f,-0.5f),
-	glm::vec3(0.5f,0.5f,-0.5f),
-	glm::vec3(0.5f,-0.5f,-0.5f),
-	glm::vec3(-0.5f,-0.5f,0.5f),
-	glm::vec3(-0.5f,0.5f,0.5f),
-	glm::vec3(0.5f,0.5f,0.5f),
-	glm::vec3(0.5f,-0.5f,0.5f),
-	glm::vec3(-0.5f,0.5f,0.5f),
-	glm::vec3(0.5f,0.5f,0.5f),
-	glm::vec3(-0.5f,0.5f,-0.5f),
-	glm::vec3(0.5f,0.5f,-0.5f),
-	glm::vec3(-0.5f,-0.5f,0.5f),
-	glm::vec3(0.5f,-0.5f,0.5f),
-	glm::vec3(-0.5f,-0.5f,-0.5f),
-	glm::vec3(0.5f,-0.5f,-0.5f),
-	glm::vec3(-0.5f,-0.5f,0.5f),
-	glm::vec3(-0.5f,+0.5f,0.5f),
-	glm::vec3(-0.5f,-0.5f,-0.5f),
-	glm::vec3(-0.5f,+0.5f,-0.5f),
-	glm::vec3(0.5f,-0.5f,0.5f),
-	glm::vec3(0.5f,+0.5f,0.5f),
-	glm::vec3(0.5f,-0.5f,-0.5f),
-	glm::vec3(0.5f,+0.5f,-0.5f),
 
-	};
-	ARRAY<glm::vec3> ARvertices;
-	ARvertices.arrayPointer = &vertices[0];
-	ARvertices.numberOfElements = vertices.size();
-	ARvertices.size = vertices.size()*sizeof(glm::vec3);
-	
-	
-	vector < unsigned short> index{ 2,1,0, 0,3,2, 6,5,4, 4,7,6,  9,8,10, 10,11,9,  13,12,14, 14,15,13,  19,17,16, 16,18,19,  23,21,20,  20,22,23, 1,324,20 };
-	ARRAY<unsigned short> ARindex;
-	ARindex.arrayPointer = &index[0];
-	ARindex.numberOfElements = index.size();
-	ARindex.size = index.size()*sizeof(int);
-	
-vector<glm::vec2> uv= {
-	glm::vec2(0.0f,1.0f),
-	glm::vec2(0.0f,0.0f),
-	glm::vec2(1.0f,0.0f),
-	glm::vec2(1.0f,1.0f),
-	glm::vec2(0.0f,1.0f),
-	glm::vec2(0.0f,0.0f),
-	glm::vec2(1.0f,0.0f),
-	glm::vec2(1.0f,1.0f),
-	glm::vec2(0.0f,0.0f),
-	glm::vec2(1.0f,0.0f),
-	glm::vec2(0.0f,1.0f),
-	glm::vec2(1.0f,1.0f),
-	glm::vec2(0.0f,0.0f),
-	glm::vec2(1.0f,0.0f),
-	glm::vec2(0.0f,1.0f),
-	glm::vec2(1.0f,1.0f),
-	glm::vec2(0.0f,1.0f),
-	glm::vec2(0.0f,0.0f),
-	glm::vec2(1.0f,1.0f),
-	glm::vec2(1.0f,0.0f),
-	glm::vec2(0.0f,1.0f),
-	glm::vec2(0.0f,0.0f),
-	glm::vec2(1.0f,1.0f),
-	glm::vec2(1.0f,0.0f),
-	};
-
-	ARRAY<glm::vec2> ARuv;
-	ARuv.arrayPointer = &uv[0];
-	ARuv.numberOfElements = uv.size();
-	ARuv.size = uv.size()*sizeof(glm::vec2);
-
-	RawModel model = loader.loadToVAO(ARvertices, ARuv, ARindex);
-	RawModel model2 = objLoader::LoadObj("stall1.obj", loader);
-
+	list<entity> allEntity;
+	RawModel model = objLoader::LoadObj("stall1.obj", loader);
 	ModelTexture  Modeltexture(loader.loadTexture("stallTexture.png"));
-	textureModel TexureModel(model2, Modeltexture);
-	entity entity1= entity(TexureModel, glm::fvec3(0.0f, 0.0f, -10.0f), 0, 180, 0, 1);
-
+	Modeltexture.ReflectionScale = 0.4;
+	Modeltexture.ShineDamper = 0.4;
+	textureModel TexureModel(model, Modeltexture);
+	entity entity1 = entity(TexureModel, glm::fvec3(0.0f, 0.0f, 0.0f), 0, 180, 0, 1);
+	allEntity.push_back(entity1);
 	
 
 	do {
 
-		//entity1.increaseRotation(1, 0, 0.0);
-		rendrer.prepare();
-		
-		staticsahder.start();
-		staticsahder.loadView(camera);
-		rendrer.render(entity1, staticsahder);
-		staticsahder.stopProgeram();
-		
-	
+		for (std::list<entity>::iterator it1 = allEntity.begin(); it1 != allEntity.end(); ++it1)
+		{
+			renderMaster.ProcessEntity(*it1);
+		}
+		for (std::list<terrain>::iterator it2 = allTerrain.begin(); it2 != allTerrain.end(); ++it2)
+		{
+			renderMaster.ProcessTerrain(*it2);
+		}
+
+		renderMaster.Render(light, camera);
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 		
@@ -159,7 +98,7 @@ vector<glm::vec2> uv= {
 	while (glfwGetKey(window, GLFW_KEY_ESCAPE) != GLFW_PRESS &&
 		glfwWindowShouldClose(window) == 0);
 
-
+	renderMaster.CleanUp();
 	glfwTerminate();
 
 	return 0;

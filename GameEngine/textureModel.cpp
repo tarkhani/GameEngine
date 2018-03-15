@@ -1,5 +1,6 @@
 #include "textureModel.h"
 
-textureModel::textureModel( textureModel & textureModel):rawModel(textureModel.rawModel),texture(textureModel.texture)
+ textureModel::textureModel( const textureModel & textureModel):rawModel(textureModel.rawModel),texture(textureModel.texture)
 {
 }
+

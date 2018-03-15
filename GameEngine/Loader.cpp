@@ -3,12 +3,13 @@
 
 
 
-RawModel Loader::loadToVAO(ARRAY<glm::vec3> positions, ARRAY<glm::vec2> uv, ARRAY<unsigned short> index)
+RawModel Loader::loadToVAO(ARRAY<glm::vec3> positions, ARRAY<glm::vec2> uv, ARRAY<glm::vec3> Normal, ARRAY<unsigned short> index)
 {
 
 	GLuint vaoId =createVAO();
 	storeDataInAttributeList<glm::vec3>(0, 3, positions);
 	storeDataInAttributeList<glm::vec2>(1, 2, uv);
+	storeDataInAttributeList<glm::vec3>(2, 3, Normal);
 	LoadIndexBuffer(index);
 	glBindVertexArray(0);
 	return RawModel(vaoId, index.numberOfElements);

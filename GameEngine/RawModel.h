@@ -4,10 +4,12 @@ class RawModel
 public:
 
 	RawModel(int VaoID,int Indexcount);
-	RawModel( RawModel& A):Indexcount(A.Indexcount),VaoID(A.VaoID){
+	RawModel();
+	const RawModel(const RawModel& A):Indexcount(A.Indexcount),VaoID(A.VaoID){
 	};
+
 	int getIndexcount() { return Indexcount; };
-	int getVaoID() { return VaoID; };
+	int getVaoID()const { return VaoID; };
 	
 	
 private :

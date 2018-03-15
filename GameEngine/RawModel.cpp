@@ -10,3 +10,7 @@ RawModel::RawModel(int VaoID, int Indexcount)
 	this->VaoID = VaoID;
 }
 
+RawModel::RawModel()
+{
+}
+

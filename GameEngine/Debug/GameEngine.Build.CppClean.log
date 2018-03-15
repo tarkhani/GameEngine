@@ -2,6 +2,7 @@ d:\gameengine cpp\gameengine\gameengine\debug\vc140.pdb
 d:\gameengine cpp\gameengine\gameengine\debug\vc140.idb
 d:\gameengine cpp\gameengine\gameengine\debug\camera.obj
 d:\gameengine cpp\gameengine\gameengine\debug\entity.obj
+d:\gameengine cpp\gameengine\gameengine\debug\light.obj
 d:\gameengine cpp\gameengine\gameengine\debug\loader.obj
 d:\gameengine cpp\gameengine\gameengine\debug\main.obj
 d:\gameengine cpp\gameengine\gameengine\debug\mats.obj
@@ -11,12 +12,17 @@ d:\gameengine cpp\gameengine\gameengine\debug\rendrer.obj
 d:\gameengine cpp\gameengine\gameengine\debug\shader.obj
 d:\gameengine cpp\gameengine\gameengine\debug\staticshader.obj
 d:\gameengine cpp\gameengine\gameengine\debug\texturemodel.obj
+d:\gameengine cpp\gameengine\gameengine\debug\rendermaster.obj
 d:\gameengine cpp\gameengine\debug\gameengine.ilk
 d:\gameengine cpp\gameengine\debug\gameengine.exe
 d:\gameengine cpp\gameengine\debug\gameengine.pdb
+d:\gameengine cpp\gameengine\gameengine\debug\gameengine.res
 d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\cl.command.1.tlog
 d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\cl.read.1.tlog
 d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\cl.write.1.tlog
 d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\link.command.1.tlog
 d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\link.read.1.tlog
 d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\link.write.1.tlog
+d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\rc.command.1.tlog
+d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\rc.read.1.tlog
+d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\rc.write.1.tlog

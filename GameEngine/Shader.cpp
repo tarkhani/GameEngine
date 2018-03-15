@@ -105,7 +105,7 @@ int Shader::GetUniformlocation(char * location)
 	return glGetUniformLocation(progeramID, location);
 }
 
-void Shader::loadFloadUni(float number, int location)
+void Shader::loadFloatUni(float number, int location)
 {
 	glUniform1f(location, number);
 }
@@ -115,7 +115,7 @@ void Shader::loadvectorUni(glm::fvec3 vector, int location)
 	glUniform3f(location, vector.x, vector.y, vector.z);
 }
 
-void Shader::loadvectorUni(bool Bool, int location)
+void Shader::loadBoolUni(bool Bool, int location)
 {
 	float toload = 0;
 	if (Bool) {

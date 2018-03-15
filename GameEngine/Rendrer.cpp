@@ -1,42 +1,53 @@
 #include "Rendrer.h"
-#include"GL\glew.h"
-#include<iostream>
-#include"Mats.h"
 
 
 
-
-
-void Rendrer::prepare()
+void Rendrer::prepareTextureModel( textureModel textureModel)
 {
-	glViewport(0, 0, 1920, 1080);
-	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
-	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
-}
-
-void Rendrer::render(entity entityToRender, StaticShader shader)
-{
-    textureModel ModelToRender = entityToRender.texturemodel;
-	RawModel rawmodel = ModelToRender.getRawModel();
-	ModelTexture texturemodel = ModelToRender.getTexture();
-
+	RawModel rawmodel = textureModel.getRawModel();
+	ModelTexture texturemodel = textureModel.getTexture();
 	glBindVertexArray(rawmodel.getVaoID());
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
-	glm::mat4 transformationMatrix = Mats::createTransformation(entityToRender.position, entityToRender.rotx, entityToRender.roty, entityToRender.rotz, entityToRender.scale);
-	shader.loadTransformation(transformationMatrix);
+	glEnableVertexAttribArray(2);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texturemodel.getTextureid());
-    glDrawElements(GL_TRIANGLES, rawmodel.getIndexcount(), GL_UNSIGNED_SHORT, 0);
-	CheckGLError();
+}
+
+void Rendrer::unboundTextureModel()
+{
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
+	glDisableVertexAttribArray(2);
 	glBindVertexArray(0);
 }
 
-Rendrer::Rendrer(StaticShader Shader)
+void Rendrer::prepareInstance(entity entity)
 {
-	glm::mat4 proj = glm::perspective(70.0f, ((float)1920 / 1080), 0.1f, 100.0f);
+	glm::mat4 transformationMatrix = Mats::createTransformation(entity.position, entity.rotx, entity.roty, entity.rotz, entity.scale);
+	shader.loadTransformation(transformationMatrix);
+}
+
+void Rendrer::render(std::map<textureModel, std::list<entity>> entities)
+{
+	for (std::map<textureModel, std::list<entity>>::iterator it1 = entities.begin(); it1 != entities.end(); ++it1) {
+		prepareTextureModel(it1->first);
+		std::list<entity> entityGroup = it1->second;
+		for ( std::list<entity>::iterator it2 = entityGroup.begin(); it2 != entityGroup.end(); ++it2)
+		{
+			 prepareInstance(*it2);
+			 RawModel rawmodel = (*it2).texturemodel.getRawModel();
+			 glDrawElements(GL_TRIANGLES, rawmodel.getIndexcount(), GL_UNSIGNED_SHORT, 0);
+
+		}
+		unboundTextureModel();
+	}
+}
+
+
+Rendrer::Rendrer(StaticShader& Shader,const glm::mat4 &proj)
+{
+	this->shader = Shader;
 	Shader.start();
 	Shader.loadProjection(proj);
 	Shader.stopProgeram();

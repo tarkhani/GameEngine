@@ -1,9 +1,13 @@
 #pragma once
 #include"RawModel.h"
 #include"textureModel.h"
-#include"RawModel.h"
-#include"entity.h"
 #include"StaticShader.h"
+#include"GL\glew.h"
+#include<iostream>
+#include"Mats.h"
+#include<map>
+#include<list>
+#include"entity.h"
 
 static void _CheckGLError(const char* file, int line)
 {
@@ -31,12 +35,19 @@ static void _CheckGLError(const char* file, int line)
 
 class Rendrer
 {
+private:
+
+	StaticShader shader;
+
 public:
 	
-	void prepare();
-	void render(entity entityToRender,StaticShader shader);
 
-	Rendrer(StaticShader Shader);
+	void prepareTextureModel(textureModel textureModel);
+	void unboundTextureModel();
+	void prepareInstance(entity entity);
+	void render(std::map<textureModel, std::list<entity>> entities);
+
+	Rendrer(StaticShader& Shader, const  glm::mat4 &proj);
 	~Rendrer();
 };
 
