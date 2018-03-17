@@ -16,6 +16,7 @@ public:
 	int locationlightColour;
 	int locationShinedamper;
 	int locationReflectionScale;
+	int locationskyColor;
 
 	virtual void getAllUniformLocations() override;
 	void loadTransformation(glm::fmat4 matrix) {
@@ -39,7 +40,7 @@ public:
 		Shader::loadFloatUni(ShineDamper, locationShinedamper);
 		Shader::loadFloatUni(ReflectionScale, locationReflectionScale);
 	}
-
+	void loadSkyColor(glm::vec3 SkyColor) { Shader::loadvectorUni(SkyColor, locationskyColor); };
 	TerrainShader();
 	~TerrainShader();
 };

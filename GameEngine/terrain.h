@@ -8,7 +8,7 @@
 class terrain
 {
 public:
-	const static int SIZE = 800;
+	const static int SIZE = 100;
 	const static int VERTEX_COUNT = 128;
 	float x, z;
 	RawModel Rawmodel;

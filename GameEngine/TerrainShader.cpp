@@ -11,6 +11,7 @@ void TerrainShader::getAllUniformLocations()
 	locationlightColour = Shader::GetUniformlocation("lightColour");
 	locationShinedamper = Shader::GetUniformlocation("ShineDamper");
 	locationReflectionScale = Shader::GetUniformlocation("ReflectionScale");
+	locationskyColor = Shader::GetUniformlocation("skyColor");
 }
 
 TerrainShader::TerrainShader()

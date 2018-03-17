@@ -16,8 +16,13 @@ class RenderMaster
 private:
 	StaticShader Staticshader;
 	Rendrer rendrer;
-	std::map<textureModel, std::list<entity>> entities;
 
+	const float SkyRed = 0.5f;
+	const float SkyGreen = 0.45f;
+	const float SkyBlue = 0.7f;
+	glm::vec3 SkyColor = glm::vec3(SkyRed, SkyGreen, SkyBlue);
+
+	std::map<textureModel, std::list<entity>> entities;
 	TerrainShader terrainShader;
 	TerrainRenderer terrainRenderer;
 	std::list<terrain> terrains;
@@ -31,5 +36,8 @@ public:
 	void ProcessEntity(entity& Entity);
 	void ProcessTerrain(terrain & terrain);
 	void CleanUp() ;
+	static void EnableBackFaceCulling();
+	static void DisableBackFaceCulling();
+
 };
 

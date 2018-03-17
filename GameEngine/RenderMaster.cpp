@@ -3,7 +3,7 @@
 void RenderMaster::prepare()
 {
 	glViewport(0, 0, 1920, 1080);
-	glClearColor(1.0f, 1.0f, 1.0f, 0.0f);
+	glClearColor(SkyRed, SkyGreen, SkyBlue, 1.0f);
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 }
 
@@ -15,18 +15,20 @@ void RenderMaster::Render(Light & light, Camera & camera)
 {
 	prepare();
 
-	Staticshader.start();
-	Staticshader.loadView(camera);
-	Staticshader.loadLight(light);
-	rendrer.render(entities);
-	Staticshader.stopProgeram();
 
 	terrainShader.start();
+	terrainShader.loadSkyColor(SkyColor);
 	terrainShader.loadView(camera);
 	terrainShader.loadLight(light);
 	terrainRenderer.render(terrains);
 	terrainShader.stopProgeram();
 
+	Staticshader.start();
+	Staticshader.loadSkyColor(SkyColor);
+	Staticshader.loadView(camera);
+	Staticshader.loadLight(light);
+	rendrer.render(entities);
+	Staticshader.stopProgeram();
 
 	entities.clear();
 	terrains.clear();
@@ -59,4 +61,16 @@ void RenderMaster::CleanUp()
 {
 	Staticshader.cleanUp();
 	terrainShader.cleanUp();
+}
+
+void RenderMaster::EnableBackFaceCulling()
+{
+	glEnable(GL_CULL_FACE);
+	glCullFace(GL_BACK);
+}
+
+void RenderMaster::DisableBackFaceCulling()
+{
+	glDisable(GL_CULL_FACE);
+	
 }

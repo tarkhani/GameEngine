@@ -1,21 +1,34 @@
 #include "Rendrer.h"
+#include"RenderMaster.h"
+
 
 
 
 void Rendrer::prepareTextureModel( textureModel textureModel)
 {
+	
 	RawModel rawmodel = textureModel.getRawModel();
 	ModelTexture texturemodel = textureModel.getTexture();
+
+	if (texturemodel.tansparent)
+	{
+		
+		RenderMaster::DisableBackFaceCulling();
+	}
 	glBindVertexArray(rawmodel.getVaoID());
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
 	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_2D, texturemodel.getTextureid());
+	shader.loadReflactionAttrib(texturemodel.ShineDamper, texturemodel.ReflectionScale);
+	shader.loadFakeLightning(texturemodel.FakeLightning);
+	
 }
 
 void Rendrer::unboundTextureModel()
 {
+	RenderMaster::EnableBackFaceCulling();
 	glDisableVertexAttribArray(0);
 	glDisableVertexAttribArray(1);
 	glDisableVertexAttribArray(2);
@@ -40,8 +53,9 @@ void Rendrer::render(std::map<textureModel, std::list<entity>> entities)
 			 glDrawElements(GL_TRIANGLES, rawmodel.getIndexcount(), GL_UNSIGNED_SHORT, 0);
 
 		}
-		unboundTextureModel();
+		
 	}
+	unboundTextureModel();
 }
 
 

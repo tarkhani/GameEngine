@@ -6,11 +6,15 @@ in vec2 uv;
 in vec3 SurfaceNormal;
 in vec3 toLightVector;
 in vec3 cameraPosition;
+in float Visibility;
+
 
 uniform sampler2D Texture;
 uniform vec3 lightColour;
 uniform float ShineDamper;
 uniform float ReflectionScale;
+uniform vec3 skyColor;
+
 
 void main()
 {
@@ -31,7 +35,11 @@ specularFactor=max(specularFactor,0.3);
 float DumpedFactor=pow(specularFactor,ShineDamper);
 vec3 FinalSpecular=ReflectionScale*DumpedFactor*lightColour;
 
-
-Fcolor = vec4(diffuse,1.0)*texture(Texture,uv)+vec4(FinalSpecular,1.0);
+vec4 TextureColor=texture2D(Texture,uv);
+if(TextureColor.a<0.5){
+discard;
+}
+Fcolor = vec4(diffuse,1.0)*TextureColor+vec4(FinalSpecular,1.0);
+Fcolor = mix(vec4(skyColor,1.0),Fcolor,Visibility);
 
 };

@@ -11,6 +11,8 @@ void StaticShader::getAllUniformLocations()
 	locationlightColour = Shader::GetUniformlocation("lightColour");
 	locationShinedamper = Shader::GetUniformlocation("ShineDamper");
 	locationReflectionScale = Shader::GetUniformlocation("ReflectionScale");
+	locationFakeLightning = Shader::GetUniformlocation("FakeLightning");
+	locationskyColor = Shader::GetUniformlocation("skyColor");
 }
 
 StaticShader::StaticShader()

@@ -9,6 +9,7 @@
 #include<list>
 #include"entity.h"
 
+
 static void _CheckGLError(const char* file, int line)
 {
 	GLenum err(glGetError());

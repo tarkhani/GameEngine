@@ -8,20 +8,31 @@ out vec2 uv;
 out vec3 SurfaceNormal;
 out vec3 toLightVector;
 out vec3 cameraPosition;
+out float Visibility;
 
 uniform mat4 transform;
 uniform mat4 projection;
 uniform mat4 view;
 uniform vec3 lightPosition;
 
+const float density=0.03;
+const float FogGradient=1.5;
+
 void main(){
 
 	vec4 worldLocation = transform*vec4(vertexPosition_modelspace,1.0);
-	gl_Position =projection*view*worldLocation;
-	uv=uvCoord*200;
+	vec4 locationFromCamera=view*worldLocation;
+	gl_Position =projection*locationFromCamera;
+	float Distance=length(locationFromCamera.xyz);
+	Visibility=exp(-pow((Distance*density),FogGradient));
+	Visibility=clamp(Visibility,0.0,1.0);
+
+	
+	uv=uvCoord;
 	SurfaceNormal=(transform * vec4(normal,0.0)).xyz;
 	cameraPosition= (inverse(view)*vec4(0.0,0.0,0.0,1.0)).xyz-worldLocation.xyz;
 	toLightVector=lightPosition-(worldLocation.xyz);
+	
 
 }
 

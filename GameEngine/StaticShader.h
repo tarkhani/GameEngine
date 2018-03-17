@@ -18,6 +18,8 @@ public:
 	int locationlightColour;
 	int locationShinedamper;
 	int locationReflectionScale;
+	int locationFakeLightning;
+	int locationskyColor;
 
 	virtual void getAllUniformLocations() override;
 	void loadTransformation(glm::fmat4 matrix) {
@@ -41,6 +43,8 @@ public:
 		Shader::loadFloatUni(ShineDamper, locationShinedamper);
 		Shader::loadFloatUni(ReflectionScale, locationReflectionScale);
 	}
+	void loadFakeLightning(bool FakeLightning) { Shader::loadBoolUni(FakeLightning,locationFakeLightning); };
+	void loadSkyColor(glm::vec3 SkyColor) { Shader::loadvectorUni(SkyColor, locationskyColor); };
 	StaticShader();
 	~StaticShader();
 };

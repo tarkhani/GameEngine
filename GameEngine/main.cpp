@@ -1,5 +1,7 @@
 #pragma once
 #include<stdio.h>
+#include <random>
+#include<vector>
 #include <GL/glew.h>
 #include <GLFW\glfw3.h>
 #include"Rendrer.h"
@@ -9,7 +11,6 @@
 #include"textureModel.h"
 #include"entity.h"
 #include"Camera.h"
-#include<vector>
 #include"objLoader.h"
 #include"Light.h"
 #include"RenderMaster.h"
@@ -64,20 +65,47 @@ int main(void)
 	Loader loader;
 	RenderMaster renderMaster;
 	Light light(glm::vec3(0.0f,10.0f, -10.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelTexture  grass(loader.loadTexture("grass.jpg"));
-	terrain Terrain(0, 0, loader, grass);
+	ModelTexture  TerrainTexture(loader.loadTexture("terrain.png"));
+	terrain Terrain(-1, 0, loader, TerrainTexture);
+
 	allTerrain.push_back(Terrain);
 
 
 	list<entity> allEntity;
-	RawModel model = objLoader::LoadObj("stall1.obj", loader);
-	ModelTexture  Modeltexture(loader.loadTexture("stallTexture.png"));
-	Modeltexture.ReflectionScale = 0.4;
-	Modeltexture.ShineDamper = 0.4;
-	textureModel TexureModel(model, Modeltexture);
-	entity entity1 = entity(TexureModel, glm::fvec3(0.0f, 0.0f, 0.0f), 0, 180, 0, 1);
-	allEntity.push_back(entity1);
-	
+	RawModel Treemodel = objLoader::LoadObj("tree.obj", loader);
+	ModelTexture  treeTexture(loader.loadTexture("tree.png"));
+	treeTexture.ReflectionScale = 0.4;
+	treeTexture.ShineDamper = 0.4;
+	textureModel TreeTexureModel(Treemodel, treeTexture);
+
+	RawModel grass = objLoader::LoadObj("grass.obj", loader);
+	ModelTexture  grassTexture(loader.loadTexture("grass.png"));
+	grassTexture.ReflectionScale = 0.0;
+	grassTexture.ShineDamper = 0.0;
+	grassTexture.tansparent = true;
+	grassTexture.FakeLightning = true;
+	textureModel GrassTexureModel(grass, grassTexture);
+
+
+	const int nrolls = 200;//number of tree
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distribution(5, 100);//min and max of terrain
+	float *randomx = new float[nrolls];
+	float *randomz = new float[nrolls];
+	for (int i = 0; i <nrolls; i++)
+	{
+		randomx[i] = distribution(generator);
+		randomz[i] = distribution(generator);
+
+		entity  grass = entity(GrassTexureModel, glm::fvec3(-randomx[i], 0.0f, -randomz[i]), 0, 180, 0, 0.5);
+		allEntity.push_back(grass);
+
+		entity  tree = entity(TreeTexureModel, glm::fvec3(-randomx[i], 0.0f,-randomz[i]), 0, 180, 0, 1);
+		allEntity.push_back(tree);
+
+	}
+	delete[]randomx;
+	delete[]randomz;
 
 	do {
 
