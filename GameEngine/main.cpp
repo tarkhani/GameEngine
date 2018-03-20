@@ -4,6 +4,7 @@
 #include<vector>
 #include <GL/glew.h>
 #include <GLFW\glfw3.h>
+#include<chrono>
 #include"Rendrer.h"
 #include"Loader.h"
 #include"StaticShader.h"
@@ -15,6 +16,9 @@
 #include"Light.h"
 #include"RenderMaster.h"
 #include"terrain.h"
+#include"TerrainTexture.h"
+#include"TerrainTexturePack.h"
+
 glm::mat4 const RenderMaster::proj = glm::perspective(70.0f, ((float)1920 / 1080), 0.1f, 100.0f);
 
 using namespace std;
@@ -65,8 +69,15 @@ int main(void)
 	Loader loader;
 	RenderMaster renderMaster;
 	Light light(glm::vec3(0.0f,10.0f, -10.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-	ModelTexture  TerrainTexture(loader.loadTexture("terrain.png"));
-	terrain Terrain(-1, 0, loader, TerrainTexture);
+	TerrainTexture BackGroundTexture(loader.loadTexture("terrain.png"));
+	TerrainTexture rTexture(loader.loadTexture("mud.png"));
+	TerrainTexture gTexture(loader.loadTexture("path.png"));
+	TerrainTexture bTexture(loader.loadTexture("grassFlowers.png"));
+	TerrainTexture BlendMap(loader.loadTexture("blendMap.png"));
+	TerrainTexturePack terrainTexturePack (BackGroundTexture, rTexture, gTexture, bTexture);
+
+
+	terrain Terrain(-1, 0, loader, terrainTexturePack, BlendMap);
 
 	allTerrain.push_back(Terrain);
 

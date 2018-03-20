@@ -31,13 +31,30 @@ void TerrainRenderer::render(std::list<terrain> terrains)
 void TerrainRenderer::prepareTerrain(terrain Terrain)
 {
 	RawModel rawmodel = Terrain.Rawmodel;
-	ModelTexture texture = Terrain.Modeltexture;
+	TerrainTexturePack  terrainTexturePack = Terrain.terrainTexturePack;
 	glBindVertexArray(rawmodel.getVaoID());
 	glEnableVertexAttribArray(0);
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
+	BindTerrainTextures(Terrain);
+}
+
+
+void  TerrainRenderer::BindTerrainTextures(terrain& terrain){
+
+	TerrainTexturePack terrainTexturePack = terrain.terrainTexturePack;
 	glActiveTexture(GL_TEXTURE0);
-	glBindTexture(GL_TEXTURE_2D, texture.getTextureid());
+	glBindTexture(GL_TEXTURE_2D,terrainTexturePack.BackGroundTextureID.textureID);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, terrainTexturePack.rTextureID.textureID);
+	glActiveTexture(GL_TEXTURE2);
+	glBindTexture(GL_TEXTURE_2D, terrainTexturePack.gTextureID.textureID);
+	glActiveTexture(GL_TEXTURE3);
+	glBindTexture(GL_TEXTURE_2D, terrainTexturePack.bTextureID.textureID);
+	glActiveTexture(GL_TEXTURE4);
+	glBindTexture(GL_TEXTURE_2D, terrain.blendMap.textureID);
+
+
 }
 
 void TerrainRenderer::unboundTextureModel()

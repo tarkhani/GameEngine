@@ -1,8 +1,11 @@
-﻿  main.cpp
+﻿  Player.cpp
+  main.cpp
 d:\gameengine cpp\gameengine\gameengine\camera.h(8): warning C4305: 'initializing': truncation from 'double' to 'float'
-d:\gameengine cpp\gameengine\gameengine\main.cpp(77): warning C4305: '=': truncation from 'double' to 'float'
-d:\gameengine cpp\gameengine\gameengine\main.cpp(78): warning C4305: '=': truncation from 'double' to 'float'
-d:\gameengine cpp\gameengine\gameengine\main.cpp(97): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-d:\gameengine cpp\gameengine\gameengine\main.cpp(98): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(88): warning C4305: '=': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\main.cpp(89): warning C4305: '=': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\main.cpp(108): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(109): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+  Generating Code...
+LINK : warning LNK4098: defaultlib 'MSVCRT' conflicts with use of other libs; use /NODEFAULTLIB:library
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Debug\GameEngine.exe
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Debug\GameEngine.pdb (Full PDB)

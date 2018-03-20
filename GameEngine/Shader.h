@@ -28,6 +28,7 @@ protected:
 
 	 int GetUniformlocation(char* location);
 	 void loadFloatUni(float number, int location);
+	 void loadIntUni(int number, int location);
 	 void loadvectorUni(glm::fvec3 vector, int location);
 	 void loadBoolUni(bool Bool, int location);
 	 void loadMatrixUni(glm::fmat4 matrix, int location);

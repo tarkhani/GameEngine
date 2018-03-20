@@ -12,7 +12,7 @@ glm::mat4 Mats::createTransformation(glm::vec3 translation, float rx, float ry, 
 	return finalmat4;
 }
 
-glm::mat4 Mats::createView(Camera camera)
+glm::mat4 Mats::createView(Camera& camera)
 {
 	glm::mat4 rotate = glm::rotate(glm::mat4(), glm::radians(camera.pitch), glm::vec3(1.0f, 0.0f, 0.0f))
 		*glm::rotate(glm::mat4(), glm::radians(camera.yaw), glm::vec3(0.0f, 1.0f, 0.0f))

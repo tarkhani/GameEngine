@@ -110,6 +110,11 @@ void Shader::loadFloatUni(float number, int location)
 	glUniform1f(location, number);
 }
 
+void Shader::loadIntUni(int number, int location)
+{
+	glUniform1i(location, number);
+}
+
 void Shader::loadvectorUni(glm::fvec3 vector, int location)
 {
 	glUniform3f(location, vector.x, vector.y, vector.z);

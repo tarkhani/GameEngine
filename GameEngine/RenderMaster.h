@@ -17,9 +17,9 @@ private:
 	StaticShader Staticshader;
 	Rendrer rendrer;
 
-	const float SkyRed = 0.5f;
-	const float SkyGreen = 0.45f;
-	const float SkyBlue = 0.7f;
+	const float SkyRed = 0.0f;
+	const float SkyGreen = 0.1f;
+	const float SkyBlue = 0.2f;
 	glm::vec3 SkyColor = glm::vec3(SkyRed, SkyGreen, SkyBlue);
 
 	std::map<textureModel, std::list<entity>> entities;

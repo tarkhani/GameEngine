@@ -11,7 +11,7 @@ public:
 	glm::mat4 static createTransformation(glm::vec3 translation, float rx,
 		float ry, float rz, float scale);
 
-	glm::mat4 static createView(Camera camera);
+	glm::mat4 static createView(Camera& camera);
 	
 
 	

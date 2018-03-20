@@ -12,12 +12,18 @@ void TerrainShader::getAllUniformLocations()
 	locationShinedamper = Shader::GetUniformlocation("ShineDamper");
 	locationReflectionScale = Shader::GetUniformlocation("ReflectionScale");
 	locationskyColor = Shader::GetUniformlocation("skyColor");
+	locationBackGroundTextureID = Shader::GetUniformlocation("BackGroundTexture");
+	locationRTextureID = Shader::GetUniformlocation("rTexture");
+	locationBTextureID = Shader::GetUniformlocation("bTexture");
+	locationGTextureID = Shader::GetUniformlocation("gTexture");
+	locationblendMapID = Shader::GetUniformlocation("BlendMap");
 }
 
 TerrainShader::TerrainShader()
 {
 	Shader::shaderProgeram(vertaxShaderLocation, fragmentshaderLocation);
 	getAllUniformLocations();
+	connectTectureUnit();
 }
 
 

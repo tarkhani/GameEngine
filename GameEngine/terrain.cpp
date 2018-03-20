@@ -6,12 +6,13 @@
 
 
 
-terrain::terrain(int grindx, int grindz, Loader& loader, ModelTexture& modelTexture)
+
+
+terrain::terrain(int grindx, int grindy, Loader & loader, TerrainTexturePack & terrainTexturePack, TerrainTexture & blendMap):terrainTexturePack(terrainTexturePack), blendMap(blendMap)
 {
 	this->x = grindx*SIZE;
 	this->z = grindx*SIZE;
-	this->Rawmodel= GenrateTerrin(loader);
-	this->Modeltexture = modelTexture;
+	this->Rawmodel = GenrateTerrin(loader);
 }
 
 terrain::~terrain()

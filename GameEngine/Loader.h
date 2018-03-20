@@ -12,11 +12,11 @@
 public:
 
 
-	GLuint VaoIDes[10];
+	GLuint VaoIDes[20];
 	GLuint VboIDes[20];
-	GLuint VIboIDes[10];
+	GLuint VIboIDes[20];
 	GLuint GLTextureIDes[20];
-	unsigned char*textures[10];
+	unsigned char*textures[20];
 	int numberofvao = -1;
 	int numberofvbo = -1;
 	int numberofindexBuffer = -1;

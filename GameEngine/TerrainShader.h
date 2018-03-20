@@ -17,6 +17,11 @@ public:
 	int locationShinedamper;
 	int locationReflectionScale;
 	int locationskyColor;
+	int locationBackGroundTextureID;
+	int locationRTextureID;
+	int locationBTextureID;
+	int locationGTextureID;
+	int locationblendMapID;
 
 	virtual void getAllUniformLocations() override;
 	void loadTransformation(glm::fmat4 matrix) {
@@ -41,6 +46,16 @@ public:
 		Shader::loadFloatUni(ReflectionScale, locationReflectionScale);
 	}
 	void loadSkyColor(glm::vec3 SkyColor) { Shader::loadvectorUni(SkyColor, locationskyColor); };
+	void connectTectureUnit() {
+	
+		Shader::loadIntUni(0,locationBackGroundTextureID);
+		Shader::loadIntUni(1,locationRTextureID);
+		Shader::loadIntUni(2,locationGTextureID);
+		Shader::loadIntUni(3,locationBTextureID);
+		Shader::loadIntUni(4,locationblendMapID);
+	
+	
+	};
 	TerrainShader();
 	~TerrainShader();
 };
