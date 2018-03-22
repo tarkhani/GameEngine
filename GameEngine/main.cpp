@@ -18,11 +18,16 @@
 #include"terrain.h"
 #include"TerrainTexture.h"
 #include"TerrainTexturePack.h"
+#include"Player.h"
+typedef std::chrono::high_resolution_clock Time;
+typedef std::chrono::milliseconds ms;
+typedef std::chrono::duration<float> fsec;
+
 
 glm::mat4 const RenderMaster::proj = glm::perspective(70.0f, ((float)1920 / 1080), 0.1f, 100.0f);
+void checkInput(GLFWwindow* window, Player& player);
 
 using namespace std;
-void key_callback(GLFWwindow* window, int key, int scancode, int action, int mods);
 Camera camera;
 
 int main(void)
@@ -48,7 +53,7 @@ int main(void)
 		glfwTerminate();
 		return -1;
 	}
-	glfwSetKeyCallback(window, key_callback);
+	
 	glfwMakeContextCurrent(window);
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
 
@@ -63,6 +68,8 @@ int main(void)
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
+
+
 
 	
 	list<terrain> allTerrain;
@@ -98,38 +105,40 @@ int main(void)
 	textureModel GrassTexureModel(grass, grassTexture);
 
 
-	const int nrolls = 200;//number of tree
-	std::default_random_engine generator;
-	std::uniform_int_distribution<int> distribution(5, 100);//min and max of terrain
-	float *randomx = new float[nrolls];
-	float *randomz = new float[nrolls];
-	for (int i = 0; i <nrolls; i++)
-	{
-		randomx[i] = distribution(generator);
-		randomz[i] = distribution(generator);
+	RawModel playerRawModel = objLoader::LoadObj("person.obj", loader);
+	ModelTexture  playerTexture(loader.loadTexture("playerTexture.png"));
+	playerTexture.ReflectionScale = 0.0;
+	playerTexture.ShineDamper = 0.0;
+	
+	textureModel PersonTexureModel(playerRawModel, playerTexture);
 
-		entity  grass = entity(GrassTexureModel, glm::fvec3(-randomx[i], 0.0f, -randomz[i]), 0, 180, 0, 0.5);
-		allEntity.push_back(grass);
-
-		entity  tree = entity(TreeTexureModel, glm::fvec3(-randomx[i], 0.0f,-randomz[i]), 0, 180, 0, 1);
-		allEntity.push_back(tree);
-
-	}
-	delete[]randomx;
-	delete[]randomz;
+	Player player(PersonTexureModel, glm::fvec3(0.0f, 0.0f, 0.0f), 0, 0, 0, 0.4);
+	
 
 	do {
-
+		auto START = Time::now();
+		
 		for (std::list<entity>::iterator it1 = allEntity.begin(); it1 != allEntity.end(); ++it1)
 		{
 			renderMaster.ProcessEntity(*it1);
+			
 		}
 		for (std::list<terrain>::iterator it2 = allTerrain.begin(); it2 != allTerrain.end(); ++it2)
 		{
 			renderMaster.ProcessTerrain(*it2);
 		}
 
+		checkInput(window, player);
 		renderMaster.Render(light, camera);
+
+		auto END = Time::now();//getting delta time(how much time took to render frame)
+		fsec delta =  END-START;
+		
+		player.Move(delta.count());
+		allEntity.push_front(player);
+		allEntity.unique();
+
+		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 		
@@ -143,24 +152,27 @@ int main(void)
 	return 0;
 }
 
-void key_callback(GLFWwindow * window, int key, int scancode, int action, int mods)
-{
-	if (key == GLFW_KEY_W && (action == GLFW_PRESS || action == GLFW_REPEAT)) {
-		camera.MoveForward();
-	};
-	if (key == GLFW_KEY_A && (action == GLFW_PRESS || action == GLFW_REPEAT)) {
-		camera.MoveLeft();
-	};
-	if (key == GLFW_KEY_D && (action == GLFW_PRESS || action == GLFW_REPEAT)) {
-		camera.MoveRight();
-	};
-	if (key == GLFW_KEY_S && (action == GLFW_PRESS || action == GLFW_REPEAT)) {
-		camera.MoveBackward();
-	};
-	if (key == GLFW_KEY_R && (action == GLFW_PRESS || action == GLFW_REPEAT)) {
-		camera.MoveUp();
-	};
-	if (key == GLFW_KEY_F && (action == GLFW_PRESS || action == GLFW_REPEAT)) {
-		camera.MoveDown();
-	};
+void checkInput(GLFWwindow* window, Player& player) {
+
+	int state1 = glfwGetKey(window, GLFW_KEY_W);
+	int state2 = glfwGetKey(window, GLFW_KEY_S);
+	int state3 = glfwGetKey(window, GLFW_KEY_A);
+	int state4 = glfwGetKey(window, GLFW_KEY_D);
+	int state5 = glfwGetKey(window, GLFW_KEY_SPACE);
+
+	if (state1 == GLFW_PRESS){ player.MoveForward();}
+	else if (state2 == GLFW_PRESS) {player.MoveBackward();}
+	else {player.CurrectSpeed = 0;}
+
+	if (state3 == GLFW_PRESS) {player.MoveLeft();}
+	else if (state4 == GLFW_PRESS) {player.MoveRight();}
+	else {player.CurrectTurnSpeed = 0;}
+
+	if (state5 == GLFW_PRESS)
+	{
+		player.playerJump();
+	}
+
 }
+
+
