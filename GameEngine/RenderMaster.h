@@ -32,7 +32,7 @@ public:
 	static const glm::mat4 proj;
 
 	RenderMaster::RenderMaster();
-	void Render(Light &light, Camera& camera);
+	void Render(Light &light, Camera& camera, Player&player);
 	void ProcessEntity(entity& Entity);
 	void ProcessTerrain(terrain & terrain);
 	void CleanUp() ;

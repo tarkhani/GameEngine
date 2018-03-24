@@ -8,6 +8,7 @@ d:\gameengine cpp\gameengine\gameengine\debug\main.obj
 d:\gameengine cpp\gameengine\gameengine\debug\mats.obj
 d:\gameengine cpp\gameengine\gameengine\debug\modeltexture.obj
 d:\gameengine cpp\gameengine\gameengine\debug\objloader.obj
+d:\gameengine cpp\gameengine\gameengine\debug\player.obj
 d:\gameengine cpp\gameengine\gameengine\debug\rawmodel.obj
 d:\gameengine cpp\gameengine\gameengine\debug\rendermaster.obj
 d:\gameengine cpp\gameengine\gameengine\debug\rendrer.obj
@@ -16,9 +17,8 @@ d:\gameengine cpp\gameengine\gameengine\debug\staticshader.obj
 d:\gameengine cpp\gameengine\gameengine\debug\terrain.obj
 d:\gameengine cpp\gameengine\gameengine\debug\terrainrenderer.obj
 d:\gameengine cpp\gameengine\gameengine\debug\terrainshader.obj
-d:\gameengine cpp\gameengine\gameengine\debug\texturemodel.obj
 d:\gameengine cpp\gameengine\gameengine\debug\terraintexturepack.obj
-d:\gameengine cpp\gameengine\gameengine\debug\player.obj
+d:\gameengine cpp\gameengine\gameengine\debug\texturemodel.obj
 d:\gameengine cpp\gameengine\debug\gameengine.ilk
 d:\gameengine cpp\gameengine\debug\gameengine.exe
 d:\gameengine cpp\gameengine\debug\gameengine.pdb

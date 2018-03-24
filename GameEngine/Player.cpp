@@ -3,13 +3,15 @@
 
 
 
-Player::Player(textureModel & texturemodel, glm::fvec3 position, float rotx, float roty, float rotz, float scale)
-	:entity::entity(texturemodel, position, rotx, roty, rotz, scale)
+Player::Player(textureModel & Texturemodel, glm::fvec3 position, float rotx, float roty, float rotz, float scale)
+	:entity::entity(Texturemodel, position, rotx, roty, rotz, scale)
 {
 	
 }
 
-
+Player::Player(Player & player):entity::entity(player.texturemodel,player.position,player.rotx, player.roty, player.rotz,player.scale)
+{
+}
 
 Player::~Player()
 {
@@ -17,6 +19,7 @@ Player::~Player()
 
 void Player::Move(float deltaTime)
 {
+	
 	this->increaseRotation(0,CurrectTurnSpeed*deltaTime,0);
 	float distance = CurrectSpeed*deltaTime;
 	float dx =  distance * std::sin(glm::radians(roty));

@@ -18,13 +18,7 @@ public:
 	entity(textureModel &texturemodel,glm::fvec3 position,float rotx, float roty, float rotz, float scale);
 	~entity();
 
-	bool operator ==( const entity &e2) const
-	{
-		if (this->rotx==e2.rotx && this->rotx == e2.roty && this->rotx == e2.rotz && this->rotx == e2.rotx && this->rotx == e2.scale)
-		{
-			return true;
-		}
-	}
+
 };
 
 

@@ -19,16 +19,25 @@
 #include"TerrainTexture.h"
 #include"TerrainTexturePack.h"
 #include"Player.h"
+
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
+
 typedef std::chrono::high_resolution_clock Time;
 typedef std::chrono::milliseconds ms;
 typedef std::chrono::duration<float> fsec;
 
-
 glm::mat4 const RenderMaster::proj = glm::perspective(70.0f, ((float)1920 / 1080), 0.1f, 100.0f);
-void checkInput(GLFWwindow* window, Player& player);
+void checkInput(GLFWwindow* window, Player &player, Camera& camera);
+struct Point {
+
+	double x, y;
+
+};
+
+Point oldPoint, NewPoint, deltaMosePos;
 
 using namespace std;
-Camera camera;
+
 
 int main(void)
 {
@@ -56,6 +65,7 @@ int main(void)
 	
 	glfwMakeContextCurrent(window);
 	glfwSetInputMode(window, GLFW_STICKY_KEYS, GL_TRUE);
+	glfwSetScrollCallback(window, scroll_callback);
 
 	glewExperimental = true;
 	if (glewInit() != GLEW_OK) {
@@ -90,6 +100,7 @@ int main(void)
 
 
 	list<entity> allEntity;
+	list<entity> playerList;/// list of player with diffrent location 
 	RawModel Treemodel = objLoader::LoadObj("tree.obj", loader);
 	ModelTexture  treeTexture(loader.loadTexture("tree.png"));
 	treeTexture.ReflectionScale = 0.4;
@@ -104,20 +115,37 @@ int main(void)
 	grassTexture.FakeLightning = true;
 	textureModel GrassTexureModel(grass, grassTexture);
 
+	const int nrolls = 200;//number of tree
+	std::default_random_engine generator;
+	std::uniform_int_distribution<int> distribution(5, 100);//min and max of terrain
+	float *randomx = new float[nrolls];
+	float *randomz = new float[nrolls];
+	for (int i = 0; i < nrolls; i++) {
+
+		randomx[i] = distribution(generator);
+		randomz[i] = distribution(generator);
+
+		entity  grass = entity(GrassTexureModel, glm::fvec3(-randomx[i], 0.0f, -randomz[i]), 0, 180, 0, 0.5);
+		allEntity.push_back(grass);
+
+		entity  tree = entity(TreeTexureModel, glm::fvec3(-randomx[i], 0.0f, -randomz[i]), 0, 180, 0, 1);
+		allEntity.push_back(tree);
+	}
+
 
 	RawModel playerRawModel = objLoader::LoadObj("person.obj", loader);
 	ModelTexture  playerTexture(loader.loadTexture("playerTexture.png"));
 	playerTexture.ReflectionScale = 0.0;
 	playerTexture.ShineDamper = 0.0;
-	
 	textureModel PersonTexureModel(playerRawModel, playerTexture);
 
-	Player player(PersonTexureModel, glm::fvec3(0.0f, 0.0f, 0.0f), 0, 0, 0, 0.4);
-	
+	Player player(PersonTexureModel, glm::fvec3(0.0f, 0.0f, 0.0f), 0, 180, 0, 0.1);
+	Camera camera(player);
+
+	glfwSetWindowUserPointer(window, &camera);
 
 	do {
 		auto START = Time::now();
-		
 		for (std::list<entity>::iterator it1 = allEntity.begin(); it1 != allEntity.end(); ++it1)
 		{
 			renderMaster.ProcessEntity(*it1);
@@ -128,17 +156,23 @@ int main(void)
 			renderMaster.ProcessTerrain(*it2);
 		}
 
-		checkInput(window, player);
-		renderMaster.Render(light, camera);
+		checkInput(window, player,camera);
+		renderMaster.Render(light, camera,player);
 
 		auto END = Time::now();//getting delta time(how much time took to render frame)
-		fsec delta =  END-START;
+		fsec deltaTime =  END-START;
 		
-		player.Move(delta.count());
-		allEntity.push_front(player);
-		allEntity.unique();
+		player.Move(deltaTime.count());
+
+
+		glfwGetCursorPos(window, &NewPoint.x, &NewPoint.y);
+		deltaMosePos.x = NewPoint.x - oldPoint.x;
+		deltaMosePos.y = NewPoint.y - oldPoint.y;
+		oldPoint.x = NewPoint.x;
+		oldPoint.y = NewPoint.y;
 
 		
+		camera.Move();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 		
@@ -152,13 +186,16 @@ int main(void)
 	return 0;
 }
 
-void checkInput(GLFWwindow* window, Player& player) {
+void checkInput(GLFWwindow* window,Player &player ,Camera& camera) {
 
 	int state1 = glfwGetKey(window, GLFW_KEY_W);
 	int state2 = glfwGetKey(window, GLFW_KEY_S);
 	int state3 = glfwGetKey(window, GLFW_KEY_A);
 	int state4 = glfwGetKey(window, GLFW_KEY_D);
 	int state5 = glfwGetKey(window, GLFW_KEY_SPACE);
+	int state6 = glfwGetKey(window, GLFW_MOUSE_BUTTON_MIDDLE);
+	int state7 = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_RIGHT);
+	int state8 = glfwGetMouseButton(window, GLFW_MOUSE_BUTTON_LEFT);
 
 	if (state1 == GLFW_PRESS){ player.MoveForward();}
 	else if (state2 == GLFW_PRESS) {player.MoveBackward();}
@@ -172,7 +209,27 @@ void checkInput(GLFWwindow* window, Player& player) {
 	{
 		player.playerJump();
 	}
+	if (state7 == GLFW_PRESS)
+	{
+		camera.pitch += (float)deltaMosePos.y*0.01;
+	}
+	if (state8 == GLFW_PRESS)
+	{
+		camera.AngleAroundPlayer -= deltaMosePos.x*0.08;
+	}
 
+}
+void scroll_callback(GLFWwindow* window, double xoffset, double yoffset) {
+
+	Camera *camera = reinterpret_cast<Camera*>(glfwGetWindowUserPointer(window));
+	if (yoffset>0 )
+	{
+		camera->DistanceFromPlayer -= yoffset;
+	}
+	else if (yoffset < 0 ) {
+
+		camera->DistanceFromPlayer -= yoffset;
+	}
 }
 
 

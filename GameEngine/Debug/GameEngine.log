@@ -1,7 +1,53 @@
-﻿  Player.cpp
-d:\gameengine cpp\gameengine\gameengine\player.h(10): warning C4305: 'initializing': truncation from 'double' to 'const float'
-  Generating Code...
-  Skipping... (no relevant changes detected)
+﻿  objLoader.cpp
+d:\gameengine cpp\gameengine\gameengine\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\objloader.cpp(57): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+d:\gameengine cpp\gameengine\gameengine\objloader.cpp(68): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+d:\gameengine cpp\gameengine\gameengine\objloader.cpp(76): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+d:\gameengine cpp\gameengine\gameengine\objloader.cpp(81): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+d:\gameengine cpp\gameengine\gameengine\objloader.cpp(87): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+d:\gameengine cpp\gameengine\gameengine\objloader.cpp(93): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  c:\program files (x86)\windows kits\10\include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
   main.cpp
+d:\gameengine cpp\gameengine\gameengine\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\main.cpp(106): warning C4305: '=': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\main.cpp(107): warning C4305: '=': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\main.cpp(125): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(126): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(142): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\main.cpp(214): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(218): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(227): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(231): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  TerrainShader.cpp
+d:\gameengine cpp\gameengine\gameengine\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  TerrainRenderer.cpp
+d:\gameengine cpp\gameengine\gameengine\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  StaticShader.cpp
+d:\gameengine cpp\gameengine\gameengine\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Rendrer.cpp
+d:\gameengine cpp\gameengine\gameengine\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  RenderMaster.cpp
+d:\gameengine cpp\gameengine\gameengine\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Player.cpp
+d:\gameengine cpp\gameengine\gameengine\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  Mats.cpp
+d:\gameengine cpp\gameengine\gameengine\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Camera.cpp
+d:\gameengine cpp\gameengine\gameengine\player.h(11): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Debug\GameEngine.exe
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Debug\GameEngine.pdb (Full PDB)

@@ -11,7 +11,7 @@ RenderMaster::RenderMaster():rendrer(Staticshader, proj ),terrainRenderer(terrai
 {
 }
 
-void RenderMaster::Render(Light & light, Camera & camera)
+void RenderMaster::Render(Light & light, Camera & camera, Player&player)
 {
 	prepare();
 
@@ -28,6 +28,8 @@ void RenderMaster::Render(Light & light, Camera & camera)
 	Staticshader.loadView(camera);
 	Staticshader.loadLight(light);
 	rendrer.render(entities);
+	rendrer.render(player);
+	
 	Staticshader.stopProgeram();
 
 	entities.clear();

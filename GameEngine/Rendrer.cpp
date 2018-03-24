@@ -58,6 +58,14 @@ void Rendrer::render(std::map<textureModel, std::list<entity>> entities)
 	unboundTextureModel();
 }
 
+void Rendrer::render(entity & entity)
+{
+	prepareTextureModel(entity.texturemodel);
+	prepareInstance(entity);
+	RawModel rawmodel = (entity).texturemodel.getRawModel();
+	glDrawElements(GL_TRIANGLES, rawmodel.getIndexcount(), GL_UNSIGNED_SHORT, 0);
+}
+
 
 Rendrer::Rendrer(StaticShader& Shader,const glm::mat4 &proj)
 {

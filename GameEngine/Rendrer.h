@@ -10,6 +10,7 @@
 #include"entity.h"
 
 
+
 static void _CheckGLError(const char* file, int line)
 {
 	GLenum err(glGetError());
@@ -47,6 +48,7 @@ public:
 	void unboundTextureModel();
 	void prepareInstance(entity entity);
 	void render(std::map<textureModel, std::list<entity>> entities);
+	void render(entity& entity);
 
 	Rendrer(StaticShader& Shader, const  glm::mat4 &proj);
 	~Rendrer();
