@@ -18,8 +18,8 @@ private:
 	Rendrer rendrer;
 
 	const float SkyRed = 0.0f;
-	const float SkyGreen = 0.1f;
-	const float SkyBlue = 0.2f;
+	const float SkyGreen = 1.0f;
+	const float SkyBlue = 1.0f;
 	glm::vec3 SkyColor = glm::vec3(SkyRed, SkyGreen, SkyBlue);
 
 	std::map<textureModel, std::list<entity>> entities;

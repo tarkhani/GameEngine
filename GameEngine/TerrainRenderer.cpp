@@ -37,6 +37,8 @@ void TerrainRenderer::prepareTerrain(terrain Terrain)
 	glEnableVertexAttribArray(1);
 	glEnableVertexAttribArray(2);
 	BindTerrainTextures(Terrain);
+	shader.loadReflactionAttrib(Terrain.ShineDamper, Terrain.ReflectionScale);
+	
 }
 
 

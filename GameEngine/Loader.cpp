@@ -5,7 +5,6 @@
 
 RawModel Loader::loadToVAO(ARRAY<glm::vec3> positions, ARRAY<glm::vec2> uv, ARRAY<glm::vec3> Normal, ARRAY<unsigned short> index)
 {
-
 	GLuint vaoId =createVAO();
 	storeDataInAttributeList<glm::vec3>(0, 3, positions);
 	storeDataInAttributeList<glm::vec2>(1, 2, uv);
@@ -48,7 +47,7 @@ GLuint Loader::loadTexture(char * filepath)
 {
 
 	numberofTexture++;
-	int width=480, height=480;
+	int width, height;
 	textures[numberofTexture]= SOIL_load_image(filepath, &width, &height, 0, SOIL_LOAD_RGBA);
 	if (!textures[numberofTexture])
 	{
@@ -59,11 +58,12 @@ GLuint Loader::loadTexture(char * filepath)
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_S, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_T, GL_REPEAT);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_WRAP_R, GL_REPEAT);
-	glGenerateMipmap(GL_TEXTURE_2D);
-	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MIN_FILTER, GL_LINEAR_MIPMAP_LINEAR);
+	glTexParameterf(GL_TEXTURE_2D, GL_TEXTURE_LOD_BIAS, -0.5);
 	glTexParameteri(GL_TEXTURE_2D, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
 	glTexImage2D(GL_TEXTURE_2D, 0, GL_RGBA, width, height, 0, GL_RGBA, GL_UNSIGNED_BYTE, textures[numberofTexture]);
 	SOIL_free_image_data(textures[numberofTexture]);
+	glGenerateMipmap(GL_TEXTURE_2D);
 	
 	
 	return GLTextureIDes[numberofTexture];

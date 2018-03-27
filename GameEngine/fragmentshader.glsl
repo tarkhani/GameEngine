@@ -21,7 +21,7 @@ void main()
 vec3 unitNormal=normalize(SurfaceNormal);
 vec3 unitToLightVector=normalize(toLightVector);
 float nDot1=dot(unitNormal,unitToLightVector);
-float brightness=max(nDot1,0.5);
+float brightness=max(nDot1,0.1);
 vec3 diffuse=brightness*lightColour;
 
 

@@ -39,7 +39,7 @@ Point oldPoint, NewPoint, deltaMosePos;
 using namespace std;
 
 
-int main(void)
+int main()
 {
 	
 	if (!glfwInit())
@@ -85,16 +85,18 @@ int main(void)
 	list<terrain> allTerrain;
 	Loader loader;
 	RenderMaster renderMaster;
-	Light light(glm::vec3(0.0f,10.0f, -10.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+	Light light(glm::vec3(0.0f,10.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
 	TerrainTexture BackGroundTexture(loader.loadTexture("terrain.png"));
 	TerrainTexture rTexture(loader.loadTexture("mud.png"));
-	TerrainTexture gTexture(loader.loadTexture("path.png"));
+	TerrainTexture gTexture(loader.loadTexture("brick.jpg"));
 	TerrainTexture bTexture(loader.loadTexture("grassFlowers.png"));
 	TerrainTexture BlendMap(loader.loadTexture("blendMap.png"));
 	TerrainTexturePack terrainTexturePack (BackGroundTexture, rTexture, gTexture, bTexture);
 
 
-	terrain Terrain(-1, 0, loader, terrainTexturePack, BlendMap);
+	terrain Terrain(-1, 0, loader, terrainTexturePack, BlendMap, "heightmap.png");
+	Terrain.ReflectionScale = 0.0;
+	Terrain.ShineDamper = 0.0;
 
 	allTerrain.push_back(Terrain);
 

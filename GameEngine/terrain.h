@@ -7,19 +7,23 @@
 #include"TerrainTexturePack.h"
 
 
+
 class terrain
 {
 public:
+	
 	const static int SIZE = 100;
-	const static int VERTEX_COUNT = 128;
+	char * HightMapAddress;
 	float x, z;
 	RawModel Rawmodel;
 	TerrainTexturePack terrainTexturePack;
 	TerrainTexture blendMap;
+	float ShineDamper;
+	float ReflectionScale;
 
-
-	terrain(int grindx,int grindy,Loader& loader, TerrainTexturePack& terrainTexturePack, TerrainTexture& blendMap);
+	terrain(int grindx,int grindy,Loader& loader, TerrainTexturePack& terrainTexturePack, TerrainTexture& blendMap, char * HightMapAddress);
 	~terrain();
-	RawModel GenrateTerrin(Loader& loader);
+	RawModel GenrateTerrin(Loader& loader, char * HightMapAddress);
+
 };
 
