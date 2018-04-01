@@ -1,5 +1,6 @@
 #pragma once
 #include "entity.h"
+#include"terrain.h"
 
 class Player :
 	public entity
@@ -9,8 +10,6 @@ public:
 	 const float TURN_SPEED = 40;
 	 const float GRAVITY = -2;
 	 const float JumpPower = 0.4;
-	 float TerrianHeight = 0;
-	
 
 	 bool onAir = 0;
 
@@ -22,7 +21,7 @@ public:
 	Player(textureModel &Texturemodel, glm::fvec3 position, float rotx, float roty, float rotz, float scale);
     Player( Player&player);
 	~Player();
-	void Move(float deltaTime);
+	void Move(float deltaTime , terrain& terrain);
 	void MoveForward();
 	void MoveBackward();
 	void MoveRight();

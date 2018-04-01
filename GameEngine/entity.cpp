@@ -19,13 +19,24 @@ void entity::increaseRotation(float dx, float dy, float dz)
 	this->rotz += dz;
 }
 
-entity::entity(textureModel &texturemodel, glm::fvec3 position, float rotx, float roty, float rotz, float scale):texturemodel(texturemodel)
+entity::entity(textureModel &texturemodel, glm::fvec3 position, float rotx, float roty, float rotz, float Totalscale):texturemodel(texturemodel)
 {
 	this->position = position;
 	this->rotx = rotx;
 	this->roty = roty;
 	this->rotz = rotz;
-	this->scale = scale;
+	this->Totalscale = Totalscale;
+}
+
+entity::entity(textureModel & texturemodel, glm::fvec3 position, float rotx, float roty, float rotz, float scaleX, float scaleY, float scaleZ) :texturemodel(texturemodel)
+{
+	this->position = position;
+	this->rotx = rotx;
+	this->roty = roty;
+	this->rotz = rotz;
+	this->scaleX = scaleX;
+	this->scaleY = scaleY;
+	this->scaleZ = scaleZ;
 }
 
 entity::~entity()

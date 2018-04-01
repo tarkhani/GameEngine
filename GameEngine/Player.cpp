@@ -9,7 +9,7 @@ Player::Player(textureModel & Texturemodel, glm::fvec3 position, float rotx, flo
 	
 }
 
-Player::Player(Player & player):entity::entity(player.texturemodel,player.position,player.rotx, player.roty, player.rotz,player.scale)
+Player::Player(Player & player):entity::entity(player.texturemodel,player.position,player.rotx, player.roty, player.rotz,player.Totalscale)
 {
 }
 
@@ -17,7 +17,7 @@ Player::~Player()
 {
 }
 
-void Player::Move(float deltaTime)
+void Player::Move(float deltaTime, terrain& terrain)
 {
 	
 	this->increaseRotation(0,CurrectTurnSpeed*deltaTime,0);
@@ -27,6 +27,8 @@ void Player::Move(float deltaTime)
 	this->increasePosition(dx, 0, dz);
 	UpwardsSpeed += GRAVITY*deltaTime;
 	this->increasePosition(0, UpwardsSpeed, 0);
+	float TerrianHeight = terrain.getHeightOfTerrian(position.x, position.z);
+
 	if (this->position.y<TerrianHeight)
 	{
 		UpwardsSpeed = 0;

@@ -35,7 +35,8 @@ vec4 mixColor = BackGroundTextureColor + rTextureColor+gTextureColor+bTextureCol
 vec3 unitNormal=normalize(SurfaceNormal);
 vec3 unitToLightVector=normalize(toLightVector);
 float nDot1=dot(unitNormal,unitToLightVector);
-float brightness=max(nDot1,0.5);
+float brightness=max(nDot1,0.1);
+brightness=pow(brightness,15);
 vec3 diffuse=brightness*lightColour;
 
 

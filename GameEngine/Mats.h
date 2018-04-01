@@ -10,8 +10,11 @@ public:
 
 	glm::mat4 static createTransformation(glm::vec3 translation, float rx,
 		float ry, float rz, float scale);
+	glm::mat4 static Mats::createTransformation(glm::vec3 translation, float rx, float ry, float rz, float scaleX, float scaleY, float scaleZ);
 
 	glm::mat4 static createView(Camera& camera);
+
+	float static barryCentric(glm::fvec3 &p1, glm::fvec3 &p2, glm::fvec3 &p3, glm::fvec2 &pos);
 	
 
 	

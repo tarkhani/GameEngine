@@ -1,7 +1,9 @@
 #include<iostream>
 #include<SDL_image.h>
 #include<glm\glm.hpp>
+#include <math.h> 
 #include "terrain.h"
+#include"Mats.h"
 
 terrain::terrain(int grindx, int grindy, Loader & loader, TerrainTexturePack & terrainTexturePack, TerrainTexture & blendMap, char * HightMapAddress):terrainTexturePack(terrainTexturePack), blendMap(blendMap), HightMapAddress(HightMapAddress)
 {
@@ -10,40 +12,94 @@ terrain::terrain(int grindx, int grindy, Loader & loader, TerrainTexturePack & t
 	this->Rawmodel = GenrateTerrin(loader, HightMapAddress);
 }
 
-terrain::~terrain()
+
+float terrain::getHeightOfTerrian(float worldX, float worldZ)
 {
+	float terrainx = worldX - x;
+	float terrainz = worldZ - z;
+	float gridSquareSize = SIZE /float (length - 1);
+	int gridX = floor(terrainx / gridSquareSize);
+	int gridZ = floor(terrainz / gridSquareSize);
+	
+	if (gridX >=length - 1 || gridZ >= length - 1 || gridX <= 0 || gridZ <= 0)
+	{
+		return 0;
+	}
+	float xCoord = fmod(terrainx, gridSquareSize)/ gridSquareSize;
+	float zCoord = fmod(terrainz, gridSquareSize)/ gridSquareSize;
+	float answer = 0;
+
+	if (xCoord <= (1 - zCoord)) {
+		answer = Mats::barryCentric(glm::fvec3(0, heights[gridZ][gridX], 0), glm::fvec3(1,
+				heights[gridZ][gridX + 1], 0), glm::fvec3(0,
+				heights[gridZ + 1][gridX], 1), glm::fvec2(xCoord, zCoord));
+	}
+	else {
+		answer = Mats::barryCentric(glm::fvec3(1, heights[gridZ][gridX + 1], 0), glm::fvec3(1,
+				heights[gridZ + 1][gridX + 1], 1), glm::fvec3(0,
+					heights[gridZ + 1][gridX], 1), glm::fvec2(xCoord, zCoord));
+
+	}
+	return answer;
 }
 
-float getHeight(int x, int y, SDL_Surface *image){
+terrain::terrain(const terrain & orginal):terrainTexturePack(orginal.terrainTexturePack),
+blendMap(orginal.blendMap), HightMapAddress(orginal.HightMapAddress),x(orginal.x),z(orginal.z),
+Rawmodel(orginal.Rawmodel), length(orginal.length)
+{
+	this->heights = new float*[this->length];
+	for (int i = 0; i < this->length; i++)
+	{
+		heights[i] = new float[this->length];
+	}
 
-	if (x<0||x>=image->h||y<0||y>= image->h)
+	for (int i = 0; i < length; i++)
+	{
+		for (int j = 0; j < length; j++)
+		{
+			heights[i][j] = orginal.heights[i][j];
+		}
+	}
+}
+
+terrain::~terrain()
+{
+	for (int i = 0; i < length; ++i) {
+		delete[] heights[i];
+	}
+	delete[] heights;
+}
+
+float getHeight(int x, int z, SDL_Surface *image){
+
+	if (x<0||x>=image->h||z<0||z>= image->h)
 	{
 		return 0;
 	}
 	float MAX_PIXEL_COLOR = 256 + 256 + 256;
-	float MAX_height = 5;
+	float MAX_height = 4;
 	Uint32 *pixels = (Uint32 *)image->pixels;
 	int  height = image->h;
 	Uint8 RED;
 	Uint8 GREEN;
 	Uint8 BLUE;
 	Uint8 ALPHA;
-	SDL_GetRGBA(pixels[y*height + x], image->format, &RED, &GREEN, &BLUE, &ALPHA);
+	SDL_GetRGBA(pixels[z*height + x], image->format, &RED, &GREEN, &BLUE, &ALPHA);
 	float totalColor = RED + GREEN + BLUE;
 	totalColor -= MAX_PIXEL_COLOR / 2;
 	totalColor /= MAX_PIXEL_COLOR / 2;
 	totalColor *= MAX_height;
 	return totalColor;
 }
-glm::vec3 CalculateNormal(int x, int y, SDL_Surface *image) {
+glm::vec3 CalculateNormal(int x, int z, SDL_Surface *image) {
 
-	float HeightL = getHeight(x - 1, y, image);
-	float HeightR = getHeight(x + 1, y, image);
-	float HeightD = getHeight(x , y-1, image);
-	float HeightU = getHeight(x , y+1, image);
-	glm::vec3 normal = glm::vec3(HeightR - HeightL, 2.0f, HeightU - HeightD);
-	glm::vec3 nnormal =glm::normalize(normal);
-	return nnormal;
+	float HeightL = getHeight(x - 1, z, image);
+	float HeightR = getHeight(x + 1, z, image);
+	float HeightD = getHeight(x , z-1, image);
+	float HeightU = getHeight(x , z+1, image);
+	glm::vec3 Normal = glm::vec3(HeightL - HeightR, 2.0f, HeightD - HeightU);
+	glm::vec3 NormlizeNormal =glm::normalize(Normal);
+	return NormlizeNormal;
 
 }
 
@@ -52,7 +108,12 @@ RawModel terrain::GenrateTerrin(Loader& loader ,char * HightMapAddress)
 
 	SDL_Surface *image = IMG_Load(HightMapAddress);
 	int  height = image->h;
-
+	length = height;
+	heights = new float*[height];
+	for (int i = 0; i < height; i++)
+	{
+		heights[i] = new float[height];
+	}
 
 	const int count = height *height;
 	glm::vec3 *vertices=new glm::vec3[count];
@@ -63,11 +124,11 @@ RawModel terrain::GenrateTerrin(Loader& loader ,char * HightMapAddress)
 	for (int i = 0; i<height; i++) {
 		for (int j = 0; j<height; j++) {
 
-		
+			heights[i][j] = getHeight(j, i, image);
 			vertices[vertexPointer ].x = (float)j / ((float)height - 1) * SIZE;
-			vertices[vertexPointer ].y = getHeight(i,j, image);
+			vertices[vertexPointer ].y = heights[i][j];
 			vertices[vertexPointer ].z = (float)i / ((float)height - 1) * SIZE;
-			glm::vec3 normal = CalculateNormal(i, j, image);
+			glm::vec3 normal = CalculateNormal(j, i, image);
 			normals[vertexPointer ].x = normal.x;
 			normals[vertexPointer ].y= normal.y;
 			normals[vertexPointer ].z = normal.z;

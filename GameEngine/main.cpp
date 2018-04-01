@@ -85,16 +85,16 @@ int main()
 	list<terrain> allTerrain;
 	Loader loader;
 	RenderMaster renderMaster;
-	Light light(glm::vec3(0.0f,10.0f, 0.0f), glm::vec3(1.0f, 1.0f, 1.0f));
-	TerrainTexture BackGroundTexture(loader.loadTexture("terrain.png"));
-	TerrainTexture rTexture(loader.loadTexture("mud.png"));
-	TerrainTexture gTexture(loader.loadTexture("brick.jpg"));
-	TerrainTexture bTexture(loader.loadTexture("grassFlowers.png"));
-	TerrainTexture BlendMap(loader.loadTexture("blendMap.png"));
+	Light light(glm::vec3(-50.0f,200.0f, -50.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+	TerrainTexture BackGroundTexture(loader.loadTexture("./res/terrain.png"));
+	TerrainTexture rTexture(loader.loadTexture("./res/mud.png"));
+	TerrainTexture gTexture(loader.loadTexture("./res/brick.jpg"));
+	TerrainTexture bTexture(loader.loadTexture("./res/grassFlowers.png"));
+	TerrainTexture BlendMap(loader.loadTexture("./res/blendMap.png"));
 	TerrainTexturePack terrainTexturePack (BackGroundTexture, rTexture, gTexture, bTexture);
 
 
-	terrain Terrain(-1, 0, loader, terrainTexturePack, BlendMap, "heightmap.png");
+	terrain Terrain(-1, 0, loader, terrainTexturePack, BlendMap, "./res/heightmap.png");
 	Terrain.ReflectionScale = 0.0;
 	Terrain.ShineDamper = 0.0;
 
@@ -103,40 +103,48 @@ int main()
 
 	list<entity> allEntity;
 	list<entity> playerList;/// list of player with diffrent location 
-	RawModel Treemodel = objLoader::LoadObj("tree.obj", loader);
-	ModelTexture  treeTexture(loader.loadTexture("tree.png"));
-	treeTexture.ReflectionScale = 0.4;
-	treeTexture.ShineDamper = 0.4;
+	RawModel Treemodel = objLoader::LoadObj("./res/tree.obj", loader);
+	ModelTexture  treeTexture(loader.loadTexture("./res/tree.png"));
+	treeTexture.ReflectionScale = 0.0;
+	treeTexture.ShineDamper = 0.0;
 	textureModel TreeTexureModel(Treemodel, treeTexture);
 
-	RawModel grass = objLoader::LoadObj("grass.obj", loader);
-	ModelTexture  grassTexture(loader.loadTexture("grass.png"));
+	RawModel grass = objLoader::LoadObj("./res/grass.obj", loader);
+	ModelTexture  grassTexture(loader.loadTexture("./res/grass.png"));
 	grassTexture.ReflectionScale = 0.0;
 	grassTexture.ShineDamper = 0.0;
 	grassTexture.tansparent = true;
 	grassTexture.FakeLightning = true;
 	textureModel GrassTexureModel(grass, grassTexture);
 
-	const int nrolls = 200;//number of tree
+	const int nrolls = 300;//number of tree
 	std::default_random_engine generator;
-	std::uniform_int_distribution<int> distribution(5, 100);//min and max of terrain
+	std::uniform_int_distribution<int> distribution(0, 100);//min and max of terrain
+	std::uniform_real_distribution<double> HeightDistribution(0.6, 1.6);
 	float *randomx = new float[nrolls];
 	float *randomz = new float[nrolls];
+	double *randomHeghit = new double[nrolls];
+	double *randomwidth = new double[nrolls];
+
 	for (int i = 0; i < nrolls; i++) {
 
 		randomx[i] = distribution(generator);
 		randomz[i] = distribution(generator);
+		randomHeghit[i] = HeightDistribution(generator);
+		randomwidth[i] = HeightDistribution(generator);
+		float height = Terrain.getHeightOfTerrian(-randomx[i], -randomz[i]);
 
-		entity  grass = entity(GrassTexureModel, glm::fvec3(-randomx[i], 0.0f, -randomz[i]), 0, 180, 0, 0.5);
+		entity  tree = entity(TreeTexureModel, glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, randomHeghit[i], randomwidth[i], randomwidth[i]);
+		allEntity.push_back(tree);
+		entity  grass = entity(GrassTexureModel, glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0,0.4,0.4,0.4);
 		allEntity.push_back(grass);
 
-		entity  tree = entity(TreeTexureModel, glm::fvec3(-randomx[i], 0.0f, -randomz[i]), 0, 180, 0, 1);
-		allEntity.push_back(tree);
 	}
+	delete[] randomx;
+	delete[] randomz;
 
-
-	RawModel playerRawModel = objLoader::LoadObj("person.obj", loader);
-	ModelTexture  playerTexture(loader.loadTexture("playerTexture.png"));
+	RawModel playerRawModel = objLoader::LoadObj("./res/person.obj", loader);
+	ModelTexture  playerTexture(loader.loadTexture("./res/playerTexture.png"));
 	playerTexture.ReflectionScale = 0.0;
 	playerTexture.ShineDamper = 0.0;
 	textureModel PersonTexureModel(playerRawModel, playerTexture);
@@ -164,7 +172,7 @@ int main()
 		auto END = Time::now();//getting delta time(how much time took to render frame)
 		fsec deltaTime =  END-START;
 		
-		player.Move(deltaTime.count());
+		player.Move(deltaTime.count(),Terrain);
 
 
 		glfwGetCursorPos(window, &NewPoint.x, &NewPoint.y);

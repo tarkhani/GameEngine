@@ -20,8 +20,12 @@ public:
 	TerrainTexture blendMap;
 	float ShineDamper;
 	float ReflectionScale;
+	int length = 0;
+	float ** heights = NULL;
 
 	terrain(int grindx,int grindy,Loader& loader, TerrainTexturePack& terrainTexturePack, TerrainTexture& blendMap, char * HightMapAddress);
+	float getHeightOfTerrian(float worldX, float worldZ);
+	terrain(const terrain & orginal);
 	~terrain();
 	RawModel GenrateTerrin(Loader& loader, char * HightMapAddress);
 

@@ -37,8 +37,16 @@ void Rendrer::unboundTextureModel()
 
 void Rendrer::prepareInstance(entity entity)
 {
-	glm::mat4 transformationMatrix = Mats::createTransformation(entity.position, entity.rotx, entity.roty, entity.rotz, entity.scale);
-	shader.loadTransformation(transformationMatrix);
+	if (entity.scaleX!=1|| entity.scaleY != 1 || entity.scaleZ != 1  )
+	{
+		glm::mat4 transformationMatrix = Mats::createTransformation(entity.position, entity.rotx, entity.roty, entity.rotz, entity.scaleX, entity.scaleY, entity.scaleZ
+		);
+		shader.loadTransformation(transformationMatrix);
+	}
+	else {
+		glm::mat4 transformationMatrix = Mats::createTransformation(entity.position, entity.rotx, entity.roty, entity.rotz, entity.Totalscale);
+		shader.loadTransformation(transformationMatrix);
+	}
 }
 
 void Rendrer::render(std::map<textureModel, std::list<entity>> entities)
