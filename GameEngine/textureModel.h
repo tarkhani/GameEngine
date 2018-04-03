@@ -22,7 +22,7 @@ public:
 
 	 bool operator <( const textureModel& rhs)const
 	 {
-		return this->rawModel.getVaoID() < rhs.rawModel.getVaoID();
+		return (this->rawModel.getVaoID() < rhs.rawModel.getVaoID());
 	 }
 
 };

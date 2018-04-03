@@ -38,7 +38,7 @@ void RenderMaster::Render(Light & light, Camera & camera, Player&player)
 
 void RenderMaster::ProcessEntity(entity& Entity)
 {
-
+	
 	textureModel Texturemodel = Entity.texturemodel;
 	std::map<textureModel, std::list<entity>>::iterator it =entities.find(Texturemodel);
 	if (it != entities.end())
@@ -46,7 +46,7 @@ void RenderMaster::ProcessEntity(entity& Entity)
 		(it->second).push_back(Entity);
 	}
 	else {
-
+		
 		std::list<entity> Newbatch;
 		Newbatch.push_back(Entity);
 		entities.insert(std::pair<textureModel, std::list<entity>>(Texturemodel, Newbatch));

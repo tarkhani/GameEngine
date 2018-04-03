@@ -10,6 +10,8 @@ out vec3 toLightVector;
 out vec3 cameraPosition;
 out float Visibility;
 
+uniform float numberOfRows;
+uniform vec2 xyoffset;
 uniform mat4 transform;
 uniform mat4 projection;
 uniform mat4 view;
@@ -28,7 +30,7 @@ void main(){
 	Visibility=clamp(Visibility,0.0,1.0);
 
 	gl_Position =projection*locationFromCamera;
-	uv=uvCoord;
+	uv=(uvCoord/numberOfRows)+xyoffset;
 	vec3 Normal=normal;
 	if(FakeLightning>0.0){
 	

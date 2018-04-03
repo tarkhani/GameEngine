@@ -20,13 +20,15 @@ public:
 	int locationReflectionScale;
 	int locationFakeLightning;
 	int locationskyColor;
+	int locationXYoffset;
+	int locationNumberOfRows;
 
 	virtual void getAllUniformLocations() override;
-	void loadTransformation(glm::fmat4 matrix) {
+	void loadTransformation(glm::fmat4 &matrix) {
 		Shader::loadMatrixUni(matrix, locationTransformation);
 	}
 
-	void loadProjection(glm::fmat4 matrix) {
+	void loadProjection(const glm::fmat4 &matrix) {
 		Shader::loadMatrixUni(matrix, locationProjection);
 	}
 
@@ -44,7 +46,9 @@ public:
 		Shader::loadFloatUni(ReflectionScale, locationReflectionScale);
 	}
 	void loadFakeLightning(bool FakeLightning) { Shader::loadBoolUni(FakeLightning,locationFakeLightning); };
-	void loadSkyColor(glm::vec3 SkyColor) { Shader::loadvectorUni(SkyColor, locationskyColor); };
+	void loadSkyColor(glm::vec3 &SkyColor) { Shader::loadvectorUni(SkyColor, locationskyColor); };
+	void loadxyOffset(glm::vec2 &xyoffset) { Shader::loadvectorUni(xyoffset, locationXYoffset); };//load offset
+	void loadNumberOfRows(float NumberOfRows) { Shader::loadFloatUni(NumberOfRows, locationNumberOfRows); };
 	StaticShader();
 	~StaticShader();
 };

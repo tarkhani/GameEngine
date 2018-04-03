@@ -6,6 +6,7 @@
 
 void Rendrer::prepareTextureModel( textureModel textureModel)
 {
+
 	
 	RawModel rawmodel = textureModel.getRawModel();
 	ModelTexture texturemodel = textureModel.getTexture();
@@ -42,16 +43,23 @@ void Rendrer::prepareInstance(entity entity)
 		glm::mat4 transformationMatrix = Mats::createTransformation(entity.position, entity.rotx, entity.roty, entity.rotz, entity.scaleX, entity.scaleY, entity.scaleZ
 		);
 		shader.loadTransformation(transformationMatrix);
+		shader.loadNumberOfRows(entity.texturemodel.texture.NumberofRow);
+		glm::vec2 xyoffset = glm::vec2(entity.getTextureXoffset(), entity.getTextureYoffset());
+		shader.loadxyOffset(xyoffset);
 	}
 	else {
 		glm::mat4 transformationMatrix = Mats::createTransformation(entity.position, entity.rotx, entity.roty, entity.rotz, entity.Totalscale);
 		shader.loadTransformation(transformationMatrix);
+		shader.loadNumberOfRows(entity.texturemodel.texture.NumberofRow);
+		glm::vec2 xyoffset = glm::vec2(entity.getTextureXoffset(), entity.getTextureYoffset());
+		shader.loadxyOffset(xyoffset);
 	}
 }
 
 void Rendrer::render(std::map<textureModel, std::list<entity>> entities)
 {
 	for (std::map<textureModel, std::list<entity>>::iterator it1 = entities.begin(); it1 != entities.end(); ++it1) {
+
 		prepareTextureModel(it1->first);
 		std::list<entity> entityGroup = it1->second;
 		for ( std::list<entity>::iterator it2 = entityGroup.begin(); it2 != entityGroup.end(); ++it2)

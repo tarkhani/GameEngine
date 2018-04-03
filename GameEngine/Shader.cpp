@@ -120,6 +120,12 @@ void Shader::loadvectorUni(glm::fvec3 vector, int location)
 	glUniform3f(location, vector.x, vector.y, vector.z);
 }
 
+void Shader::loadvectorUni(glm::fvec2 vector, int location)
+{
+	glUniform2f(location, vector.x, vector.y);
+}
+
+
 void Shader::loadBoolUni(bool Bool, int location)
 {
 	float toload = 0;

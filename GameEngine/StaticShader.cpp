@@ -13,6 +13,9 @@ void StaticShader::getAllUniformLocations()
 	locationReflectionScale = Shader::GetUniformlocation("ReflectionScale");
 	locationFakeLightning = Shader::GetUniformlocation("FakeLightning");
 	locationskyColor = Shader::GetUniformlocation("skyColor");
+	locationNumberOfRows = Shader::GetUniformlocation("numberOfRows");
+	locationXYoffset = Shader::GetUniformlocation("xyoffset");
+	
 }
 
 StaticShader::StaticShader()

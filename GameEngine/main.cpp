@@ -107,24 +107,28 @@ int main()
 	ModelTexture  treeTexture(loader.loadTexture("./res/tree.png"));
 	treeTexture.ReflectionScale = 0.0;
 	treeTexture.ShineDamper = 0.0;
+	treeTexture.NumberofRow = 1;
 	textureModel TreeTexureModel(Treemodel, treeTexture);
 
-	RawModel grass = objLoader::LoadObj("./res/grass.obj", loader);
-	ModelTexture  grassTexture(loader.loadTexture("./res/grass.png"));
+	RawModel grassModel = objLoader::LoadObj("./res/grass.obj", loader);
+	ModelTexture  grassTexture(loader.loadTexture("./res/grass_flower.png"));
 	grassTexture.ReflectionScale = 0.0;
 	grassTexture.ShineDamper = 0.0;
 	grassTexture.tansparent = true;
 	grassTexture.FakeLightning = true;
-	textureModel GrassTexureModel(grass, grassTexture);
+	grassTexture.NumberofRow = 4;
+	textureModel GrassTexureModel(grassModel, grassTexture);
 
 	const int nrolls = 300;//number of tree
 	std::default_random_engine generator;
 	std::uniform_int_distribution<int> distribution(0, 100);//min and max of terrain
+	std::uniform_int_distribution<int> Flowerdistribution(4, 12);
 	std::uniform_real_distribution<double> HeightDistribution(0.6, 1.6);
 	float *randomx = new float[nrolls];
 	float *randomz = new float[nrolls];
 	double *randomHeghit = new double[nrolls];
 	double *randomwidth = new double[nrolls];
+	int *randomFlower = new int[nrolls];
 
 	for (int i = 0; i < nrolls; i++) {
 
@@ -132,12 +136,14 @@ int main()
 		randomz[i] = distribution(generator);
 		randomHeghit[i] = HeightDistribution(generator);
 		randomwidth[i] = HeightDistribution(generator);
+		randomFlower[i] = Flowerdistribution(generator);
 		float height = Terrain.getHeightOfTerrian(-randomx[i], -randomz[i]);
 
-		entity  tree = entity(TreeTexureModel, glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, randomHeghit[i], randomwidth[i], randomwidth[i]);
+		entity  tree = entity(TreeTexureModel,glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, randomwidth[i], randomHeghit[i], randomwidth[i]);
 		allEntity.push_back(tree);
-		entity  grass = entity(GrassTexureModel, glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0,0.4,0.4,0.4);
-		allEntity.push_back(grass);
+
+		entity  grass_flower = entity(GrassTexureModel, randomFlower[i], glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, 0.3);
+		allEntity.push_back(grass_flower);
 
 	}
 	delete[] randomx;

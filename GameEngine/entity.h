@@ -15,11 +15,16 @@ public:
 	float scaleX=1;
 	float scaleY=1;
 	float scaleZ=1;
+	int textureIndex = 0;
 	void increasePosition(float dx,float dy,float dz);
 	void increaseRotation(float dx, float dy, float dz);
+	float getTextureXoffset();
+	float getTextureYoffset();
 	
 	entity(textureModel &texturemodel,glm::fvec3 position,float rotx, float roty, float rotz, float Totalscale);
+	entity(textureModel &texturemodel,int TextureIndex,glm::fvec3 position, float rotx, float roty, float rotz, float Totalscale);
 	entity(textureModel &texturemodel, glm::fvec3 position, float rotx, float roty, float rotz, float scaleX, float scaleY, float scaleZ);
+	entity(textureModel &texturemodel, int TextureIndex,glm::fvec3 position, float rotx, float roty, float rotz, float scaleX, float scaleY, float scaleZ);
 	~entity();
 
 
