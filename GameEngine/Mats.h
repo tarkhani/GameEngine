@@ -8,9 +8,13 @@ class Mats
 {
 public:
 
-	glm::mat4 static createTransformation(glm::vec3 translation, float rx,
+	glm::mat4 static createTransformation(glm::vec3& translation, float rx,
 		float ry, float rz, float scale);
-	glm::mat4 static Mats::createTransformation(glm::vec3 translation, float rx, float ry, float rz, float scaleX, float scaleY, float scaleZ);
+
+	glm::mat4 static Mats::createTransformation(glm::vec3& translation, float rx,
+		float ry, float rz, float scaleX, float scaleY, float scaleZ);
+
+	glm::mat4 static createTransformationMatrix(glm::fvec2 &translation, glm::fvec2& scale);
 
 	glm::mat4 static createView(Camera& camera);
 

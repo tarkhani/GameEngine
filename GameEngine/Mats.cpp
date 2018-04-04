@@ -1,7 +1,7 @@
 #include "Mats.h"
 
 
-glm::mat4 Mats::createTransformation(glm::vec3 translation, float rx, float ry, float rz, float scale)
+glm::mat4 Mats::createTransformation(glm::vec3& translation, float rx, float ry, float rz, float scale)
 {
 	glm::mat4 translate = glm::translate(glm::mat4(), translation);
 	glm::mat4 rotate = glm::rotate(glm::mat4(), glm::radians(rx), glm::vec3(1.0f, 0.0f, 0.0f))
@@ -12,7 +12,7 @@ glm::mat4 Mats::createTransformation(glm::vec3 translation, float rx, float ry, 
 	return finalmat4;
 }
 
-glm::mat4 Mats::createTransformation(glm::vec3 translation, float rx, float ry, float rz, float scaleX, float scaleY, float scaleZ)
+glm::mat4 Mats::createTransformation(glm::vec3& translation, float rx, float ry, float rz, float scaleX, float scaleY, float scaleZ)
 {
 	glm::mat4 translate = glm::translate(glm::mat4(), translation);
 	glm::mat4 rotate = glm::rotate(glm::mat4(), glm::radians(rx), glm::vec3(1.0f, 0.0f, 0.0f))
@@ -21,6 +21,16 @@ glm::mat4 Mats::createTransformation(glm::vec3 translation, float rx, float ry, 
 	glm::mat4 Scale = glm::scale(glm::mat4(), glm::vec3(scaleX, scaleY, scaleZ));
 	glm::mat4 finalmat4 = translate*rotate*Scale;
 	return finalmat4;
+}
+
+glm::mat4 Mats::createTransformationMatrix(glm::fvec2& translation, glm::fvec2& scale)
+{
+	glm::vec3 translation3D = glm::vec3(translation,0);
+	glm::mat4 translate = glm::translate(glm::mat4(), translation3D);
+	glm::vec3 scale3D = glm::vec3(scale, 1);
+	glm::mat4 Scale = glm::scale(glm::mat4(), scale3D);
+	glm::mat4 Final = translate*Scale;
+	return Final;
 }
 
 glm::mat4 Mats::createView(Camera& camera)

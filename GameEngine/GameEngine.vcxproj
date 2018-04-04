@@ -21,6 +21,8 @@
   <ItemGroup>
     <ClCompile Include="Camera.cpp" />
     <ClCompile Include="entity.cpp" />
+    <ClCompile Include="GuiRenderer.cpp" />
+    <ClCompile Include="GuiShader.cpp" />
     <ClCompile Include="Light.cpp" />
     <ClCompile Include="Loader.cpp" />
     <ClCompile Include="main.cpp" />
@@ -43,6 +45,9 @@
     <ClInclude Include="ARRAY.h" />
     <ClInclude Include="Camera.h" />
     <ClInclude Include="entity.h" />
+    <ClInclude Include="GuiRenderer.h" />
+    <ClInclude Include="GuiShader.h" />
+    <ClInclude Include="GuiTexture.h" />
     <ClInclude Include="Light.h" />
     <ClInclude Include="Loader.h" />
     <ClInclude Include="Mats.h" />
@@ -67,6 +72,10 @@
     <None Include="Terrain_fragmentshader.glsl" />
     <None Include="Terrain_vertaxshadercode.glsl" />
     <None Include="vertaxshadercode.glsl" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="guiFragmentShader.txt" />
+    <Text Include="guiVertexShader.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EBAD1C41-82B4-480E-AE56-6CE927C385BC}</ProjectGuid>

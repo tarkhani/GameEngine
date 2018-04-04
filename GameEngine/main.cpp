@@ -19,6 +19,8 @@
 #include"TerrainTexture.h"
 #include"TerrainTexturePack.h"
 #include"Player.h"
+#include"GuiTexture.h"
+#include"GuiRenderer.h"
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
@@ -80,7 +82,6 @@ int main()
 	glCullFace(GL_BACK);
 
 
-
 	
 	list<terrain> allTerrain;
 	Loader loader;
@@ -93,12 +94,17 @@ int main()
 	TerrainTexture BlendMap(loader.loadTexture("./res/blendMap.png"));
 	TerrainTexturePack terrainTexturePack (BackGroundTexture, rTexture, gTexture, bTexture);
 
-
 	terrain Terrain(-1, 0, loader, terrainTexturePack, BlendMap, "./res/heightmap.png");
 	Terrain.ReflectionScale = 0.0;
 	Terrain.ShineDamper = 0.0;
 
 	allTerrain.push_back(Terrain);
+
+	GuiRenderer guiRenderer(loader);
+	list<GuiTexture>allGuis;
+	GuiTexture healthBar(loader.loadTexture("./res/healthBar.png"), glm::vec2(-0.75,-0.8), glm::vec3(0.1, 0.1, 0.1));
+	allGuis.push_back(healthBar);
+
 
 
 	list<entity> allEntity;
@@ -174,6 +180,7 @@ int main()
 
 		checkInput(window, player,camera);
 		renderMaster.Render(light, camera,player);
+		guiRenderer.render(allGuis);
 
 		auto END = Time::now();//getting delta time(how much time took to render frame)
 		fsec deltaTime =  END-START;

@@ -15,6 +15,14 @@ RawModel Loader::loadToVAO(ARRAY<glm::vec3> positions, ARRAY<glm::vec2> uv, ARRA
 
 }
 
+RawModel Loader::loadToVAO(ARRAY<glm::vec2> positions)
+{
+	GLuint vaoId = createVAO();
+	storeDataInAttributeList<glm::vec2>(0, 2, positions);
+	glBindVertexArray(0);
+	return RawModel(vaoId, positions.numberOfElements);
+}
+
 GLuint Loader::createVAO()
 {
 	
