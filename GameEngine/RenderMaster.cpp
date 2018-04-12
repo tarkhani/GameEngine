@@ -11,7 +11,7 @@ RenderMaster::RenderMaster():rendrer(Staticshader, proj ),terrainRenderer(terrai
 {
 }
 
-void RenderMaster::Render(Light & light, Camera & camera, Player&player)
+void RenderMaster::Render(std::vector<Light> & lights, Camera & camera, Player&player)
 {
 	prepare();
 
@@ -19,14 +19,14 @@ void RenderMaster::Render(Light & light, Camera & camera, Player&player)
 	terrainShader.start();
 	terrainShader.loadSkyColor(SkyColor);
 	terrainShader.loadView(camera);
-	terrainShader.loadLight(light);
+	terrainShader.loadLight(lights);
 	terrainRenderer.render(terrains);
 	terrainShader.stopProgeram();
 
 	Staticshader.start();
 	Staticshader.loadSkyColor(SkyColor);
 	Staticshader.loadView(camera);
-	Staticshader.loadLight(light);
+	Staticshader.loadLight(lights);
 	rendrer.render(entities);
 	rendrer.render(player);
 	

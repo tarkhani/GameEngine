@@ -1,4 +1,5 @@
 #pragma once
+#include<vector>
 #include "Shader.h"
 #include"Camera.h"
 #include"Mats.h"
@@ -9,13 +10,15 @@ class StaticShader :
 
 public:
 
+	static const int MAX_LIGHTS = 4;
+
 	char* vertaxShaderLocation = "vertaxshadercode.glsl";
 	char* fragmentshaderLocation = "fragmentshader.glsl";
 	int locationTransformation;
 	int locationProjection;
 	int locationView;
-	int locationlightPosition;
-	int locationlightColour;
+	int locationlightPosition[MAX_LIGHTS];
+	int locationlightColour[MAX_LIGHTS];
 	int locationShinedamper;
 	int locationReflectionScale;
 	int locationFakeLightning;
@@ -32,9 +35,21 @@ public:
 		Shader::loadMatrixUni(matrix, locationProjection);
 	}
 
-	void loadLight(Light& light) {
-		Shader::loadvectorUni(light.position, locationlightPosition);
-		Shader::loadvectorUni(light.colour, locationlightColour);
+	void loadLight(std::vector<Light>& lights) {
+		for (int i = 0; i < MAX_LIGHTS; i++)
+		{
+			if (i<lights.size())
+			{
+				Shader::loadvectorUni(lights[i].position, locationlightPosition[i]);
+				Shader::loadvectorUni(lights[i].colour, locationlightColour[i]);
+
+			}
+			else {
+
+				Shader::loadvectorUni(glm::fvec3(0.0f,0.0f,0.0f), locationlightPosition[i]);
+				Shader::loadvectorUni(glm::fvec3(0.0f, 0.0f, 0.0f), locationlightColour[i]);
+			}
+		}
 	}
 
 	void loadView(Camera& camera) {

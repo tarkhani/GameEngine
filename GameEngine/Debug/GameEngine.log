@@ -1,5 +1,15 @@
-﻿  GuiRenderer.cpp
+﻿  main.cpp
 d:\gameengine cpp\gameengine\gameengine\player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
 d:\gameengine cpp\gameengine\gameengine\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\staticshader.h(41): warning C4018: '<': signed/unsigned mismatch
+d:\gameengine cpp\gameengine\gameengine\terrainshader.h(42): warning C4018: '<': signed/unsigned mismatch
+d:\gameengine cpp\gameengine\gameengine\main.cpp(152): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(153): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(159): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(175): warning C4305: 'argument': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\main.cpp(251): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(255): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(264): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\main.cpp(268): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Debug\GameEngine.exe
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Debug\GameEngine.pdb (Full PDB)

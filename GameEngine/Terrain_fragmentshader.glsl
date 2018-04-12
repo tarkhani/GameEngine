@@ -4,7 +4,7 @@ out vec4 Fcolor;
 
 in vec2 uv;
 in vec3 SurfaceNormal;
-in vec3 toLightVector;
+in vec3 toLightVector[4];
 in vec3 cameraPosition;
 in float Visibility;
 
@@ -14,7 +14,7 @@ uniform sampler2D gTexture;
 uniform sampler2D bTexture;
 uniform sampler2D BlendMap;
 
-uniform vec3 lightColour;
+uniform vec3 lightColour[4];
 uniform float ShineDamper;
 uniform float ReflectionScale;
 uniform vec3 skyColor;
@@ -31,26 +31,27 @@ vec4 gTextureColor = texture2D(gTexture,TiledCoords)*BlendMapColor.b;
 
 vec4 mixColor = BackGroundTextureColor + rTextureColor+gTextureColor+bTextureColor;
 
-
 vec3 unitNormal=normalize(SurfaceNormal);
-vec3 unitToLightVector=normalize(toLightVector);
-float nDot1=dot(unitNormal,unitToLightVector);
-float brightness=max(nDot1,0.1);
-brightness=pow(brightness,15);
-vec3 diffuse=brightness*lightColour;
+vec3 unitcameraPosition=normalize(cameraPosition);
 
+vec3 totalDiffuse=vec3(0.0);
+vec3 totalSpecular=vec3(0.0);
+for(int i=0; i<4; i++)
+{
+vec3 unitToLightVector=normalize(toLightVector[i]);
+float nDot1=dot(unitNormal,unitToLightVector);
+float brightness=max(nDot1,0.0);
+ totalDiffuse=totalDiffuse+(brightness*lightColour[i]);
 
 vec3 unitLightDirection=-unitToLightVector;
 vec3 Reflactlight=reflect(unitLightDirection, unitNormal);
 vec3 unitReflactlight=normalize(Reflactlight);
-vec3 unitcameraPosition=normalize(cameraPosition);
-  
 float specularFactor=dot(unitcameraPosition,unitReflactlight);
-specularFactor=max(specularFactor,0.3);
+specularFactor=max(specularFactor,0.01);
 float DumpedFactor=pow(specularFactor,ShineDamper);
-vec3 FinalSpecular=ReflectionScale*DumpedFactor*lightColour;
-
-Fcolor = vec4(diffuse,1.0)*mixColor+vec4(FinalSpecular,1.0);
+totalSpecular=totalSpecular+(ReflectionScale*DumpedFactor*lightColour[i]);
+}
+Fcolor = vec4(totalDiffuse,1.0)*mixColor+vec4(totalSpecular,1.0);
 Fcolor = mix(vec4(skyColor,1.0),Fcolor,Visibility);
 
 };

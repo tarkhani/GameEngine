@@ -6,14 +6,14 @@ layout(location = 2) in vec3 normal;
 
 out vec2 uv;
 out vec3 SurfaceNormal;
-out vec3 toLightVector;
+out vec3 toLightVector[4];
 out vec3 cameraPosition;
 out float Visibility;
 
 uniform mat4 transform;
 uniform mat4 projection;
 uniform mat4 view;
-uniform vec3 lightPosition;
+uniform vec3 lightPosition[4];
 
 const float density=0.00;
 const float FogGradient=1.5;
@@ -31,8 +31,8 @@ void main(){
 	uv=uvCoord;
 	SurfaceNormal=(transform * vec4(normal,0.0)).xyz;
 	cameraPosition= (inverse(view)*vec4(0.0,0.0,0.0,1.0)).xyz-worldLocation.xyz;
-	toLightVector=lightPosition-(worldLocation.xyz);
-	
+	for(int i=0; i<3; i++){
+	toLightVector[i]=lightPosition[i]-(worldLocation.xyz);
+	}
 
 }
-

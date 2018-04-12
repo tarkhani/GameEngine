@@ -86,7 +86,18 @@ int main()
 	list<terrain> allTerrain;
 	Loader loader;
 	RenderMaster renderMaster;
-	Light light(glm::vec3(-50.0f,200.0f, -50.0f), glm::vec3(1.0f, 1.0f, 1.0f));
+	Light light1(glm::vec3(-100.0f, 100.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f));
+	Light light2(glm::vec3(0.0f, 100.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
+	Light light3(glm::vec3(0.0f, 100.0f, -100.0f), glm::vec3(0.0f, 1.0f, 0.0f));
+	Light light4(glm::vec3(-100.0f, 100.0f, -100.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	std::vector<Light> lights;
+	lights.reserve(4);
+	lights.push_back(light1);
+	lights.push_back(light2);
+	lights.push_back(light3);
+	lights.push_back(light4);
+
+
 	TerrainTexture BackGroundTexture(loader.loadTexture("./res/terrain.png"));
 	TerrainTexture rTexture(loader.loadTexture("./res/mud.png"));
 	TerrainTexture gTexture(loader.loadTexture("./res/brick.jpg"));
@@ -148,7 +159,7 @@ int main()
 		entity  tree = entity(TreeTexureModel,glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, randomwidth[i], randomHeghit[i], randomwidth[i]);
 		allEntity.push_back(tree);
 
-		entity  grass_flower = entity(GrassTexureModel, randomFlower[i], glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, 0.3);
+		entity  grass_flower = entity(GrassTexureModel, randomFlower[i], glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, 0.5);
 		allEntity.push_back(grass_flower);
 
 	}
@@ -167,6 +178,7 @@ int main()
 	glfwSetWindowUserPointer(window, &camera);
 
 	do {
+		
 		auto START = Time::now();
 		for (std::list<entity>::iterator it1 = allEntity.begin(); it1 != allEntity.end(); ++it1)
 		{
@@ -179,7 +191,8 @@ int main()
 		}
 
 		checkInput(window, player,camera);
-		renderMaster.Render(light, camera,player);
+		renderMaster.Render(lights, camera,player);
+		cout << player.position.z << endl;
 		guiRenderer.render(allGuis);
 
 		auto END = Time::now();//getting delta time(how much time took to render frame)
@@ -196,6 +209,7 @@ int main()
 
 		
 		camera.Move();
+		
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 		
