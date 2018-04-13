@@ -22,13 +22,14 @@ void TerrainShader::getAllUniformLocations()
 		std::string tempString = ("lightPosition[" + std::to_string(i) + "]");
 		char *locationInArray = const_cast<char *>(tempString.c_str());
 		locationlightPosition[i] = Shader::GetUniformlocation(locationInArray);
-		
-		
-		std::string tempString2 = ("lightColour[" + std::to_string(i) + "]");
-		char *	locationInArray2 = const_cast<char *>(tempString2.c_str());
-		locationlightColour[i] = Shader::GetUniformlocation(locationInArray2);
-		
-		
+
+		tempString = ("lightColour[" + std::to_string(i) + "]");
+		locationInArray = const_cast<char *>(tempString.c_str());
+		locationlightColour[i] = Shader::GetUniformlocation(locationInArray);
+
+		tempString = ("attenuation[" + std::to_string(i) + "]");
+		locationInArray = const_cast<char *>(tempString.c_str());
+		locationAttenuation[i] = Shader::GetUniformlocation(locationInArray);
 
 	}
 }

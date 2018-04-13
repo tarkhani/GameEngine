@@ -86,10 +86,10 @@ int main()
 	list<terrain> allTerrain;
 	Loader loader;
 	RenderMaster renderMaster;
-	Light light1(glm::vec3(-100.0f, 100.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f));
-	Light light2(glm::vec3(0.0f, 100.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f));
-	Light light3(glm::vec3(0.0f, 100.0f, -100.0f), glm::vec3(0.0f, 1.0f, 0.0f));
-	Light light4(glm::vec3(-100.0f, 100.0f, -100.0f), glm::vec3(0.0f, 0.0f, 1.0f));
+	Light light1(glm::vec3(-100.0f, 10.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f), glm::vec3(1.0f, 0.04f, 0.002f));
+	Light light2(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.04f, 0.002f));
+	Light light3(glm::vec3(0.0f, 10.0f, -100.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 0.04f, 0.002f));
+	Light light4(glm::vec3(-100.0f, 10.0f, -100.0f), glm::vec3(0.0f, 1.0f, 1.0f), glm::vec3(1.0f, 0.04f, 0.002f));
 	std::vector<Light> lights;
 	lights.reserve(4);
 	lights.push_back(light1);
@@ -192,7 +192,6 @@ int main()
 
 		checkInput(window, player,camera);
 		renderMaster.Render(lights, camera,player);
-		cout << player.position.z << endl;
 		guiRenderer.render(allGuis);
 
 		auto END = Time::now();//getting delta time(how much time took to render frame)

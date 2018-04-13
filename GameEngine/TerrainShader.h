@@ -18,6 +18,7 @@ public:
 	int locationView;
 	int locationlightPosition[MAX_LIGHTS];
 	int locationlightColour[MAX_LIGHTS];
+	int locationAttenuation[MAX_LIGHTS];
 	int locationShinedamper;
 	int locationReflectionScale;
 	int locationskyColor;
@@ -43,12 +44,14 @@ public:
 			{
 				Shader::loadvectorUni(lights[i].position, locationlightPosition[i]);
 				Shader::loadvectorUni(lights[i].colour, locationlightColour[i]);
+				Shader::loadvectorUni(lights[i].attenuation, locationAttenuation[i]);
 				
 			}
 			else {
 
 				Shader::loadvectorUni(glm::fvec3(0.0f, 0.0f, 0.0f), locationlightPosition[i]);
 				Shader::loadvectorUni(glm::fvec3(0.0f, 0.0f, 0.0f), locationlightColour[i]);
+				Shader::loadvectorUni(glm::fvec3(1.0f, 0.0f, 0.0f), locationAttenuation[i]);
 				
 				
 			}

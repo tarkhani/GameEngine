@@ -23,6 +23,10 @@ void StaticShader::getAllUniformLocations()
 		tempString= ("lightColour[" + std::to_string(i) + "]");
 		locationInArray = const_cast<char *>(tempString.c_str());
 		locationlightColour[i]= Shader::GetUniformlocation(locationInArray);
+
+		tempString = ("attenuation[" + std::to_string(i) + "]");
+		locationInArray = const_cast<char *>(tempString.c_str());
+		locationAttenuation[i] = Shader::GetUniformlocation(locationInArray);
 		
 	}
 	

@@ -1,64 +1,10 @@
-﻿  Camera.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Mats.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Player.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-  RenderMaster.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-  Rendrer.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-  StaticShader.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-  TerrainRenderer.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-  TerrainShader.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-  main.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-main.cpp(130): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-main.cpp(145): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(217): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-main.cpp(221): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-main.cpp(230): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-main.cpp(234): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-  objLoader.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-objLoader.cpp(57): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
-objLoader.cpp(68): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-objLoader.cpp(76): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-objLoader.cpp(81): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-objLoader.cpp(87): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-objLoader.cpp(93): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
-  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
-  terrain.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-terrain.cpp(10): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-terrain.cpp(11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
-terrain.cpp(21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-terrain.cpp(22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
-terrain.cpp(88): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
+﻿  Light.cpp
 SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  65 of 1171 functions ( 5.6%) were compiled, the rest were copied from previous compilation.
-    9 functions were new in current compilation
-    9 functions had inline decision re-evaluated but remain unchanged
+  46 of 1374 functions ( 3.3%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    14 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Release\GameEngine.exe
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Release\GameEngine.pdb (Full PDB)

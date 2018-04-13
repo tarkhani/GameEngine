@@ -31,7 +31,7 @@ void main(){
 	uv=uvCoord;
 	SurfaceNormal=(transform * vec4(normal,0.0)).xyz;
 	cameraPosition= (inverse(view)*vec4(0.0,0.0,0.0,1.0)).xyz-worldLocation.xyz;
-	for(int i=0; i<3; i++){
+	for(int i=0; i<4; i++){
 	toLightVector[i]=lightPosition[i]-(worldLocation.xyz);
 	}
 
