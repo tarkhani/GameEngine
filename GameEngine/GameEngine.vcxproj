@@ -34,6 +34,8 @@
     <ClCompile Include="RenderMaster.cpp" />
     <ClCompile Include="Rendrer.cpp" />
     <ClCompile Include="Shader.cpp" />
+    <ClCompile Include="SkyboxRenderer.cpp" />
+    <ClCompile Include="SkyboxShader.cpp" />
     <ClCompile Include="StaticShader.cpp" />
     <ClCompile Include="terrain.cpp" />
     <ClCompile Include="TerrainRenderer.cpp" />
@@ -59,6 +61,8 @@
     <ClInclude Include="Rendrer.h" />
     <ClInclude Include="resource.h" />
     <ClInclude Include="Shader.h" />
+    <ClInclude Include="SkyboxRenderer.h" />
+    <ClInclude Include="SkyboxShader.h" />
     <ClInclude Include="StaticShader.h" />
     <ClInclude Include="terrain.h" />
     <ClInclude Include="TerrainRenderer.h" />
@@ -76,6 +80,8 @@
   <ItemGroup>
     <Text Include="guiFragmentShader.txt" />
     <Text Include="guiVertexShader.txt" />
+    <Text Include="skyboxFragmentShader.txt" />
+    <Text Include="skyboxVertexShader.txt" />
   </ItemGroup>
   <PropertyGroup Label="Globals">
     <ProjectGuid>{EBAD1C41-82B4-480E-AE56-6CE927C385BC}</ProjectGuid>

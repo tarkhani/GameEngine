@@ -23,6 +23,14 @@ RawModel Loader::loadToVAO(ARRAY<glm::vec2> positions)
 	return RawModel(vaoId, positions.numberOfElements);
 }
 
+RawModel Loader::loadToVAO(ARRAY<glm::vec3> positions)
+{
+	GLuint vaoId = createVAO();
+	storeDataInAttributeList<glm::vec3>(0, 3, positions);
+	glBindVertexArray(0);
+	return RawModel(vaoId, positions.numberOfElements);
+}
+
 GLuint Loader::createVAO()
 {
 	
@@ -77,6 +85,65 @@ GLuint Loader::loadTexture(char * filepath)
 	return GLTextureIDes[numberofTexture];
 
 }
+
+GLuint Loader::loadCubeMap(std::string filepath)
+{
+	int width, height;
+	unsigned char* qubeTexArray[6];
+
+	std::string tempString = "./res/" + filepath + "right.png";
+	char* path = const_cast<char *>(tempString.c_str());
+	qubeTexArray[0] = SOIL_load_image(path, &width, &height, 0, SOIL_LOAD_RGB);
+
+	tempString = "./res/" + filepath + "left.png";
+	path = const_cast<char *>(tempString.c_str());
+	qubeTexArray[1] = SOIL_load_image(path, &width, &height, 0, SOIL_LOAD_RGB);
+
+	tempString = "./res/" + filepath + "top.png";
+	path = const_cast<char *>(tempString.c_str());
+	qubeTexArray[2] = SOIL_load_image(path, &width, &height, 0, SOIL_LOAD_RGB);
+
+	tempString = "./res/" + filepath + "bottom.png";
+	path = const_cast<char *>(tempString.c_str());
+	qubeTexArray[3] = SOIL_load_image(path, &width, &height, 0, SOIL_LOAD_RGB);
+
+	tempString = "./res/" + filepath + "front.png";
+	path = const_cast<char *>(tempString.c_str());
+	qubeTexArray[4] = SOIL_load_image(path, &width, &height, 0, SOIL_LOAD_RGB);
+
+	tempString = "./res/" + filepath + "back.png";
+	path = const_cast<char *>(tempString.c_str());
+	qubeTexArray[5] = SOIL_load_image(path, &width, &height, 0, SOIL_LOAD_RGB);
+
+	for (int i = 0; i < 6; i++)
+	{
+		if (!qubeTexArray[i])
+		{
+			std::cout << "couldent load " << i << "picture for sky box" << std::endl;
+		}
+		
+	}
+
+	numberofTexture++;
+	glGenTextures(1, &GLTextureIDes[numberofTexture]);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, GLTextureIDes[numberofTexture]);
+
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, qubeTexArray[0]);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, qubeTexArray[1]);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, qubeTexArray[2]);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Y, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, qubeTexArray[3]);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Z, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, qubeTexArray[5]);
+	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_Z, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, qubeTexArray[4]);
+
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MAG_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_MIN_FILTER, GL_LINEAR);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_S, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_T, GL_CLAMP_TO_EDGE);
+	glTexParameteri(GL_TEXTURE_CUBE_MAP, GL_TEXTURE_WRAP_R, GL_CLAMP_TO_EDGE);
+	return GLTextureIDes[numberofTexture];
+}
+
 template<class T>
 void Loader::storeDataInAttributeList(int attributeNumber, int Coordinatesize, ARRAY<T> data)
 {

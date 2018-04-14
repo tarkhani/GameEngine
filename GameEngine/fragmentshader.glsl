@@ -43,7 +43,7 @@ float DumpedFactor=pow(specularFactor,ShineDamper);
 totalSpecular=totalSpecular+(ReflectionScale*DumpedFactor*lightColour[i]/attfactor);
 
 }
-totalDiffuse=max(totalDiffuse,0.2);
+totalDiffuse=max(totalDiffuse,0.1);
 vec4 TextureColor=texture2D(Texture,uv);
 if(TextureColor.a<0.5){
 discard;

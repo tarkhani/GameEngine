@@ -24,10 +24,12 @@ public:
 	
 	RawModel loadToVAO(ARRAY<glm::vec3> positions, ARRAY<glm::vec2> uv, ARRAY<glm::vec3> Normal, ARRAY<unsigned short> index);
 	RawModel loadToVAO(ARRAY<glm::vec2> positions);
+	RawModel loadToVAO(ARRAY<glm::vec3> positions);
 	GLuint createVAO();
 	GLuint createVBO();
 	GLuint LoadIndexBuffer(ARRAY<unsigned short> index);
 	GLuint loadTexture(char* filepath);
+	GLuint loadCubeMap(std::string filepath);
 	
 	 Loader();
 	~Loader();

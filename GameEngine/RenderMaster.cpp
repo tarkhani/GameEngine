@@ -7,7 +7,7 @@ void RenderMaster::prepare()
 	glClear(GL_DEPTH_BUFFER_BIT | GL_COLOR_BUFFER_BIT);
 }
 
-RenderMaster::RenderMaster():rendrer(Staticshader, proj ),terrainRenderer(terrainShader,proj)
+RenderMaster::RenderMaster(Loader& loader):rendrer(Staticshader, proj ),terrainRenderer(terrainShader,proj), skyRenderer(loader,proj)
 {
 }
 
@@ -31,6 +31,7 @@ void RenderMaster::Render(std::vector<Light> & lights, Camera & camera, Player&p
 	rendrer.render(player);
 	
 	Staticshader.stopProgeram();
+	skyRenderer.Render(camera);
 
 	entities.clear();
 	terrains.clear();

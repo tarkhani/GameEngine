@@ -45,6 +45,17 @@ glm::mat4 Mats::createView(Camera& camera)
 	return viewMatrix ;
 }
 
+glm::mat4 Mats::createSkyView(Camera& camera)
+{
+	glm::mat4 rotate = glm::rotate(glm::mat4(), glm::radians(camera.pitch), glm::vec3(1.0f, 0.0f, 0.0f))
+		*glm::rotate(glm::mat4(), glm::radians(camera.yaw), glm::vec3(0.0f, 1.0f, 0.0f))
+		*glm::rotate(glm::mat4(), glm::radians(camera.roll), glm::vec3(0.0f, 0.0f, 1.0f));
+
+	glm::mat4 viewMatrix = rotate;
+
+	return viewMatrix;
+}
+
 float Mats::barryCentric(glm::fvec3 &p1, glm::fvec3 &p2, glm::fvec3 &p3, glm::fvec2 &pos)
 {
 	float det = (p2.z - p3.z) * (p1.x - p3.x) + (p3.x - p2.x) * (p1.z - p3.z);

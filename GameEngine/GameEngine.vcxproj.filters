@@ -78,6 +78,12 @@
     <ClCompile Include="GuiShader.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="SkyboxRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="SkyboxShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Loader.h">
@@ -152,6 +158,12 @@
     <ClInclude Include="GuiShader.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="SkyboxRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="SkyboxShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertaxshadercode.glsl">
@@ -172,6 +184,12 @@
       <Filter>Resource Files</Filter>
     </Text>
     <Text Include="guiVertexShader.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="skyboxFragmentShader.txt">
+      <Filter>Resource Files</Filter>
+    </Text>
+    <Text Include="skyboxVertexShader.txt">
       <Filter>Resource Files</Filter>
     </Text>
   </ItemGroup>

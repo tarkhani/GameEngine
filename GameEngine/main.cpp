@@ -21,6 +21,7 @@
 #include"Player.h"
 #include"GuiTexture.h"
 #include"GuiRenderer.h"
+#include"SkyboxRenderer.h"
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
@@ -28,7 +29,7 @@ typedef std::chrono::high_resolution_clock Time;
 typedef std::chrono::milliseconds ms;
 typedef std::chrono::duration<float> fsec;
 
-glm::mat4 const RenderMaster::proj = glm::perspective(70.0f, ((float)1920 / 1080), 0.1f, 100.0f);
+glm::mat4 const RenderMaster::proj = glm::perspective(70.0f, ((float)1920 / 1080), 0.1f, 200.0f);
 void checkInput(GLFWwindow* window, Player &player, Camera& camera);
 struct Point {
 
@@ -85,10 +86,10 @@ int main()
 	
 	list<terrain> allTerrain;
 	Loader loader;
-	RenderMaster renderMaster;
-	Light light1(glm::vec3(-100.0f, 10.0f, 0.0f), glm::vec3(1.0f, 0.0f, 1.0f), glm::vec3(1.0f, 0.04f, 0.002f));
-	Light light2(glm::vec3(0.0f, 10.0f, 0.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.04f, 0.002f));
-	Light light3(glm::vec3(0.0f, 10.0f, -100.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 0.04f, 0.002f));
+	RenderMaster renderMaster(loader);
+	Light light1(glm::vec3(-80.0f, 10.0f,-10.0f), glm::vec3(1.0f, 0.0f, 1.0f), glm::vec3(1.0f, 0.04f, 0.002f));
+	Light light2(glm::vec3(-40.0f, 10.0f, -60.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.04f, 0.002f));
+	Light light3(glm::vec3(-30.0f, 10.0f, -90.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 0.04f, 0.002f));
 	Light light4(glm::vec3(-100.0f, 10.0f, -100.0f), glm::vec3(0.0f, 1.0f, 1.0f), glm::vec3(1.0f, 0.04f, 0.002f));
 	std::vector<Light> lights;
 	lights.reserve(4);
@@ -136,7 +137,27 @@ int main()
 	grassTexture.NumberofRow = 4;
 	textureModel GrassTexureModel(grassModel, grassTexture);
 
-	const int nrolls = 300;//number of tree
+
+	RawModel lampModel = objLoader::LoadObj("./res/lamp.obj", loader);
+	ModelTexture  lampTexture(loader.loadTexture("./res/lamp.png"));
+	lampTexture.ReflectionScale = 0.1;
+	lampTexture.ShineDamper = 0.1;
+	lampTexture.tansparent = false;
+	lampTexture.FakeLightning = true;
+	lampTexture.NumberofRow = 1;
+	textureModel lampTexureModel(lampModel, lampTexture);
+	entity  lamp = entity(lampTexureModel, glm::fvec3(-40, Terrain.getHeightOfTerrian(-40, -60), -60), 0, 0, 0, 0.2);
+	allEntity.push_back(lamp);
+	lamp = entity(lampTexureModel, glm::fvec3(-80, Terrain.getHeightOfTerrian(-80, -10), -10), 0, 0, 0, 0.2);
+	allEntity.push_back(lamp);
+	lamp = entity(lampTexureModel, glm::fvec3(-30, Terrain.getHeightOfTerrian(-30, -90),-90), 0, 0, 0, 0.2);
+	allEntity.push_back(lamp);
+	lamp = entity(lampTexureModel, glm::fvec3(-100, 0, -100), 0, 0, 0, 0.2);
+	allEntity.push_back(lamp);
+
+
+
+	const int nrolls = 200;//number of tree
 	std::default_random_engine generator;
 	std::uniform_int_distribution<int> distribution(0, 100);//min and max of terrain
 	std::uniform_int_distribution<int> Flowerdistribution(4, 12);

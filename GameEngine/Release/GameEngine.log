@@ -1,10 +1,43 @@
-﻿  Light.cpp
+﻿  RenderMaster.cpp
+d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\StaticShader.h(42): warning C4018: '<': signed/unsigned mismatch
+d:\gameengine cpp\gameengine\gameengine\TerrainShader.h(43): warning C4018: '<': signed/unsigned mismatch
+  Rendrer.cpp
+d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\StaticShader.h(42): warning C4018: '<': signed/unsigned mismatch
+d:\gameengine cpp\gameengine\gameengine\TerrainShader.h(43): warning C4018: '<': signed/unsigned mismatch
+Rendrer.cpp(46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+Rendrer.cpp(53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SkyboxRenderer.cpp
+d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  main.cpp
+d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\StaticShader.h(42): warning C4018: '<': signed/unsigned mismatch
+d:\gameengine cpp\gameengine\gameengine\TerrainShader.h(43): warning C4018: '<': signed/unsigned mismatch
+main.cpp(143): warning C4305: '=': truncation from 'double' to 'float'
+main.cpp(144): warning C4305: '=': truncation from 'double' to 'float'
+main.cpp(149): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(151): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(153): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(155): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(173): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+main.cpp(174): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+main.cpp(180): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+main.cpp(196): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(271): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+main.cpp(275): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+main.cpp(284): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+main.cpp(288): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
 SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  46 of 1374 functions ( 3.3%) were compiled, the rest were copied from previous compilation.
+  1 of 1397 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    14 functions had inline decision re-evaluated but remain unchanged
+    15 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Release\GameEngine.exe
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Release\GameEngine.pdb (Full PDB)

@@ -17,6 +17,7 @@ public:
 	glm::mat4 static createTransformationMatrix(glm::fvec2 &translation, glm::fvec2& scale);
 
 	glm::mat4 static createView(Camera& camera);
+	glm::mat4 static createSkyView(Camera& camera);
 
 	float static barryCentric(glm::fvec3 &p1, glm::fvec3 &p2, glm::fvec3 &p3, glm::fvec2 &pos);
 	

@@ -11,11 +11,13 @@
 #include"terrain.h"
 #include"TerrainShader.h"
 #include"TerrainRenderer.h"
+#include"SkyboxRenderer.h"
 class RenderMaster
 {
 private:
 	StaticShader Staticshader;
 	Rendrer rendrer;
+	SkyboxRenderer skyRenderer;
 
 	const float SkyRed = 0.0f;
 	const float SkyGreen = 1.0f;
@@ -31,7 +33,7 @@ private:
 public:
 	static const glm::mat4 proj;
 
-	RenderMaster::RenderMaster();
+	RenderMaster::RenderMaster(Loader& loader);
 	void Render(std::vector<Light> & lights, Camera& camera, Player&player);
 	void ProcessEntity(entity& Entity);
 	void ProcessTerrain(terrain & terrain);
