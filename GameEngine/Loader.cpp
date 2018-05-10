@@ -119,16 +119,14 @@ GLuint Loader::loadCubeMap(std::string filepath)
 	{
 		if (!qubeTexArray[i])
 		{
-			std::cout << "couldent load " << i << "picture for sky box" << std::endl;
+			std::cout << "couldent load " << i << "picture form" << filepath.c_str()<< "box" << std::endl;
 		}
 		
 	}
 
 	numberofTexture++;
 	glGenTextures(1, &GLTextureIDes[numberofTexture]);
-	glActiveTexture(GL_TEXTURE0);
 	glBindTexture(GL_TEXTURE_CUBE_MAP, GLTextureIDes[numberofTexture]);
-
 	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_X, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, qubeTexArray[0]);
 	glTexImage2D(GL_TEXTURE_CUBE_MAP_NEGATIVE_X, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, qubeTexArray[1]);
 	glTexImage2D(GL_TEXTURE_CUBE_MAP_POSITIVE_Y, 0, GL_RGB, width, height, 0, GL_RGB, GL_UNSIGNED_BYTE, qubeTexArray[2]);

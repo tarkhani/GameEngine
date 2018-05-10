@@ -11,7 +11,7 @@ RenderMaster::RenderMaster(Loader& loader):rendrer(Staticshader, proj ),terrainR
 {
 }
 
-void RenderMaster::Render(std::vector<Light> & lights, Camera & camera, Player&player)
+void RenderMaster::Render(std::vector<Light> & lights, Camera & camera, Player&player,float deltaTime, float TimeOfDay)
 {
 	prepare();
 
@@ -29,9 +29,10 @@ void RenderMaster::Render(std::vector<Light> & lights, Camera & camera, Player&p
 	Staticshader.loadLight(lights);
 	rendrer.render(entities);
 	rendrer.render(player);
-	
 	Staticshader.stopProgeram();
-	skyRenderer.Render(camera);
+
+	skyRenderer.Render(camera,SkyColor, deltaTime, TimeOfDay);
+
 
 	entities.clear();
 	terrains.clear();

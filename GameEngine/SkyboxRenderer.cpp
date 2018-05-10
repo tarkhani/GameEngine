@@ -56,22 +56,33 @@ SkyboxRenderer::SkyboxRenderer(Loader & loader, const glm::mat4 & projection)
 	 skybox.size = sizeof(VERTICES);
 
 	 
-
 	 skyboxModel = loader.loadToVAO(skybox);
-	 textureId = loader.loadCubeMap(textureName);
+	 textureId1 = loader.loadCubeMap(textureName1);
+	 textureId2 = loader.loadCubeMap(textureName2);
 	 skyShader.start();
+	 skyShader.ConnectTextureUnit();
 	 skyShader.loadProjectionMatrix(projection);
 	 skyShader.stopProgeram();
 }
 
-void SkyboxRenderer::Render(Camera & camera)
+void SkyboxRenderer::bindTexture()
+{
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, textureId1);
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_CUBE_MAP, textureId2);
+	
+}
+
+void SkyboxRenderer::Render(Camera & camera,glm::vec3 &fogColour,float deltaTime, float TimeOfDay)
 {
 	skyShader.start();
-	skyShader.loadView(camera);
+	skyShader.loadView(camera, deltaTime);
+	skyShader.loadfogColour(fogColour);
 	glBindVertexArray(skyboxModel.getVaoID());
 	glEnableVertexAttribArray(0);
-	glActiveTexture(0);
-	glBindTexture(GL_TEXTURE_CUBE_MAP, textureId);
+	bindTexture();
+	skyShader.loadBlendFactor(TimeOfDay);
 	glDrawArrays(GL_TRIANGLES, 0, skyboxModel.getIndexcount());
 	glDisableVertexAttribArray(0);
 	glBindVertexArray(0);

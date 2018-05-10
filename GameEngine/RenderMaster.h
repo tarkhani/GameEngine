@@ -19,7 +19,7 @@ private:
 	Rendrer rendrer;
 	SkyboxRenderer skyRenderer;
 
-	const float SkyRed = 0.0f;
+	const float SkyRed = 1.0f;
 	const float SkyGreen = 1.0f;
 	const float SkyBlue = 1.0f;
 	glm::vec3 SkyColor = glm::vec3(SkyRed, SkyGreen, SkyBlue);
@@ -34,7 +34,7 @@ public:
 	static const glm::mat4 proj;
 
 	RenderMaster::RenderMaster(Loader& loader);
-	void Render(std::vector<Light> & lights, Camera& camera, Player&player);
+	void Render(std::vector<Light> & lights, Camera & camera, Player&player, float deltaTime,float TimeOfDay);
 	void ProcessEntity(entity& Entity);
 	void ProcessTerrain(terrain & terrain);
 	void CleanUp() ;

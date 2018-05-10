@@ -8,8 +8,8 @@ class Player :
 public:
 	 const float RUN_SPEED = 10;
 	 const float TURN_SPEED = 40;
-	 const float GRAVITY = -2;
-	 const float JumpPower = 0.4;
+	 const float GRAVITY = -1;
+	 const float JumpPower = 0.2;
 
 	 bool onAir = 0;
 

@@ -1,7 +1,5 @@
 d:\gameengine cpp\gameengine\gameengine\debug\vc140.pdb
 d:\gameengine cpp\gameengine\gameengine\debug\vc140.idb
-d:\gameengine cpp\gameengine\gameengine\debug\entity.obj
-d:\gameengine cpp\gameengine\gameengine\debug\guirenderer.obj
 d:\gameengine cpp\gameengine\gameengine\debug\guishader.obj
 d:\gameengine cpp\gameengine\gameengine\debug\light.obj
 d:\gameengine cpp\gameengine\gameengine\debug\loader.obj
@@ -14,6 +12,8 @@ d:\gameengine cpp\gameengine\gameengine\debug\rawmodel.obj
 d:\gameengine cpp\gameengine\gameengine\debug\rendermaster.obj
 d:\gameengine cpp\gameengine\gameengine\debug\rendrer.obj
 d:\gameengine cpp\gameengine\gameengine\debug\shader.obj
+d:\gameengine cpp\gameengine\gameengine\debug\skyboxrenderer.obj
+d:\gameengine cpp\gameengine\gameengine\debug\skyboxshader.obj
 d:\gameengine cpp\gameengine\gameengine\debug\staticshader.obj
 d:\gameengine cpp\gameengine\gameengine\debug\terrain.obj
 d:\gameengine cpp\gameengine\gameengine\debug\terrainrenderer.obj
@@ -21,8 +21,8 @@ d:\gameengine cpp\gameengine\gameengine\debug\terrainshader.obj
 d:\gameengine cpp\gameengine\gameengine\debug\terraintexturepack.obj
 d:\gameengine cpp\gameengine\gameengine\debug\texturemodel.obj
 d:\gameengine cpp\gameengine\gameengine\debug\camera.obj
-d:\gameengine cpp\gameengine\gameengine\debug\skyboxshader.obj
-d:\gameengine cpp\gameengine\gameengine\debug\skyboxrenderer.obj
+d:\gameengine cpp\gameengine\gameengine\debug\entity.obj
+d:\gameengine cpp\gameengine\gameengine\debug\guirenderer.obj
 d:\gameengine cpp\gameengine\debug\gameengine.ilk
 d:\gameengine cpp\gameengine\debug\gameengine.exe
 d:\gameengine cpp\gameengine\debug\gameengine.pdb

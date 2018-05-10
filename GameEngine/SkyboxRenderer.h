@@ -13,12 +13,15 @@ private:
 public:
 
 	RawModel skyboxModel;
-	int textureId;
+	int textureId1;
+	int textureId2;
 	SkyboxShader skyShader;
-	std::string textureName = "";
+	std::string textureName1 = "";
+	std::string textureName2 = "night";
 
 	SkyboxRenderer(Loader& loader,const glm::mat4 & projection);
-	void Render(Camera& camera);
+	void bindTexture();
+	void Render(Camera & camera, glm::vec3 &fogColour, float deltaTime ,float TimeOfDay);
 	~SkyboxRenderer();
 	
 };

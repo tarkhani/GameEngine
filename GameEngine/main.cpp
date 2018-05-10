@@ -87,10 +87,10 @@ int main()
 	list<terrain> allTerrain;
 	Loader loader;
 	RenderMaster renderMaster(loader);
-	Light light1(glm::vec3(-80.0f, 10.0f,-10.0f), glm::vec3(1.0f, 0.0f, 1.0f), glm::vec3(1.0f, 0.04f, 0.002f));
-	Light light2(glm::vec3(-40.0f, 10.0f, -60.0f), glm::vec3(1.0f, 0.0f, 0.0f), glm::vec3(1.0f, 0.04f, 0.002f));
-	Light light3(glm::vec3(-30.0f, 10.0f, -90.0f), glm::vec3(0.0f, 1.0f, 0.0f), glm::vec3(1.0f, 0.04f, 0.002f));
-	Light light4(glm::vec3(-100.0f, 10.0f, -100.0f), glm::vec3(0.0f, 1.0f, 1.0f), glm::vec3(1.0f, 0.04f, 0.002f));
+	Light light1(glm::vec3(-80.0f, 10.0f,-10.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.002f));
+	Light light2(glm::vec3(-40.0f, 10.0f, -60.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.002f));
+	Light light3(glm::vec3(-30.0f, 10.0f, -90.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.002f));
+	Light light4(glm::vec3(-100.0f, 10.0f, -100.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.002f));
 	std::vector<Light> lights;
 	lights.reserve(4);
 	lights.push_back(light1);
@@ -157,7 +157,7 @@ int main()
 
 
 
-	const int nrolls = 200;//number of tree
+	const int nrolls = 300;//number of tree
 	std::default_random_engine generator;
 	std::uniform_int_distribution<int> distribution(0, 100);//min and max of terrain
 	std::uniform_int_distribution<int> Flowerdistribution(4, 12);
@@ -193,14 +193,26 @@ int main()
 	playerTexture.ShineDamper = 0.0;
 	textureModel PersonTexureModel(playerRawModel, playerTexture);
 
-	Player player(PersonTexureModel, glm::fvec3(0.0f, 0.0f, 0.0f), 0, 180, 0, 0.1);
+	Player player(PersonTexureModel, glm::fvec3(-50.0f, 0.0f,-50.0f), 0, 180, 0, 0.1);
 	Camera camera(player);
 
 	glfwSetWindowUserPointer(window, &camera);
 
+
+	auto START = Time::now();
+	float TimeOfDay = 0;
+	int addoRsub = 1;///if it is 1 we add delta time so time goes up and when its -1 we subtract so time goes back again(we have 12h night and 12h morning )
+	fsec deltaTime = Time::duration::zero();
 	do {
+		if (TimeOfDay>=12)
+		{
+			addoRsub = -1;
+		}
+		else if (TimeOfDay<=0)
+		{
+			addoRsub = 1;
+		}
 		
-		auto START = Time::now();
 		for (std::list<entity>::iterator it1 = allEntity.begin(); it1 != allEntity.end(); ++it1)
 		{
 			renderMaster.ProcessEntity(*it1);
@@ -212,11 +224,14 @@ int main()
 		}
 
 		checkInput(window, player,camera);
-		renderMaster.Render(lights, camera,player);
+		renderMaster.Render(lights, camera,player,deltaTime.count(),TimeOfDay);
 		guiRenderer.render(allGuis);
 
 		auto END = Time::now();//getting delta time(how much time took to render frame)
-		fsec deltaTime =  END-START;
+		deltaTime =  END-START;
+		TimeOfDay += addoRsub *deltaTime.count();
+		cout << TimeOfDay << endl;
+		START = END;
 		
 		player.Move(deltaTime.count(),Terrain);
 

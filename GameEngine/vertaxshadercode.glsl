@@ -18,7 +18,7 @@ uniform mat4 view;
 uniform vec3 lightPosition[4];
 uniform float FakeLightning;
 
-const float density=0.00;
+const float density=0.01;
 const float FogGradient=1.5;
 
 void main(){
