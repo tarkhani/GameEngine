@@ -22,6 +22,7 @@
 #include"GuiTexture.h"
 #include"GuiRenderer.h"
 #include"SkyboxRenderer.h"
+#include"MousePicker.h"
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
@@ -58,7 +59,8 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); 
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	
-	 GLFWwindow *window = glfwCreateWindow(1920,1080, "Game", glfwGetPrimaryMonitor(), NULL);
+	 GLFWwindow *window = glfwCreateWindow(1920,1080, "Game", NULL,NULL);
+	 
 	if (window == NULL) {
 		fprintf(stderr, "glfwCreateWindow() failed");
 		getchar();
@@ -82,7 +84,7 @@ int main()
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 
-
+	
 	
 	list<terrain> allTerrain;
 	Loader loader;
@@ -195,6 +197,8 @@ int main()
 
 	Player player(PersonTexureModel, glm::fvec3(-50.0f, 0.0f,-50.0f), 0, 180, 0, 0.1);
 	Camera camera(player);
+	MousePicker Picker(camera,window,renderMaster.proj);
+
 
 	glfwSetWindowUserPointer(window, &camera);
 
@@ -230,7 +234,6 @@ int main()
 		auto END = Time::now();//getting delta time(how much time took to render frame)
 		deltaTime =  END-START;
 		TimeOfDay += addoRsub *deltaTime.count();
-		cout << TimeOfDay << endl;
 		START = END;
 		
 		player.Move(deltaTime.count(),Terrain);
@@ -244,6 +247,8 @@ int main()
 
 		
 		camera.Move();
+		Picker.update();
+		cout << Picker.currectRay.x << "  and Y:" << Picker.currectRay.y << endl;
 		
 		glfwSwapBuffers(window);
 		glfwPollEvents();

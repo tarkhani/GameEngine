@@ -28,6 +28,7 @@
     <ClCompile Include="main.cpp" />
     <ClCompile Include="Mats.cpp" />
     <ClCompile Include="ModelTexture.cpp" />
+    <ClCompile Include="MousePicker.cpp" />
     <ClCompile Include="objLoader.cpp" />
     <ClCompile Include="Player.cpp" />
     <ClCompile Include="RawModel.cpp" />
@@ -54,6 +55,7 @@
     <ClInclude Include="Loader.h" />
     <ClInclude Include="Mats.h" />
     <ClInclude Include="ModelTexture.h" />
+    <ClInclude Include="MousePicker.h" />
     <ClInclude Include="objLoader.h" />
     <ClInclude Include="Player.h" />
     <ClInclude Include="RawModel.h" />
