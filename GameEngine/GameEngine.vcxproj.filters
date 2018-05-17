@@ -87,6 +87,15 @@
     <ClCompile Include="MousePicker.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="WaterTile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterShader.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="WaterRenderer.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Loader.h">
@@ -170,6 +179,15 @@
     <ClInclude Include="MousePicker.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="WaterTile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterShader.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="WaterRenderer.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <None Include="vertaxshadercode.glsl">
@@ -182,6 +200,12 @@
       <Filter>Resource Files</Filter>
     </None>
     <None Include="Terrain_vertaxshadercode.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="waterVertex.glsl">
+      <Filter>Resource Files</Filter>
+    </None>
+    <None Include="waterFragment.glsl">
       <Filter>Resource Files</Filter>
     </None>
   </ItemGroup>

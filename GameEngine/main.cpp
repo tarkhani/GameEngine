@@ -23,6 +23,8 @@
 #include"GuiRenderer.h"
 #include"SkyboxRenderer.h"
 #include"MousePicker.h"
+#include"WaterRenderer.h"
+#include"WaterTile.h"
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
@@ -31,6 +33,7 @@ typedef std::chrono::milliseconds ms;
 typedef std::chrono::duration<float> fsec;
 
 glm::mat4 const RenderMaster::proj = glm::perspective(70.0f, ((float)1920 / 1080), 0.1f, 200.0f);
+float WaterTile::TILE_SIZE = 700;
 void checkInput(GLFWwindow* window, Player &player, Camera& camera);
 struct Point {
 
@@ -59,7 +62,7 @@ int main()
 	glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE); 
 	glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
 	
-	 GLFWwindow *window = glfwCreateWindow(1920,1080, "Game", NULL,NULL);
+	 GLFWwindow *window = glfwCreateWindow(1920,1080, "Game", glfwGetPrimaryMonitor(),NULL);
 	 
 	if (window == NULL) {
 		fprintf(stderr, "glfwCreateWindow() failed");
@@ -83,12 +86,19 @@ int main()
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
+	
 
 	
 	
 	list<terrain> allTerrain;
 	Loader loader;
 	RenderMaster renderMaster(loader);
+	WaterRenderer waterrnderer(loader, RenderMaster::proj);
+	std::list<WaterTile> waters;
+	WaterTile water1(-50, -50, -1);
+	waters.push_back(water1);
+
+
 	Light light1(glm::vec3(-80.0f, 10.0f,-10.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.002f));
 	Light light2(glm::vec3(-40.0f, 10.0f, -60.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.002f));
 	Light light3(glm::vec3(-30.0f, 10.0f, -90.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.002f));
@@ -122,7 +132,6 @@ int main()
 
 
 	list<entity> allEntity;
-	list<entity> playerList;/// list of player with diffrent location 
 	RawModel Treemodel = objLoader::LoadObj("./res/tree.obj", loader);
 	ModelTexture  treeTexture(loader.loadTexture("./res/tree.png"));
 	treeTexture.ReflectionScale = 0.0;
@@ -141,7 +150,7 @@ int main()
 
 
 	RawModel lampModel = objLoader::LoadObj("./res/lamp.obj", loader);
-	ModelTexture  lampTexture(loader.loadTexture("./res/lamp.png"));
+	ModelTexture lampTexture(loader.loadTexture("./res/lamp.png"));
 	lampTexture.ReflectionScale = 0.1;
 	lampTexture.ShineDamper = 0.1;
 	lampTexture.tansparent = false;
@@ -202,7 +211,6 @@ int main()
 
 	glfwSetWindowUserPointer(window, &camera);
 
-
 	auto START = Time::now();
 	float TimeOfDay = 0;
 	int addoRsub = 1;///if it is 1 we add delta time so time goes up and when its -1 we subtract so time goes back again(we have 12h night and 12h morning )
@@ -229,6 +237,7 @@ int main()
 
 		checkInput(window, player,camera);
 		renderMaster.Render(lights, camera,player,deltaTime.count(),TimeOfDay);
+		waterrnderer.render(waters, camera);
 		guiRenderer.render(allGuis);
 
 		auto END = Time::now();//getting delta time(how much time took to render frame)
@@ -248,7 +257,6 @@ int main()
 		
 		camera.Move();
 		Picker.update();
-		cout << Picker.currectRay.x << "  and Y:" << Picker.currectRay.y << endl;
 		
 		glfwSwapBuffers(window);
 		glfwPollEvents();

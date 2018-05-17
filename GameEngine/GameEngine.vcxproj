@@ -43,6 +43,9 @@
     <ClCompile Include="TerrainShader.cpp" />
     <ClCompile Include="TerrainTexturePack.cpp" />
     <ClCompile Include="textureModel.cpp" />
+    <ClCompile Include="WaterRenderer.cpp" />
+    <ClCompile Include="WaterShader.cpp" />
+    <ClCompile Include="WaterTile.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="ARRAY.h" />
@@ -72,9 +75,14 @@
     <ClInclude Include="TerrainTexture.h" />
     <ClInclude Include="TerrainTexturePack.h" />
     <ClInclude Include="textureModel.h" />
+    <ClInclude Include="WaterRenderer.h" />
+    <ClInclude Include="WaterShader.h" />
+    <ClInclude Include="WaterTile.h" />
   </ItemGroup>
   <ItemGroup>
     <None Include="fragmentshader.glsl" />
+    <None Include="waterFragment.glsl" />
+    <None Include="waterVertex.glsl" />
     <None Include="Terrain_fragmentshader.glsl" />
     <None Include="Terrain_vertaxshadercode.glsl" />
     <None Include="vertaxshadercode.glsl" />

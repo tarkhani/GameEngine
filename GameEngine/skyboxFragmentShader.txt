@@ -11,6 +11,7 @@ uniform vec3 fogColour;
 const float lowerlimit=0.0;
 const float upperlimit=0.0;
 
+
 void main(void){
    
    float TempBlendFactor=smoothstep(0,12,blendFactor);
