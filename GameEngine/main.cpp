@@ -25,6 +25,12 @@
 #include"MousePicker.h"
 #include"WaterRenderer.h"
 #include"WaterTile.h"
+#include"WaterFrameBuffer.h"
+
+ const int WaterFrameBuffer::REFLECTION_HEIGHT = 1080;
+ const int WaterFrameBuffer::REFLECTION_WIDTH = 1920;
+ const int WaterFrameBuffer::REFRACTION_HEIGHT = 1080;
+ const int WaterFrameBuffer::REFRACTION_WIDTH = 1920;
 
 void scroll_callback(GLFWwindow* window, double xoffset, double yoffset);
 
@@ -34,6 +40,7 @@ typedef std::chrono::duration<float> fsec;
 
 glm::mat4 const RenderMaster::proj = glm::perspective(70.0f, ((float)1920 / 1080), 0.1f, 200.0f);
 float WaterTile::TILE_SIZE = 700;
+int const WATERLEVEL = -1;
 void checkInput(GLFWwindow* window, Player &player, Camera& camera);
 struct Point {
 
@@ -95,14 +102,14 @@ int main()
 	RenderMaster renderMaster(loader);
 	WaterRenderer waterrnderer(loader, RenderMaster::proj);
 	std::list<WaterTile> waters;
-	WaterTile water1(-50, -50, -1);
+	WaterTile water1(0, 0, WATERLEVEL);
 	waters.push_back(water1);
 
 
-	Light light1(glm::vec3(-80.0f, 10.0f,-10.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.002f));
-	Light light2(glm::vec3(-40.0f, 10.0f, -60.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.002f));
-	Light light3(glm::vec3(-30.0f, 10.0f, -90.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.002f));
-	Light light4(glm::vec3(-100.0f, 10.0f, -100.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.002f));
+	Light light1(glm::vec3(-80.0f, 7.0f,-10.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.001f));
+	Light light2(glm::vec3(-40.0f, 7.0f, -60.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.001f));
+	Light light3(glm::vec3(-30.0f, 7.0f, -90.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.001f));
+	Light light4(glm::vec3(-100.0f, 7.0f, -100.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.001f));
 	std::vector<Light> lights;
 	lights.reserve(4);
 	lights.push_back(light1);
@@ -112,8 +119,8 @@ int main()
 
 
 	TerrainTexture BackGroundTexture(loader.loadTexture("./res/terrain.png"));
-	TerrainTexture rTexture(loader.loadTexture("./res/mud.png"));
-	TerrainTexture gTexture(loader.loadTexture("./res/brick.jpg"));
+	TerrainTexture rTexture(loader.loadTexture("./res/mud.jpg"));
+	TerrainTexture gTexture(loader.loadTexture("./res/swamp.jpg"));
 	TerrainTexture bTexture(loader.loadTexture("./res/grassFlowers.png"));
 	TerrainTexture BlendMap(loader.loadTexture("./res/blendMap.png"));
 	TerrainTexturePack terrainTexturePack (BackGroundTexture, rTexture, gTexture, bTexture);
@@ -126,7 +133,7 @@ int main()
 
 	GuiRenderer guiRenderer(loader);
 	list<GuiTexture>allGuis;
-	GuiTexture healthBar(loader.loadTexture("./res/healthBar.png"), glm::vec2(-0.75,-0.8), glm::vec3(0.1, 0.1, 0.1));
+	GuiTexture healthBar(loader.loadTexture("./res/healthBar.png"), glm::vec2(-0.75,-0.8), glm::vec3(.1, 0.1, 0.1));
 	allGuis.push_back(healthBar);
 
 
@@ -140,12 +147,12 @@ int main()
 	textureModel TreeTexureModel(Treemodel, treeTexture);
 
 	RawModel grassModel = objLoader::LoadObj("./res/grass.obj", loader);
-	ModelTexture  grassTexture(loader.loadTexture("./res/grass_flower.png"));
+	ModelTexture  grassTexture(loader.loadTexture("./res/grass.png"));
 	grassTexture.ReflectionScale = 0.0;
 	grassTexture.ShineDamper = 0.0;
 	grassTexture.tansparent = true;
 	grassTexture.FakeLightning = true;
-	grassTexture.NumberofRow = 4;
+	grassTexture.NumberofRow = 1;
 	textureModel GrassTexureModel(grassModel, grassTexture);
 
 
@@ -163,40 +170,55 @@ int main()
 	allEntity.push_back(lamp);
 	lamp = entity(lampTexureModel, glm::fvec3(-30, Terrain.getHeightOfTerrian(-30, -90),-90), 0, 0, 0, 0.2);
 	allEntity.push_back(lamp);
-	lamp = entity(lampTexureModel, glm::fvec3(-100, 0, -100), 0, 0, 0, 0.2);
+	lamp = entity(lampTexureModel, glm::fvec3(-100, 0, -100), 0, 0, 0, 0.3);
 	allEntity.push_back(lamp);
 
 
 
-	const int nrolls = 300;//number of tree
-	std::default_random_engine generator;
-	std::uniform_int_distribution<int> distribution(0, 100);//min and max of terrain
-	std::uniform_int_distribution<int> Flowerdistribution(4, 12);
-	std::uniform_real_distribution<double> HeightDistribution(0.6, 1.6);
-	float *randomx = new float[nrolls];
-	float *randomz = new float[nrolls];
-	double *randomHeghit = new double[nrolls];
-	double *randomwidth = new double[nrolls];
-	int *randomFlower = new int[nrolls];
 
-	for (int i = 0; i < nrolls; i++) {
+	const double grassRolls = 30000;//number of grass
+	std::default_random_engine generator;
+	std::uniform_real_distribution<double> distribution(0, 100);//min and max of terrain
+	std::uniform_real_distribution<double> Flowerdistribution(4, 12);
+	std::uniform_real_distribution<double> HeightDistribution(0.6, 1.6);
+	float *randomx = new float[grassRolls];
+	float *randomz = new float[grassRolls];
+
+	for (int i = 0; i < grassRolls; i++)
+	{
+		randomx[i] = distribution(generator);
+		randomz[i] = distribution(generator);
+		float height = Terrain.getHeightOfTerrian(-randomx[i], -randomz[i]);
+		if (height > WATERLEVEL)
+		{
+			entity  grass_flower = entity(GrassTexureModel, 1, glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, 0.14);
+			allEntity.push_back(grass_flower);
+		}
+	}
+
+	const double TreeRolls = 200;//number of tree
+	double *randomHeghit = new double[TreeRolls];
+	double *randomwidth = new double[TreeRolls];
+
+	for (int i = 0; i < TreeRolls; i++) {
 
 		randomx[i] = distribution(generator);
 		randomz[i] = distribution(generator);
 		randomHeghit[i] = HeightDistribution(generator);
 		randomwidth[i] = HeightDistribution(generator);
-		randomFlower[i] = Flowerdistribution(generator);
 		float height = Terrain.getHeightOfTerrian(-randomx[i], -randomz[i]);
-
-		entity  tree = entity(TreeTexureModel,glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, randomwidth[i], randomHeghit[i], randomwidth[i]);
-		allEntity.push_back(tree);
-
-		entity  grass_flower = entity(GrassTexureModel, randomFlower[i], glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, 0.5);
-		allEntity.push_back(grass_flower);
-
+		if (height > WATERLEVEL)
+		{
+			entity  tree = entity(TreeTexureModel, glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, randomwidth[i], randomHeghit[i], randomwidth[i]);
+			allEntity.push_back(tree);
+		}
 	}
+
 	delete[] randomx;
 	delete[] randomz;
+	delete[] randomHeghit;
+	delete[] randomwidth;
+	
 
 	RawModel playerRawModel = objLoader::LoadObj("./res/person.obj", loader);
 	ModelTexture  playerTexture(loader.loadTexture("./res/playerTexture.png"));
@@ -210,6 +232,10 @@ int main()
 
 
 	glfwSetWindowUserPointer(window, &camera);
+
+    WaterFrameBuffer waterframebuffer;
+	GuiTexture map(waterframebuffer.refractionTexture, glm::vec2(0.0, 0.0), glm::vec3(0.2, 0.2, 0.2));
+	allGuis.push_back(map);
 
 	auto START = Time::now();
 	float TimeOfDay = 0;
@@ -225,17 +251,14 @@ int main()
 			addoRsub = 1;
 		}
 		
-		for (std::list<entity>::iterator it1 = allEntity.begin(); it1 != allEntity.end(); ++it1)
-		{
-			renderMaster.ProcessEntity(*it1);
-			
-		}
-		for (std::list<terrain>::iterator it2 = allTerrain.begin(); it2 != allTerrain.end(); ++it2)
-		{
-			renderMaster.ProcessTerrain(*it2);
-		}
+		renderMaster.processWorld(allTerrain, allEntity);
 
 		checkInput(window, player,camera);
+		waterframebuffer.bindRefractionFrameBuffer();
+		renderMaster.Render(lights, camera, player, deltaTime.count(), TimeOfDay);
+		waterrnderer.render(waters, camera);
+		waterframebuffer.unbindCurrentFrameBuffer();
+
 		renderMaster.Render(lights, camera,player,deltaTime.count(),TimeOfDay);
 		waterrnderer.render(waters, camera);
 		guiRenderer.render(allGuis);
@@ -258,6 +281,7 @@ int main()
 		camera.Move();
 		Picker.update();
 		
+		renderMaster.CleanWorld();
 		glfwSwapBuffers(window);
 		glfwPollEvents();
 		
@@ -266,6 +290,7 @@ int main()
 		glfwWindowShouldClose(window) == 0);
 
 	renderMaster.CleanUp();
+	waterframebuffer.cleanUp();
 	glfwTerminate();
 
 	return 0;

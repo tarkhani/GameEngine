@@ -12,7 +12,7 @@ public:
 	float yaw=0;
 	float roll=0;
 	Player *player;
-	float DistanceFromPlayer = 6;
+	float DistanceFromPlayer = 20;
 	float AngleAroundPlayer = 0;
 
 	float CalculateHorizontalDistance() { return DistanceFromPlayer*std::cos(glm::radians(pitch)); };

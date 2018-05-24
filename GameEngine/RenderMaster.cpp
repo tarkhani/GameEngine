@@ -15,7 +15,7 @@ void RenderMaster::Render(std::vector<Light> & lights, Camera & camera, Player&p
 {
 	prepare();
 
-
+	
 	terrainShader.start();
 	terrainShader.loadSkyColor(SkyColor);
 	terrainShader.loadView(camera);
@@ -33,9 +33,6 @@ void RenderMaster::Render(std::vector<Light> & lights, Camera & camera, Player&p
 
 	skyRenderer.Render(camera,SkyColor, deltaTime, TimeOfDay);
 
-
-	entities.clear();
-	terrains.clear();
 }
 
 void RenderMaster::ProcessEntity(entity& Entity)
@@ -59,6 +56,25 @@ void RenderMaster::ProcessEntity(entity& Entity)
 void RenderMaster::ProcessTerrain(terrain & terrain)
 {
 	terrains.push_back(terrain);
+}
+
+void RenderMaster::processWorld(std::list<terrain>& terriansList, std::list<entity>& entitiesList)
+{
+	for (std::list<entity>::iterator it1 = entitiesList.begin(); it1 != entitiesList.end(); ++it1)
+	{
+		ProcessEntity(*it1);
+
+	}
+	for (std::list<terrain>::iterator it2 = terriansList.begin(); it2 != terriansList.end(); ++it2)
+	{
+		ProcessTerrain(*it2);
+	}
+}
+
+void RenderMaster::CleanWorld()
+{
+	entities.clear();
+	terrains.clear();
 }
 
 void RenderMaster::CleanUp()

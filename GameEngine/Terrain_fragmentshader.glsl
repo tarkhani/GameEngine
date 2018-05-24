@@ -54,7 +54,7 @@ specularFactor=max(specularFactor,0.01);
 float DumpedFactor=pow(specularFactor,ShineDamper);
 totalSpecular=totalSpecular+(ReflectionScale*DumpedFactor*lightColour[i]/attfactor);
 }
-totalDiffuse=max(totalDiffuse,0.1);
+totalDiffuse=max(totalDiffuse,0.0);
 Fcolor = vec4(totalDiffuse,1.0)*mixColor+vec4(totalSpecular,1.0);
 Fcolor = mix(vec4(skyColor,1.0),Fcolor,Visibility);
 

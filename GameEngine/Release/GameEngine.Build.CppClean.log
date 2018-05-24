@@ -18,6 +18,15 @@ d:\gameengine cpp\gameengine\gameengine\release\loader.obj
 d:\gameengine cpp\gameengine\gameengine\release\light.obj
 d:\gameengine cpp\gameengine\gameengine\release\entity.obj
 d:\gameengine cpp\gameengine\gameengine\release\camera.obj
+d:\gameengine cpp\gameengine\gameengine\release\guishader.obj
+d:\gameengine cpp\gameengine\gameengine\release\guirenderer.obj
+d:\gameengine cpp\gameengine\gameengine\release\skyboxshader.obj
+d:\gameengine cpp\gameengine\gameengine\release\skyboxrenderer.obj
+d:\gameengine cpp\gameengine\gameengine\release\mousepicker.obj
+d:\gameengine cpp\gameengine\gameengine\release\waterrenderer.obj
+d:\gameengine cpp\gameengine\gameengine\release\watershader.obj
+d:\gameengine cpp\gameengine\gameengine\release\watertile.obj
+d:\gameengine cpp\gameengine\gameengine\release\waterframebuffer.obj
 d:\gameengine cpp\gameengine\release\gameengine.exe
 d:\gameengine cpp\gameengine\release\gameengine.ipdb
 d:\gameengine cpp\gameengine\release\gameengine.iobj

@@ -21,7 +21,7 @@ void main()
 {
 
 vec3 unitNormal=normalize(SurfaceNormal);
-vec3 unitcameraPosition=normalize(cameraPosition);
+vec3 unitcameraPosition=normalize(cameraPosition);//hi hi
 vec3 totalDiffuse=vec3(0.0);
 vec3 totalSpecular=vec3(0.0);
 
@@ -43,7 +43,7 @@ float DumpedFactor=pow(specularFactor,ShineDamper);
 totalSpecular=totalSpecular+(ReflectionScale*DumpedFactor*lightColour[i]/attfactor);
 
 }
-totalDiffuse=max(totalDiffuse,0.1);
+totalDiffuse=max(totalDiffuse,0.0);
 vec4 TextureColor=texture2D(Texture,uv);
 if(TextureColor.a<0.5){
 discard;

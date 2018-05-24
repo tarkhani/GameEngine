@@ -37,6 +37,8 @@ public:
 	void Render(std::vector<Light> & lights, Camera & camera, Player&player, float deltaTime,float TimeOfDay);
 	void ProcessEntity(entity& Entity);
 	void ProcessTerrain(terrain & terrain);
+	void processWorld(std::list<terrain>&terriansList, std::list<entity>&entitiesList);
+	void CleanWorld();
 	void CleanUp() ;
 	static void EnableBackFaceCulling();
 	static void DisableBackFaceCulling();

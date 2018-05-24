@@ -63,7 +63,7 @@ RawModel objLoader::LoadObj(char * path, Loader& loader)
 
 	while (1) {
 
-		char lineHeader[128];
+		 char * lineHeader=new char[40000];
 
 		int res = fscanf(file, "%s", lineHeader);
 		if (res == EOF)
@@ -111,7 +111,7 @@ RawModel objLoader::LoadObj(char * path, Loader& loader)
 			char stupidBuffer[1000];
 			fgets(stupidBuffer, 1000, file);
 		}
-
+		delete[] lineHeader;
 	}
 
 	

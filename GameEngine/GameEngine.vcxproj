@@ -43,6 +43,7 @@
     <ClCompile Include="TerrainShader.cpp" />
     <ClCompile Include="TerrainTexturePack.cpp" />
     <ClCompile Include="textureModel.cpp" />
+    <ClCompile Include="WaterFrameBuffer.cpp" />
     <ClCompile Include="WaterRenderer.cpp" />
     <ClCompile Include="WaterShader.cpp" />
     <ClCompile Include="WaterTile.cpp" />
@@ -75,6 +76,7 @@
     <ClInclude Include="TerrainTexture.h" />
     <ClInclude Include="TerrainTexturePack.h" />
     <ClInclude Include="textureModel.h" />
+    <ClInclude Include="WaterFrameBuffer.h" />
     <ClInclude Include="WaterRenderer.h" />
     <ClInclude Include="WaterShader.h" />
     <ClInclude Include="WaterTile.h" />
