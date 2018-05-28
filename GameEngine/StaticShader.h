@@ -26,6 +26,7 @@ public:
 	int locationskyColor;
 	int locationXYoffset;
 	int locationNumberOfRows;
+	int locationCulling_plane;
 
 	virtual void getAllUniformLocations() override;
 	void loadTransformation(glm::fmat4 &matrix) {
@@ -67,6 +68,7 @@ public:
 	void loadSkyColor(glm::vec3 &SkyColor) { Shader::loadvectorUni(SkyColor, locationskyColor); };
 	void loadxyOffset(glm::vec2 &xyoffset) { Shader::loadvectorUni(xyoffset, locationXYoffset); };//load offset
 	void loadNumberOfRows(float NumberOfRows) { Shader::loadFloatUni(NumberOfRows, locationNumberOfRows); };
+	void loadCullingPlane(glm::fvec4 &plane) { Shader::loadvectorUni(plane, locationCulling_plane); };
 	StaticShader();
 	~StaticShader();
 };

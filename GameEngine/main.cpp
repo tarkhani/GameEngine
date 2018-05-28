@@ -93,6 +93,7 @@ int main()
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
+	glEnable(GL_CLIP_DISTANCE0);
 	
 
 	
@@ -196,7 +197,7 @@ int main()
 		}
 	}
 
-	const double TreeRolls = 200;//number of tree
+	const double TreeRolls = 100;//number of tree
 	double *randomHeghit = new double[TreeRolls];
 	double *randomwidth = new double[TreeRolls];
 
@@ -234,8 +235,11 @@ int main()
 	glfwSetWindowUserPointer(window, &camera);
 
     WaterFrameBuffer waterframebuffer;
-	GuiTexture map(waterframebuffer.refractionTexture, glm::vec2(0.0, 0.0), glm::vec3(0.2, 0.2, 0.2));
+	GuiTexture map(waterframebuffer.refractionTexture, glm::vec2(-0.5, 0.5), glm::vec3(0.2, 0.2, 0.2));
 	allGuis.push_back(map);
+
+	GuiTexture map2(waterframebuffer.reflectionTexture, glm::vec2(0.5, 0.5), glm::vec3(0.2, 0.2, 0.2));
+	allGuis.push_back(map2);
 
 	auto START = Time::now();
 	float TimeOfDay = 0;
@@ -255,11 +259,20 @@ int main()
 
 		checkInput(window, player,camera);
 		waterframebuffer.bindRefractionFrameBuffer();
-		renderMaster.Render(lights, camera, player, deltaTime.count(), TimeOfDay);
-		waterrnderer.render(waters, camera);
+		renderMaster.Render(lights, camera, player, deltaTime.count(), TimeOfDay, glm::fvec4(0, -1, 0, WATERLEVEL));
 		waterframebuffer.unbindCurrentFrameBuffer();
 
-		renderMaster.Render(lights, camera,player,deltaTime.count(),TimeOfDay);
+		waterframebuffer.bindReflectionFrameBuffer();
+		float distanceUnderwater = 2 * (camera.CameraLocation.y + WATERLEVEL);
+		camera.CameraLocation.y -= distanceUnderwater;
+		camera.invertpitch();
+		renderMaster.Render(lights, camera, player, deltaTime.count(), TimeOfDay, glm::fvec4(0, 1, 0, -WATERLEVEL));
+		camera.invertpitch();
+		camera.CameraLocation.y += distanceUnderwater;
+		waterframebuffer.unbindCurrentFrameBuffer();
+
+		
+		renderMaster.Render(lights, camera,player,deltaTime.count(),TimeOfDay,glm::fvec4(0, 1, 0, 1000));
 		waterrnderer.render(waters, camera);
 		guiRenderer.render(allGuis);
 

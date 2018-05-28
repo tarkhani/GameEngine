@@ -17,13 +17,17 @@ uniform mat4 projection;
 uniform mat4 view;
 uniform vec3 lightPosition[4];
 uniform float FakeLightning;
+uniform vec4 plane;
 
 const float density=0.01;
 const float FogGradient=1.5;
 
+
+
 void main(){
 
 	vec4 worldLocation = transform*vec4(vertexPosition_modelspace,1.0);
+	gl_ClipDistance[0]=dot(worldLocation,plane);
 	vec4 locationFromCamera=view*worldLocation;
 	float Distance=length(locationFromCamera.xyz);
 	Visibility=exp(-pow((Distance*density),FogGradient));

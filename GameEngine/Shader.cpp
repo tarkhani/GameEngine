@@ -139,3 +139,8 @@ void Shader::loadMatrixUni(glm::fmat4 matrix, int location)
 {
 	glUniformMatrix4fv(location, 1, GL_FALSE, &matrix[0][0]);
 }
+
+void Shader::loadvectorUni(glm::fvec4 vector, int location)
+{
+	glUniform4f(location, vector.x, vector.y, vector.z, vector.w);
+}

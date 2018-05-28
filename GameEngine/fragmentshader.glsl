@@ -21,7 +21,7 @@ void main()
 {
 
 vec3 unitNormal=normalize(SurfaceNormal);
-vec3 unitcameraPosition=normalize(cameraPosition);//hi hi
+vec3 unitcameraPosition=normalize(cameraPosition);
 vec3 totalDiffuse=vec3(0.0);
 vec3 totalSpecular=vec3(0.0);
 

@@ -16,6 +16,7 @@ void TerrainShader::getAllUniformLocations()
 	locationBTextureID = Shader::GetUniformlocation("bTexture");
 	locationGTextureID = Shader::GetUniformlocation("gTexture");
 	locationblendMapID = Shader::GetUniformlocation("BlendMap");
+	locationCulling_plane= Shader::GetUniformlocation("plane");
 
 	for (int i = 0; i < MAX_LIGHTS; i++)
 	{

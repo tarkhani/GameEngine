@@ -14,6 +14,7 @@ void StaticShader::getAllUniformLocations()
 	locationskyColor = Shader::GetUniformlocation("skyColor");
 	locationNumberOfRows = Shader::GetUniformlocation("numberOfRows");
 	locationXYoffset = Shader::GetUniformlocation("xyoffset");
+	locationCulling_plane = Shader::GetUniformlocation("plane");
 	for (int i = 0; i < MAX_LIGHTS; i++)
 	{
 		std::string tempString = ("lightPosition[" + std::to_string(i) + "]");

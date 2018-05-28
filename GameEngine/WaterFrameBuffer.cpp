@@ -28,8 +28,8 @@ GLuint WaterFrameBuffer::createTexture()
 GLuint WaterFrameBuffer::createRenderbuffers()
 {
 	numberofRenderbuffers++;
-	glGenFramebuffers(1, &GLRenderbuffersIDes[numberofRenderbuffers]);
-	return GLTextureIDes[numberofRenderbuffers];
+	glGenRenderbuffers(1, &GLRenderbuffersIDes[numberofRenderbuffers]);
+	return GLRenderbuffersIDes[numberofRenderbuffers];
 }
 
 int WaterFrameBuffer::createTextureAttachment(int width, int height)

@@ -34,7 +34,7 @@ public:
 	static const glm::mat4 proj;
 
 	RenderMaster::RenderMaster(Loader& loader);
-	void Render(std::vector<Light> & lights, Camera & camera, Player&player, float deltaTime,float TimeOfDay);
+	void Render(std::vector<Light> & lights, Camera & camera, Player&player, float deltaTime,float TimeOfDay,glm::fvec4 & Culling_plane);
 	void ProcessEntity(entity& Entity);
 	void ProcessTerrain(terrain & terrain);
 	void processWorld(std::list<terrain>&terriansList, std::list<entity>&entitiesList);

@@ -27,6 +27,7 @@ public:
 	int locationBTextureID;
 	int locationGTextureID;
 	int locationblendMapID;
+	int locationCulling_plane;
 
 	virtual void getAllUniformLocations() override;
 	void loadTransformation(glm::fmat4 matrix) {
@@ -77,6 +78,7 @@ public:
 	
 	
 	};
+	void loadCullingPlane(glm::fvec4 &plane) { Shader::loadvectorUni(plane, locationCulling_plane); };
 	TerrainShader();
 	~TerrainShader();
 };

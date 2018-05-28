@@ -33,6 +33,7 @@ protected:
 	 void loadvectorUni(glm::fvec2 vector, int location);
 	 void loadBoolUni(bool Bool, int location);
 	 void loadMatrixUni(glm::fmat4 matrix, int location);
+	 void loadvectorUni(glm::fvec4 matrix, int location);
 
 
 };

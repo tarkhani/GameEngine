@@ -11,12 +11,13 @@ RenderMaster::RenderMaster(Loader& loader):rendrer(Staticshader, proj ),terrainR
 {
 }
 
-void RenderMaster::Render(std::vector<Light> & lights, Camera & camera, Player&player,float deltaTime, float TimeOfDay)
+void RenderMaster::Render(std::vector<Light> & lights, Camera & camera, Player&player,float deltaTime, float TimeOfDay, glm::fvec4 &  Culling_plane)
 {
 	prepare();
 
 	
 	terrainShader.start();
+	terrainShader.loadCullingPlane(Culling_plane);
 	terrainShader.loadSkyColor(SkyColor);
 	terrainShader.loadView(camera);
 	terrainShader.loadLight(lights);
@@ -24,6 +25,7 @@ void RenderMaster::Render(std::vector<Light> & lights, Camera & camera, Player&p
 	terrainShader.stopProgeram();
 
 	Staticshader.start();
+	Staticshader.loadCullingPlane(Culling_plane);
 	Staticshader.loadSkyColor(SkyColor);
 	Staticshader.loadView(camera);
 	Staticshader.loadLight(lights);
