@@ -15,7 +15,7 @@ uniform vec3  attenuation[4];
 uniform float ShineDamper;
 uniform float ReflectionScale;
 uniform vec3 skyColor;
-
+const int numberOflightLv=3;
 
 void main()
 {
@@ -32,6 +32,8 @@ float attfactor= (attenuation[i].x)+(attenuation[i].y*distanceFromLight)+ (atten
 vec3 unitToLightVector=normalize(toLightVector[i]);
 float nDot1=dot(unitNormal,unitToLightVector);
 float brightness=max(nDot1,0.0);
+float lightLv=floor(brightness*numberOflightLv);
+brightness=lightLv/numberOflightLv;
 totalDiffuse = totalDiffuse + (brightness*lightColour[i]/attfactor);
 
 vec3 unitLightDirection=-unitToLightVector;

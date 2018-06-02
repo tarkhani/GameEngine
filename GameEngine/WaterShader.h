@@ -11,6 +11,8 @@ public:
 	int locationTransformation;
 	int locationProjection;
 	int locationView;
+	int location_reflactionTexture;
+	int location_refractionTexture;
 
 	virtual void getAllUniformLocations() override;
 	WaterShader::WaterShader();
@@ -27,5 +29,12 @@ public:
 		glm::fmat4 ViewMatrix = Mats::createView(camera);
 		Shader::loadMatrixUni(ViewMatrix, locationView);
 	}
+	void connectTectureUnit() {
+
+		Shader::loadIntUni(0, location_reflactionTexture);
+		Shader::loadIntUni(1, location_refractionTexture);
+
+
+	};
 };
 

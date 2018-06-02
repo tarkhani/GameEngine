@@ -3,10 +3,11 @@
 
 
 
-WaterRenderer::WaterRenderer(Loader& loader, glm::fmat4 projectionMatrix)
+WaterRenderer::WaterRenderer(Loader& loader, glm::fmat4 projectionMatrix , WaterFrameBuffer & fbo):fbo(&fbo)
 {
 	
 	waterShader.start();
+	waterShader.connectTectureUnit();
 	waterShader.loadProjection(projectionMatrix);
 	waterShader.stopProgeram();
 	setUpVAO(loader);
@@ -18,6 +19,10 @@ void WaterRenderer::prepareRender(Camera &camera)
 	waterShader.loadView(camera);
 	glBindVertexArray(quad.getVaoID());
 	glEnableVertexAttribArray(0);
+	glActiveTexture(GL_TEXTURE0);
+	glBindTexture(GL_TEXTURE_2D,fbo->reflectionTexture );
+	glActiveTexture(GL_TEXTURE1);
+	glBindTexture(GL_TEXTURE_2D, fbo->refractionTexture);
 }
 
 void WaterRenderer::render(std::list<WaterTile>& waters, Camera & camera)

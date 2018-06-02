@@ -19,9 +19,9 @@ private:
 	Rendrer rendrer;
 	SkyboxRenderer skyRenderer;
 
-	const float SkyRed = 1.0f;
-	const float SkyGreen = 1.0f;
-	const float SkyBlue = 1.0f;
+	const float SkyRed = 0.4f;
+	const float SkyGreen = 0.4f;
+	const float SkyBlue = 0.5f;
 	glm::vec3 SkyColor = glm::vec3(SkyRed, SkyGreen, SkyBlue);
 
 	std::map<textureModel, std::list<entity>> entities;

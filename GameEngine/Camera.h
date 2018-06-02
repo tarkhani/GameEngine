@@ -18,7 +18,7 @@ public:
 	float CalculateHorizontalDistance() { return DistanceFromPlayer*std::cos(glm::radians(pitch)); };
 	float CalculateVerticalDistance() { return DistanceFromPlayer*std::sin(glm::radians(pitch)); };
 	void CalculateCameraPosition(float HorizontalDistance, float VerticalDistance);
-	void invertpitch() { pitch*-1; };
+	void invertpitch() { pitch=pitch*-1; };
 	void Move();
 	void MoveForward();
 	void MoveBackward();

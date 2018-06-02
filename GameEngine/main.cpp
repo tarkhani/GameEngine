@@ -101,7 +101,7 @@ int main()
 	list<terrain> allTerrain;
 	Loader loader;
 	RenderMaster renderMaster(loader);
-	WaterRenderer waterrnderer(loader, RenderMaster::proj);
+
 	std::list<WaterTile> waters;
 	WaterTile water1(0, 0, WATERLEVEL);
 	waters.push_back(water1);
@@ -119,11 +119,11 @@ int main()
 	lights.push_back(light4);
 
 
-	TerrainTexture BackGroundTexture(loader.loadTexture("./res/terrain.png"));
-	TerrainTexture rTexture(loader.loadTexture("./res/mud.jpg"));
-	TerrainTexture gTexture(loader.loadTexture("./res/swamp.jpg"));
-	TerrainTexture bTexture(loader.loadTexture("./res/grassFlowers.png"));
-	TerrainTexture BlendMap(loader.loadTexture("./res/blendMap.png"));
+	TerrainTexture BackGroundTexture(loader.loadTexture("./res/hgrass.png"));
+	TerrainTexture rTexture(loader.loadTexture("./res/hgrass.png"));
+	TerrainTexture gTexture(loader.loadTexture("./res/hgrass.png"));
+	TerrainTexture bTexture(loader.loadTexture("./res/hgrass.png"));
+	TerrainTexture BlendMap(loader.loadTexture("./res/hgrass.png"));
 	TerrainTexturePack terrainTexturePack (BackGroundTexture, rTexture, gTexture, bTexture);
 
 	terrain Terrain(-1, 0, loader, terrainTexturePack, BlendMap, "./res/heightmap.png");
@@ -140,19 +140,19 @@ int main()
 
 
 	list<entity> allEntity;
-	RawModel Treemodel = objLoader::LoadObj("./res/tree.obj", loader);
-	ModelTexture  treeTexture(loader.loadTexture("./res/tree.png"));
+	RawModel Treemodel = objLoader::LoadObj("./res/lptree1.obj", loader);
+	ModelTexture  treeTexture(loader.loadTexture("./res/treecolor.png"));
 	treeTexture.ReflectionScale = 0.0;
 	treeTexture.ShineDamper = 0.0;
 	treeTexture.NumberofRow = 1;
 	textureModel TreeTexureModel(Treemodel, treeTexture);
 
-	RawModel grassModel = objLoader::LoadObj("./res/grass.obj", loader);
-	ModelTexture  grassTexture(loader.loadTexture("./res/grass.png"));
+	RawModel grassModel = objLoader::LoadObj("./res/lgrass.obj", loader);
+	ModelTexture  grassTexture(loader.loadTexture("./res/hgrass.png"));
 	grassTexture.ReflectionScale = 0.0;
 	grassTexture.ShineDamper = 0.0;
-	grassTexture.tansparent = true;
-	grassTexture.FakeLightning = true;
+	grassTexture.tansparent = false;
+	grassTexture.FakeLightning = false;
 	grassTexture.NumberofRow = 1;
 	textureModel GrassTexureModel(grassModel, grassTexture);
 
@@ -177,7 +177,7 @@ int main()
 
 
 
-	const double grassRolls = 30000;//number of grass
+	const double grassRolls = 100;//number of grass
 	std::default_random_engine generator;
 	std::uniform_real_distribution<double> distribution(0, 100);//min and max of terrain
 	std::uniform_real_distribution<double> Flowerdistribution(4, 12);
@@ -192,12 +192,12 @@ int main()
 		float height = Terrain.getHeightOfTerrian(-randomx[i], -randomz[i]);
 		if (height > WATERLEVEL)
 		{
-			entity  grass_flower = entity(GrassTexureModel, 1, glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, 0.14);
+			entity  grass_flower = entity(GrassTexureModel, 1, glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, 0.09);
 			allEntity.push_back(grass_flower);
 		}
 	}
 
-	const double TreeRolls = 100;//number of tree
+	const double TreeRolls = 50;//number of tree
 	double *randomHeghit = new double[TreeRolls];
 	double *randomwidth = new double[TreeRolls];
 
@@ -210,7 +210,7 @@ int main()
 		float height = Terrain.getHeightOfTerrian(-randomx[i], -randomz[i]);
 		if (height > WATERLEVEL)
 		{
-			entity  tree = entity(TreeTexureModel, glm::fvec3(-randomx[i], height, -randomz[i]), 0, 0, 0, randomwidth[i], randomHeghit[i], randomwidth[i]);
+			entity  tree = entity(TreeTexureModel, glm::fvec3(-randomx[i], height, -randomz[i]), 0, i*30, 0, 0.5, 0.5, 0.5);
 			allEntity.push_back(tree);
 		}
 	}
@@ -235,10 +235,11 @@ int main()
 	glfwSetWindowUserPointer(window, &camera);
 
     WaterFrameBuffer waterframebuffer;
-	GuiTexture map(waterframebuffer.refractionTexture, glm::vec2(-0.5, 0.5), glm::vec3(0.2, 0.2, 0.2));
+	WaterRenderer waterrnderer(loader, RenderMaster::proj, waterframebuffer);
+	GuiTexture map(waterframebuffer.refractionTexture, glm::vec2(-0.5, 0.5), glm::vec3(0.4, 0.4, 0.4));
 	allGuis.push_back(map);
 
-	GuiTexture map2(waterframebuffer.reflectionTexture, glm::vec2(0.5, 0.5), glm::vec3(0.2, 0.2, 0.2));
+	GuiTexture map2(waterframebuffer.reflectionTexture, glm::vec2(0.5, 0.5), glm::vec3(0.4, 0.4, 0.4));
 	allGuis.push_back(map2);
 
 	auto START = Time::now();
@@ -263,9 +264,9 @@ int main()
 		waterframebuffer.unbindCurrentFrameBuffer();
 
 		waterframebuffer.bindReflectionFrameBuffer();
-		float distanceUnderwater = 2 * (camera.CameraLocation.y + WATERLEVEL);
-		camera.CameraLocation.y -= distanceUnderwater;
 		camera.invertpitch();
+		float distanceUnderwater = 2 * (camera.CameraLocation.y - WATERLEVEL);
+		camera.CameraLocation.y -= distanceUnderwater;
 		renderMaster.Render(lights, camera, player, deltaTime.count(), TimeOfDay, glm::fvec4(0, 1, 0, -WATERLEVEL));
 		camera.invertpitch();
 		camera.CameraLocation.y += distanceUnderwater;
