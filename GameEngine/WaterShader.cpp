@@ -9,6 +9,10 @@ void WaterShader::getAllUniformLocations()
 	locationView = Shader::GetUniformlocation("viewMatrix");
 	location_reflactionTexture = Shader::GetUniformlocation("reflactionTexture");
 	location_refractionTexture = Shader::GetUniformlocation("refractionTexture");
+	location_DuDv= Shader::GetUniformlocation("DuDv");
+	location_waterMoveOffSet = Shader::GetUniformlocation("waterMoveOffSet");
+	location_Normal= Shader::GetUniformlocation("Normal");
+	location_cameraLocation= Shader::GetUniformlocation("cameraLocation");
 }
 
 WaterShader::WaterShader()

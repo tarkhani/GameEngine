@@ -1,36 +1,44 @@
-﻿  main.cpp
+﻿  WaterRenderer.cpp
+d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+d:\gameengine cpp\gameengine\gameengine\WaterRenderer.h(22): warning C4305: 'initializing': truncation from 'double' to 'const float'
+  WaterShader.cpp
+d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  main.cpp
 d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
 d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
 d:\gameengine cpp\gameengine\gameengine\StaticShader.h(43): warning C4018: '<': signed/unsigned mismatch
 d:\gameengine cpp\gameengine\gameengine\TerrainShader.h(44): warning C4018: '<': signed/unsigned mismatch
-main.cpp(106): warning C4244: 'argument': conversion from 'const int' to 'float', possible loss of data
+d:\gameengine cpp\gameengine\gameengine\WaterRenderer.h(22): warning C4305: 'initializing': truncation from 'double' to 'const float'
+main.cpp(43): warning C4305: 'initializing': truncation from 'double' to 'float'
+main.cpp(161): warning C4305: '=': truncation from 'double' to 'float'
 main.cpp(162): warning C4305: '=': truncation from 'double' to 'float'
-main.cpp(163): warning C4305: '=': truncation from 'double' to 'float'
-main.cpp(168): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(170): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(172): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(174): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(167): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(169): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(171): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(173): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(184): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
 main.cpp(185): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
-main.cpp(186): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
+main.cpp(189): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 main.cpp(190): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-main.cpp(191): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-main.cpp(195): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(194): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(200): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
 main.cpp(201): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
-main.cpp(202): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
+main.cpp(205): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
 main.cpp(206): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-main.cpp(207): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-main.cpp(213): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-main.cpp(230): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(338): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-main.cpp(342): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-main.cpp(351): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-main.cpp(355): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+main.cpp(212): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+main.cpp(229): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(332): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+main.cpp(336): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+main.cpp(345): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+main.cpp(349): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
 SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  1 of 1517 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+  2 of 1518 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
     0 functions were new in current compilation
-    0 functions had inline decision re-evaluated but remain unchanged
+    1 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Release\GameEngine.exe
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Release\GameEngine.pdb (Full PDB)

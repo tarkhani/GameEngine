@@ -15,7 +15,7 @@ uniform vec3  attenuation[4];
 uniform float ShineDamper;
 uniform float ReflectionScale;
 uniform vec3 skyColor;
-const int numberOflightLv=3;
+const int numberOflightLv=6;
 
 void main()
 {

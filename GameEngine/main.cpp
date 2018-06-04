@@ -39,8 +39,8 @@ typedef std::chrono::milliseconds ms;
 typedef std::chrono::duration<float> fsec;
 
 glm::mat4 const RenderMaster::proj = glm::perspective(70.0f, ((float)1920 / 1080), 0.1f, 200.0f);
-float WaterTile::TILE_SIZE = 700;
-int const WATERLEVEL = -1;
+float WaterTile::TILE_SIZE = 100;
+float const WATERLEVEL = -0.89;
 void checkInput(GLFWwindow* window, Player &player, Camera& camera);
 struct Point {
 
@@ -89,13 +89,12 @@ int main()
 		glfwTerminate();
 		return -1;
 	}
+	glEnable(GL_MULTISAMPLE);
 	glEnable(GL_DEPTH_TEST);
 	glDepthFunc(GL_LEQUAL);
 	glEnable(GL_CULL_FACE);
 	glCullFace(GL_BACK);
 	glEnable(GL_CLIP_DISTANCE0);
-	
-
 	
 	
 	list<terrain> allTerrain;
@@ -103,12 +102,12 @@ int main()
 	RenderMaster renderMaster(loader);
 
 	std::list<WaterTile> waters;
-	WaterTile water1(0, 0, WATERLEVEL);
+	WaterTile water1(1, 1, WATERLEVEL);
 	waters.push_back(water1);
 
 
 	Light light1(glm::vec3(-80.0f, 7.0f,-10.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.001f));
-	Light light2(glm::vec3(-40.0f, 7.0f, -60.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.001f));
+	Light light2(glm::vec3(-38.0f, 7.0f, -60.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.001f));
 	Light light3(glm::vec3(-30.0f, 7.0f, -90.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.001f));
 	Light light4(glm::vec3(-100.0f, 7.0f, -100.0f), glm::vec3(1.0f, 0.8f, 0.8f), glm::vec3(1.0f, 0.04f, 0.001f));
 	std::vector<Light> lights;
@@ -165,7 +164,7 @@ int main()
 	lampTexture.FakeLightning = true;
 	lampTexture.NumberofRow = 1;
 	textureModel lampTexureModel(lampModel, lampTexture);
-	entity  lamp = entity(lampTexureModel, glm::fvec3(-40, Terrain.getHeightOfTerrian(-40, -60), -60), 0, 0, 0, 0.2);
+	entity  lamp = entity(lampTexureModel, glm::fvec3(-38, Terrain.getHeightOfTerrian(-40, -60), -60), 0, 0, 0, 0.2);
 	allEntity.push_back(lamp);
 	lamp = entity(lampTexureModel, glm::fvec3(-80, Terrain.getHeightOfTerrian(-80, -10), -10), 0, 0, 0, 0.2);
 	allEntity.push_back(lamp);
@@ -236,11 +235,6 @@ int main()
 
     WaterFrameBuffer waterframebuffer;
 	WaterRenderer waterrnderer(loader, RenderMaster::proj, waterframebuffer);
-	GuiTexture map(waterframebuffer.refractionTexture, glm::vec2(-0.5, 0.5), glm::vec3(0.4, 0.4, 0.4));
-	allGuis.push_back(map);
-
-	GuiTexture map2(waterframebuffer.reflectionTexture, glm::vec2(0.5, 0.5), glm::vec3(0.4, 0.4, 0.4));
-	allGuis.push_back(map2);
 
 	auto START = Time::now();
 	float TimeOfDay = 0;
@@ -274,7 +268,7 @@ int main()
 
 		
 		renderMaster.Render(lights, camera,player,deltaTime.count(),TimeOfDay,glm::fvec4(0, 1, 0, 1000));
-		waterrnderer.render(waters, camera);
+		waterrnderer.render(waters, camera, deltaTime.count());
 		guiRenderer.render(allGuis);
 
 		auto END = Time::now();//getting delta time(how much time took to render frame)
@@ -335,7 +329,7 @@ void checkInput(GLFWwindow* window,Player &player ,Camera& camera) {
 	}
 	if (state7 == GLFW_PRESS)
 	{
-		camera.pitch += (float)deltaMosePos.y*0.01;
+		camera.pitch += (float)deltaMosePos.y*0.02;
 	}
 	if (state8 == GLFW_PRESS)
 	{
