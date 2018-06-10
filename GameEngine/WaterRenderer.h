@@ -25,7 +25,7 @@ public:
 
 	WaterRenderer(Loader & loader,glm::fmat4 projectionMatrix,WaterFrameBuffer & fbo);
 	void prepareRender(Camera& camera);
-	void render(std::list<WaterTile>& waters, Camera &camera, float deltatime);
+	void render(std::vector<Light> & lights,std::list<WaterTile>& waters, Camera &camera, float deltatime);
 	void unbind();
 	void setUpVAO(Loader& loader);
 	~WaterRenderer();

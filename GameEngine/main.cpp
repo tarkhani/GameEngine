@@ -268,7 +268,7 @@ int main()
 
 		
 		renderMaster.Render(lights, camera,player,deltaTime.count(),TimeOfDay,glm::fvec4(0, 1, 0, 1000));
-		waterrnderer.render(waters, camera, deltaTime.count());
+		waterrnderer.render(lights,waters, camera, deltaTime.count());
 		guiRenderer.render(allGuis);
 
 		auto END = Time::now();//getting delta time(how much time took to render frame)

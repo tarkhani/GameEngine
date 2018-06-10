@@ -2,10 +2,14 @@
 #include"Shader.h"
 #include"Camera.h"
 #include"Mats.h"
+#include"Light.h"
+#include<string>
+#include<vector>
 
 class WaterShader : public Shader
 {
 public:
+	static const int MAX_LIGHTS = 4;
 	char* vertaxShaderLocation = "waterVertex.glsl";
 	char* fragmentshaderLocation = "waterFragment.glsl";
 	int locationTransformation;
@@ -15,8 +19,11 @@ public:
 	int location_refractionTexture;
 	int location_DuDv;
 	int location_waterMoveOffSet;
-	int location_Normal;
+	int location_NormalMap;
 	int location_cameraLocation;
+	int locationlightPosition[MAX_LIGHTS];
+	int locationlightColour[MAX_LIGHTS];
+	int locationAttenuation[MAX_LIGHTS];
 
 	virtual void getAllUniformLocations() override;
 	WaterShader::WaterShader();
@@ -43,13 +50,14 @@ public:
 
 		Shader::loadFloatUni(offset, location_waterMoveOffSet);
 	};
+	void loadLight(std::vector<Light>& lights);
 
 	void connectTectureUnit() {
 
 		Shader::loadIntUni(0, location_reflactionTexture);
 		Shader::loadIntUni(1, location_refractionTexture);
 		Shader::loadIntUni(2, location_DuDv);
-		Shader::loadIntUni(3, location_Normal);
+		Shader::loadIntUni(3, location_NormalMap);
 
 
 	};

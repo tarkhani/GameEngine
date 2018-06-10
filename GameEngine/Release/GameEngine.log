@@ -5,6 +5,7 @@ d:\gameengine cpp\gameengine\gameengine\WaterRenderer.h(22): warning C4305: 'ini
   WaterShader.cpp
 d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
 d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+WaterShader.cpp(43): warning C4018: '<': signed/unsigned mismatch
   main.cpp
 d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
 d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
@@ -36,9 +37,9 @@ main.cpp(349): warning C4244: '-=': conversion from 'double' to 'float', possibl
 SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  2 of 1518 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
-    0 functions were new in current compilation
-    1 functions had inline decision re-evaluated but remain unchanged
+  7 of 1519 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
+    2 functions were new in current compilation
+    30 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Release\GameEngine.exe
   GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Release\GameEngine.pdb (Full PDB)

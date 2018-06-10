@@ -31,7 +31,7 @@ void WaterRenderer::prepareRender(Camera &camera)
 	
 }
 
-void WaterRenderer::render(std::list<WaterTile>& waters, Camera & camera, float deltatime)
+void WaterRenderer::render(std::vector<Light> & lights, std::list<WaterTile>& waters, Camera & camera,float deltatime)
 {
 	moveOffSet += waterSpeed*deltatime;
 	if (moveOffSet >= 1) moveOffSet = 0;
@@ -44,6 +44,7 @@ void WaterRenderer::render(std::list<WaterTile>& waters, Camera & camera, float 
 		WaterTile::TILE_SIZE);
 		waterShader.loadTransformation(modelMatrix);
 		waterShader.LoadWaterMoveOffSet(moveOffSet);
+		waterShader.loadLight(lights);
 		glDrawArrays(GL_TRIANGLES, 0, quad.getIndexcount());
 
 	}
