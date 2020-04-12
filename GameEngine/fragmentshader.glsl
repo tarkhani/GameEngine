@@ -46,7 +46,7 @@ totalSpecular=totalSpecular+(ReflectionScale*DumpedFactor*lightColour[i]/attfact
 
 }
 totalDiffuse=max(totalDiffuse,0.0);
-vec4 TextureColor=texture2D(Texture,uv);
+vec4 TextureColor=texture(Texture,uv);
 if(TextureColor.a<0.5){
 discard;
 }

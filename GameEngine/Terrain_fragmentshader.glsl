@@ -22,13 +22,13 @@ uniform vec3 skyColor;
 const int numberOflightLv=20;
 void main()
 {
-vec4 BlendMapColor=texture2D(BlendMap,uv);
+vec4 BlendMapColor=texture(BlendMap,uv);
 float backTextureAmount=1-(BlendMapColor.r+BlendMapColor.g+BlendMapColor.b);
 vec2 TiledCoords=uv*30;
-vec4 BackGroundTextureColor = texture2D(BackGroundTexture,TiledCoords)*backTextureAmount;
-vec4 rTextureColor = texture2D(rTexture,TiledCoords)*BlendMapColor.r;
-vec4 bTextureColor = texture2D(bTexture,TiledCoords)*BlendMapColor.g;
-vec4 gTextureColor = texture2D(gTexture,TiledCoords)*BlendMapColor.b;
+vec4 BackGroundTextureColor = texture(BackGroundTexture,TiledCoords)*backTextureAmount;
+vec4 rTextureColor = texture(rTexture,TiledCoords)*BlendMapColor.r;
+vec4 bTextureColor = texture(bTexture,TiledCoords)*BlendMapColor.g;
+vec4 gTextureColor = texture(gTexture,TiledCoords)*BlendMapColor.b;
 
 vec4 mixColor = BackGroundTextureColor + rTextureColor+gTextureColor+bTextureColor;
 

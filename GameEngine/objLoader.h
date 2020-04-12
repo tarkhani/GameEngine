@@ -8,8 +8,6 @@
 #include"StaticShader.h"
 #include<map>
 
-//i took some code for load obj file from here http://www.opengl-tutorial.org !! (great tutorial btw helped me alot )
-
 
 class objLoader
 {

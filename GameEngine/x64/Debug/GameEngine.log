@@ -1,54 +1,54 @@
 ﻿  WaterTile.cpp
   WaterShader.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
   WaterRenderer.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\waterrenderer.h(3): fatal error C1083: Cannot open include file: 'glm\common.hpp': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\waterrenderer.h(3): fatal error C1083: Cannot open include file: 'glm\common.hpp': No such file or directory
   WaterFrameBuffer.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\waterframebuffer.h(2): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\waterframebuffer.h(2): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
   textureModel.cpp
   TerrainTexturePack.cpp
   TerrainShader.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
   TerrainRenderer.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
   terrain.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\terrain.cpp(2): fatal error C1083: Cannot open include file: 'SDL_image.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\terrain.cpp(2): fatal error C1083: Cannot open include file: 'SDL_image.h': No such file or directory
   StaticShader.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
   SkyboxShader.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
   SkyboxRenderer.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
   Shader.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
   Rendrer.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
   RenderMaster.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\rendermaster.h(2): fatal error C1083: Cannot open include file: 'glm\gtc\matrix_transform.hpp': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\rendermaster.h(2): fatal error C1083: Cannot open include file: 'glm\gtc\matrix_transform.hpp': No such file or directory
   RawModel.cpp
   Player.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\entity.h(3): fatal error C1083: Cannot open include file: 'glm\glm.hpp': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\entity.h(3): fatal error C1083: Cannot open include file: 'glm\glm.hpp': No such file or directory
   objLoader.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\loader.h(4): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\loader.h(4): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
   MousePicker.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\mousepicker.h(2): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\mousepicker.h(2): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
   ModelTexture.cpp
   Generating Code...
   Compiling...
   Mats.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\mats.h(2): fatal error C1083: Cannot open include file: 'glm\gtc\matrix_transform.hpp': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\mats.h(2): fatal error C1083: Cannot open include file: 'glm\gtc\matrix_transform.hpp': No such file or directory
   main.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\main.cpp(5): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\main.cpp(5): fatal error C1083: Cannot open include file: 'GL/glew.h': No such file or directory
   Loader.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\loader.h(4): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\loader.h(4): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
   Light.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\light.h(2): fatal error C1083: Cannot open include file: 'glm\common.hpp': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\light.h(2): fatal error C1083: Cannot open include file: 'glm\common.hpp': No such file or directory
   GuiShader.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\shader.h(4): fatal error C1083: Cannot open include file: 'gl\glew.h': No such file or directory
   GuiRenderer.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\loader.h(4): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\loader.h(4): fatal error C1083: Cannot open include file: 'GL\glew.h': No such file or directory
   entity.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\entity.h(3): fatal error C1083: Cannot open include file: 'glm\glm.hpp': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\entity.h(3): fatal error C1083: Cannot open include file: 'glm\glm.hpp': No such file or directory
   Camera.cpp
-c:\users\mit\desktop\gameengine-master\gameengine\camera.h(2): fatal error C1083: Cannot open include file: 'glm\glm.hpp': No such file or directory
+c:\users\mit\desktop\new folder\gameengine\camera.h(2): fatal error C1083: Cannot open include file: 'glm\glm.hpp': No such file or directory
   Generating Code...

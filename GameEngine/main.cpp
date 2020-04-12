@@ -102,7 +102,7 @@ int main()
 	RenderMaster renderMaster(loader);
 
 	std::list<WaterTile> waters;
-	WaterTile water1(1, 1, WATERLEVEL);
+	WaterTile water1(0,0, WATERLEVEL);
 	waters.push_back(water1);
 
 
@@ -120,16 +120,19 @@ int main()
 
 	TerrainTexture BackGroundTexture(loader.loadTexture("./res/hgrass.png"));
 	TerrainTexture rTexture(loader.loadTexture("./res/hgrass.png"));
-	TerrainTexture gTexture(loader.loadTexture("./res/hgrass.png"));
+	TerrainTexture gTexture(loader.loadTexture("./res/FloorStreets.jpg"));
 	TerrainTexture bTexture(loader.loadTexture("./res/hgrass.png"));
-	TerrainTexture BlendMap(loader.loadTexture("./res/hgrass.png"));
+	TerrainTexture BlendMap(loader.loadTexture("./res/blendMap.png"));
 	TerrainTexturePack terrainTexturePack (BackGroundTexture, rTexture, gTexture, bTexture);
 
 	terrain Terrain(-1, 0, loader, terrainTexturePack, BlendMap, "./res/heightmap.png");
+	
+
 	Terrain.ReflectionScale = 0.0;
 	Terrain.ShineDamper = 0.0;
 
 	allTerrain.push_back(Terrain);
+
 
 	GuiRenderer guiRenderer(loader);
 	list<GuiTexture>allGuis;
@@ -137,10 +140,18 @@ int main()
 	allGuis.push_back(healthBar);
 
 
-
+	/*
 	list<entity> allEntity;
 	RawModel Treemodel = objLoader::LoadObj("./res/lptree1.obj", loader);
 	ModelTexture  treeTexture(loader.loadTexture("./res/treecolor.png"));
+	treeTexture.ReflectionScale = 0.0;
+	treeTexture.ShineDamper = 0.0;
+	treeTexture.NumberofRow = 1;
+	textureModel TreeTexureModel(Treemodel, treeTexture); */
+
+	list<entity> allEntity;
+	RawModel Treemodel = objLoader::LoadObj("./res/tree.obj", loader);
+	ModelTexture  treeTexture(loader.loadTexture("./res/tree.png"));
 	treeTexture.ReflectionScale = 0.0;
 	treeTexture.ShineDamper = 0.0;
 	treeTexture.NumberofRow = 1;
@@ -180,7 +191,8 @@ int main()
 	std::default_random_engine generator;
 	std::uniform_real_distribution<double> distribution(0, 100);//min and max of terrain
 	std::uniform_real_distribution<double> Flowerdistribution(4, 12);
-	std::uniform_real_distribution<double> HeightDistribution(0.6, 1.6);
+	std::uniform_real_distribution<double> HeightDistribution(0.9, 2.0);
+
 	float *randomx = new float[grassRolls];
 	float *randomz = new float[grassRolls];
 
@@ -209,7 +221,7 @@ int main()
 		float height = Terrain.getHeightOfTerrian(-randomx[i], -randomz[i]);
 		if (height > WATERLEVEL)
 		{
-			entity  tree = entity(TreeTexureModel, glm::fvec3(-randomx[i], height, -randomz[i]), 0, i*30, 0, 0.5, 0.5, 0.5);
+			entity  tree = entity(TreeTexureModel, glm::fvec3(-randomx[i], height, -randomz[i]), 0, i*30, 0, *randomHeghit, *randomwidth, *randomwidth);
 			allEntity.push_back(tree);
 		}
 	}

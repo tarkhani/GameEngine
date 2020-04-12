@@ -1,2 +1,22 @@
-﻿  GameEngine.vcxproj -> C:\Users\mit\Desktop\GameEngine-master\GameEngine\Debug\GameEngine.exe
-  GameEngine.vcxproj -> C:\Users\mit\Desktop\GameEngine-master\GameEngine\Debug\GameEngine.pdb (Full PDB)
+﻿  Camera.cpp
+c:\users\mit\desktop\new folder\gameengine\player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\mit\desktop\new folder\gameengine\camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Generating Code...
+  Skipping... (no relevant changes detected)
+  terrain.cpp
+  objLoader.cpp
+  main.cpp
+  WaterShader.cpp
+  WaterRenderer.cpp
+  TerrainShader.cpp
+  TerrainRenderer.cpp
+  StaticShader.cpp
+  SkyboxShader.cpp
+  SkyboxRenderer.cpp
+  Rendrer.cpp
+  RenderMaster.cpp
+  MousePicker.cpp
+  Mats.cpp
+  GuiRenderer.cpp
+  GameEngine.vcxproj -> C:\Users\mit\Desktop\New folder\GameEngine\Debug\GameEngine.exe
+  GameEngine.vcxproj -> C:\Users\mit\Desktop\New folder\GameEngine\Debug\GameEngine.pdb (Full PDB)

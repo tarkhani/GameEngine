@@ -1,34 +1,39 @@
-d:\gameengine cpp\gameengine\gameengine\debug\vc140.pdb
-d:\gameengine cpp\gameengine\gameengine\debug\vc140.idb
-d:\gameengine cpp\gameengine\gameengine\debug\guishader.obj
-d:\gameengine cpp\gameengine\gameengine\debug\light.obj
-d:\gameengine cpp\gameengine\gameengine\debug\loader.obj
-d:\gameengine cpp\gameengine\gameengine\debug\main.obj
-d:\gameengine cpp\gameengine\gameengine\debug\mats.obj
-d:\gameengine cpp\gameengine\gameengine\debug\modeltexture.obj
-d:\gameengine cpp\gameengine\gameengine\debug\objloader.obj
-d:\gameengine cpp\gameengine\gameengine\debug\player.obj
-d:\gameengine cpp\gameengine\gameengine\debug\rawmodel.obj
-d:\gameengine cpp\gameengine\gameengine\debug\rendermaster.obj
-d:\gameengine cpp\gameengine\gameengine\debug\rendrer.obj
-d:\gameengine cpp\gameengine\gameengine\debug\shader.obj
-d:\gameengine cpp\gameengine\gameengine\debug\skyboxrenderer.obj
-d:\gameengine cpp\gameengine\gameengine\debug\skyboxshader.obj
-d:\gameengine cpp\gameengine\gameengine\debug\staticshader.obj
-d:\gameengine cpp\gameengine\gameengine\debug\terrain.obj
-d:\gameengine cpp\gameengine\gameengine\debug\terrainrenderer.obj
-d:\gameengine cpp\gameengine\gameengine\debug\terrainshader.obj
-d:\gameengine cpp\gameengine\gameengine\debug\terraintexturepack.obj
-d:\gameengine cpp\gameengine\gameengine\debug\texturemodel.obj
-d:\gameengine cpp\gameengine\gameengine\debug\camera.obj
-d:\gameengine cpp\gameengine\gameengine\debug\entity.obj
-d:\gameengine cpp\gameengine\gameengine\debug\guirenderer.obj
-d:\gameengine cpp\gameengine\debug\gameengine.ilk
-d:\gameengine cpp\gameengine\debug\gameengine.exe
-d:\gameengine cpp\gameengine\debug\gameengine.pdb
-d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\cl.command.1.tlog
-d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\cl.read.1.tlog
-d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\cl.write.1.tlog
-d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\link.command.1.tlog
-d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\link.read.1.tlog
-d:\gameengine cpp\gameengine\gameengine\debug\gameengine.tlog\link.write.1.tlog
+c:\users\mit\desktop\gameengine-master\gameengine\debug\vc140.pdb
+c:\users\mit\desktop\gameengine-master\gameengine\debug\vc140.idb
+c:\users\mit\desktop\gameengine-master\gameengine\debug\modeltexture.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\mousepicker.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\objloader.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\player.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\rawmodel.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\rendermaster.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\rendrer.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\shader.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\skyboxrenderer.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\skyboxshader.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\staticshader.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\terrain.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\terrainrenderer.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\terrainshader.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\terraintexturepack.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\texturemodel.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\waterframebuffer.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\waterrenderer.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\watershader.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\watertile.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\camera.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\entity.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\guirenderer.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\guishader.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\light.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\loader.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\main.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\mats.obj
+c:\users\mit\desktop\gameengine-master\gameengine\debug\gameengine.ilk
+c:\users\mit\desktop\gameengine-master\gameengine\debug\gameengine.exe
+c:\users\mit\desktop\gameengine-master\gameengine\debug\gameengine.pdb
+c:\users\mit\desktop\gameengine-master\gameengine\debug\gameengine.tlog\cl.command.1.tlog
+c:\users\mit\desktop\gameengine-master\gameengine\debug\gameengine.tlog\cl.read.1.tlog
+c:\users\mit\desktop\gameengine-master\gameengine\debug\gameengine.tlog\cl.write.1.tlog
+c:\users\mit\desktop\gameengine-master\gameengine\debug\gameengine.tlog\link.command.1.tlog
+c:\users\mit\desktop\gameengine-master\gameengine\debug\gameengine.tlog\link.read.1.tlog
+c:\users\mit\desktop\gameengine-master\gameengine\debug\gameengine.tlog\link.write.1.tlog

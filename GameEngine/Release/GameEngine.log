@@ -1,45 +1,117 @@
-﻿  WaterRenderer.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-d:\gameengine cpp\gameengine\gameengine\WaterRenderer.h(22): warning C4305: 'initializing': truncation from 'double' to 'const float'
+﻿  Camera.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  GuiRenderer.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  Mats.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  MousePicker.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+MousePicker.cpp(13): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+  RenderMaster.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\ghadir pc\desktop\gameengine\StaticShader.h(43): warning C4018: '<': signed/unsigned mismatch
+c:\users\ghadir pc\desktop\gameengine\TerrainShader.h(44): warning C4018: '<': signed/unsigned mismatch
+  Rendrer.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\ghadir pc\desktop\gameengine\StaticShader.h(43): warning C4018: '<': signed/unsigned mismatch
+c:\users\ghadir pc\desktop\gameengine\TerrainShader.h(44): warning C4018: '<': signed/unsigned mismatch
+Rendrer.cpp(46): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+Rendrer.cpp(53): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+  SkyboxRenderer.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  SkyboxShader.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+  StaticShader.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\ghadir pc\desktop\gameengine\StaticShader.h(43): warning C4018: '<': signed/unsigned mismatch
+  TerrainRenderer.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\ghadir pc\desktop\gameengine\TerrainShader.h(44): warning C4018: '<': signed/unsigned mismatch
+  TerrainShader.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\ghadir pc\desktop\gameengine\TerrainShader.h(44): warning C4018: '<': signed/unsigned mismatch
+  WaterRenderer.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\ghadir pc\desktop\gameengine\WaterRenderer.h(22): warning C4305: 'initializing': truncation from 'double' to 'const float'
   WaterShader.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
 WaterShader.cpp(43): warning C4018: '<': signed/unsigned mismatch
   main.cpp
-d:\gameengine cpp\gameengine\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
-d:\gameengine cpp\gameengine\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
-d:\gameengine cpp\gameengine\gameengine\StaticShader.h(43): warning C4018: '<': signed/unsigned mismatch
-d:\gameengine cpp\gameengine\gameengine\TerrainShader.h(44): warning C4018: '<': signed/unsigned mismatch
-d:\gameengine cpp\gameengine\gameengine\WaterRenderer.h(22): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\ghadir pc\desktop\gameengine\StaticShader.h(43): warning C4018: '<': signed/unsigned mismatch
+c:\users\ghadir pc\desktop\gameengine\TerrainShader.h(44): warning C4018: '<': signed/unsigned mismatch
+c:\users\ghadir pc\desktop\gameengine\WaterRenderer.h(22): warning C4305: 'initializing': truncation from 'double' to 'const float'
 main.cpp(43): warning C4305: 'initializing': truncation from 'double' to 'float'
-main.cpp(161): warning C4305: '=': truncation from 'double' to 'float'
-main.cpp(162): warning C4305: '=': truncation from 'double' to 'float'
-main.cpp(167): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(169): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(171): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(173): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(184): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
-main.cpp(185): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
-main.cpp(189): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-main.cpp(190): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-main.cpp(194): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(200): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
-main.cpp(201): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
-main.cpp(205): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-main.cpp(206): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
-main.cpp(212): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
-main.cpp(229): warning C4305: 'argument': truncation from 'double' to 'float'
-main.cpp(332): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
-main.cpp(336): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-main.cpp(345): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
-main.cpp(349): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+main.cpp(172): warning C4305: '=': truncation from 'double' to 'float'
+main.cpp(173): warning C4305: '=': truncation from 'double' to 'float'
+main.cpp(178): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(180): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(182): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(184): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(196): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
+main.cpp(197): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
+main.cpp(201): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+main.cpp(202): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+main.cpp(206): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(212): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
+main.cpp(213): warning C4244: 'initializing': conversion from 'const double' to 'unsigned int', possible loss of data
+main.cpp(217): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+main.cpp(218): warning C4244: '=': conversion from 'double' to 'float', possible loss of data
+main.cpp(224): warning C4244: 'argument': conversion from 'double' to 'float', possible loss of data
+main.cpp(224): warning C4244: 'argument': conversion from 'int' to 'float', possible loss of data
+main.cpp(241): warning C4305: 'argument': truncation from 'double' to 'float'
+main.cpp(344): warning C4244: '+=': conversion from 'double' to 'float', possible loss of data
+main.cpp(348): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+main.cpp(357): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+main.cpp(361): warning C4244: '-=': conversion from 'double' to 'float', possible loss of data
+  objLoader.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+c:\users\ghadir pc\desktop\gameengine\StaticShader.h(43): warning C4018: '<': signed/unsigned mismatch
+objLoader.cpp(57): warning C4996: 'fopen': This function or variable may be unsafe. Consider using fopen_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(205): note: see declaration of 'fopen'
+objLoader.cpp(68): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+objLoader.cpp(76): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+objLoader.cpp(81): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+objLoader.cpp(87): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+objLoader.cpp(93): warning C4996: 'fscanf': This function or variable may be unsafe. Consider using fscanf_s instead. To disable deprecation, use _CRT_SECURE_NO_WARNINGS. See online help for details.
+  C:\Program Files (x86)\Windows Kits\10\Include\10.0.10240.0\ucrt\stdio.h(1193): note: see declaration of 'fscanf'
+  terrain.cpp
+c:\users\ghadir pc\desktop\gameengine\Player.h(12): warning C4305: 'initializing': truncation from 'double' to 'const float'
+c:\users\ghadir pc\desktop\gameengine\Camera.h(10): warning C4305: 'initializing': truncation from 'double' to 'float'
+terrain.cpp(10): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+terrain.cpp(11): warning C4244: '=': conversion from 'int' to 'float', possible loss of data
+terrain.cpp(21): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+terrain.cpp(22): warning C4244: 'initializing': conversion from 'float' to 'int', possible loss of data
+terrain.cpp(88): warning C4244: 'initializing': conversion from 'int' to 'float', possible loss of data
 SOIL.lib(SOIL.obj) : warning LNK4075: ignoring '/EDITANDCONTINUE' due to '/OPT:ICF' specification
 LINK : warning LNK4098: defaultlib 'MSVCRTD' conflicts with use of other libs; use /NODEFAULTLIB:library
   Generating code
-  7 of 1519 functions ( 0.5%) were compiled, the rest were copied from previous compilation.
-    2 functions were new in current compilation
-    30 functions had inline decision re-evaluated but remain unchanged
+  2 of 1519 functions ( 0.1%) were compiled, the rest were copied from previous compilation.
+    0 functions were new in current compilation
+    0 functions had inline decision re-evaluated but remain unchanged
   Finished generating code
-  GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Release\GameEngine.exe
-  GameEngine.vcxproj -> D:\GameEngine CPP\GameEngine\Release\GameEngine.pdb (Full PDB)
+SOIL.lib(image_DXT.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_DXT.obj)' or at 'C:\Users\GHADIR PC\Desktop\GameEngine\Release\SOIL.pdb'; linking object as if no debug info
+SOIL.lib(image_helper.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(image_helper.obj)' or at 'C:\Users\GHADIR PC\Desktop\GameEngine\Release\SOIL.pdb'; linking object as if no debug info
+SOIL.lib(SOIL.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(SOIL.obj)' or at 'C:\Users\GHADIR PC\Desktop\GameEngine\Release\SOIL.pdb'; linking object as if no debug info
+SOIL.lib(stb_image_aug.obj) : warning LNK4099: PDB 'SOIL.pdb' was not found with 'SOIL.lib(stb_image_aug.obj)' or at 'C:\Users\GHADIR PC\Desktop\GameEngine\Release\SOIL.pdb'; linking object as if no debug info
+  GameEngine.vcxproj -> C:\Users\GHADIR PC\Desktop\GameEngine\Release\GameEngine.exe
+  GameEngine.vcxproj -> C:\Users\GHADIR PC\Desktop\GameEngine\Release\GameEngine.pdb (Full PDB)

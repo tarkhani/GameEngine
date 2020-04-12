@@ -22,8 +22,8 @@ const float ReflectionScale = 0.2;
 void main(void) {
 
     vec2 ndc = (ClipSpace.xy / ClipSpace.w) / 2.0 + 0.5;
-	vec2 dudvTextureColor = (texture2D(DuDv,vec2(TextureCoord.x + waterMoveOffSet,TextureCoord.y)).rg * 2.0 - 1.0) *wavePower;
-	vec2 dudvTextureColor2 = (texture2D(DuDv,vec2(-TextureCoord.x + waterMoveOffSet,TextureCoord.y + waterMoveOffSet )).rg * 2.0 - 1.0) *wavePower;
+	vec2 dudvTextureColor = (texture(DuDv,vec2(TextureCoord.x + waterMoveOffSet,TextureCoord.y)).rg * 2.0 - 1.0) *wavePower;
+	vec2 dudvTextureColor2 = (texture(DuDv,vec2(-TextureCoord.x + waterMoveOffSet,TextureCoord.y + waterMoveOffSet )).rg * 2.0 - 1.0) *wavePower;
 	vec2 totalDistortion = dudvTextureColor + dudvTextureColor2;
 	
 	vec2 refractionTexCoord=vec2(ndc.x,ndc.y);
@@ -36,10 +36,10 @@ void main(void) {
 	reflactionTexCoord.x=clamp(reflactionTexCoord.x,0.001,0.999);
 	reflactionTexCoord.y=clamp(reflactionTexCoord.y,-0.999,-0.001);
 
-    vec4 reflTextureColor = texture2D(reflactionTexture,reflactionTexCoord);
-    vec4 refraTextureColor = texture2D(refractionTexture,refractionTexCoord);
+    vec4 reflTextureColor = texture(reflactionTexture,reflactionTexCoord);
+    vec4 refraTextureColor = texture(refractionTexture,refractionTexCoord);
 
-    vec4 normal = texture2D(NormalMap,totalDistortion);
+    vec4 normal = texture(NormalMap,totalDistortion);
 	vec3 normalVector=vec3(normal.r * 2.0 - 1.0 ,normal.b,normal.g* 2.0 - 1.0);
 	vec3 unitNormal = normalize(normalVector);
 	vec3 NormalizeToCameraVector = normalize(toCameraVector);

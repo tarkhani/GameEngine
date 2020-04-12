@@ -1,1 +1,0 @@
-learning computer graphic (for now im learning from ThinMatrix and jamie king tutoriales )
